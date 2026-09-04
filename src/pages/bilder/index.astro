@@ -25,6 +25,7 @@ const arten = Object.entries(ARTEN).map(([a, info]) => ({
   bild: bilder.find((b) => b.art === a),
 })).filter((k) => k.anzahl > 0);
 
+const vereinsbilder = bilder.filter((b) => b.gruppe === 'verein');
 const orte = (() => {
   const m = new Map<string, { name: string; anzahl: number; bild: any }>();
   for (const b of bilder) for (const o of b.orte) {

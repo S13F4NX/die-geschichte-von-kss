@@ -23,6 +23,7 @@ export type Bild = {
   herkunft: string;
   herkunftUrl: string | null;
   bildnachweis: string;
+  gruppe?: string;
   teil?: number;
   seite?: number;
   pdfteil?: string;
@@ -74,6 +75,7 @@ function ausWeb(e: any): Bild {
     schlagworte: e.schlagworte ?? [],
     artikel: e.artikel ?? null,
     artikelUrl: artikelUrl(e.artikel),
+    gruppe: e.gruppe ?? undefined,
     herkunft: e.herkunft || 'Website der Marinekameradschaft KSS e.V.',
     bildnachweis: e.bildnachweis ?? '',
     herkunftUrl: e.herkunftUrl ?? null,

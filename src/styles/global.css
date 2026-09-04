@@ -555,3 +555,7 @@ figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-wid
 .person .rolle { font-family: var(--font-display); font-size: 0.98rem; color: var(--gold-tief); }
 .person .anzahl { font-family: var(--font-display); font-size: 0.95rem; color: var(--text-leise); }
 .person .klein { color: var(--text-leise); }
+.anhang-riss { margin: 1.6rem 0 0; background: #fff; border: 1px solid var(--linie-fein); padding: 1rem; }
+.anhang-riss img { width: 100%; display: block; }
+.anhang-riss figcaption { font-family: var(--font-display); color: var(--text-weich); margin-top: 0.5rem; border-left: 2px solid var(--gold); padding-left: 0.6rem; }
+.anhang-riss .herkunft { display: block; color: var(--text-leise); font-size: 0.9rem; }

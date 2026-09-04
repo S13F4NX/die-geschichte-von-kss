@@ -31,6 +31,8 @@ export async function getStaticPaths() {
       pfade.push({ params: { gruppe: `${prefix}-${k}` }, props: { name: v.name, kurz: `${v.bilder.length} Bilder. ${label}: ${v.name}.`, bilder: v.bilder, weiter: feld === 'schiffe' ? `/schiffe/${k}` : null, weiterName: 'Zum Datenblatt' } });
     }
   };
+  const vereinsbilder = bilder.filter((x) => x.gruppe === 'verein');
+  if (vereinsbilder.length) pfade.push({ params: { gruppe: 'verein' }, props: { name: 'Vereinsleben', kurz: `${vereinsbilder.length} Aufnahmen von Kameradschaftstreffen, Mitgliederversammlungen und Maiauslaufen, von der Website der Marinekameradschaft KSS e.V.`, bilder: vereinsbilder, weiter: '/verein', weiterName: 'Zum Verein' } });
   sammel('orte', 'ort');
   sammel('schiffe', 'schiff');
   sammel('personen', 'person');
