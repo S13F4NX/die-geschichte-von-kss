@@ -16,7 +16,7 @@ const pfad = [{ name: 'Der Verein', url: '/verein' }];
   <div class="hülle">
     <Brotkrumen pfad={pfad} />
     <header class="artikelkopf"><h1>Die Marinekameradschaft KSS e.V.</h1><p class="zusammenfassung">Rostock-Warnemünde, 29. März 1996 bis 31. Dezember 2021.</p></header>
-    <div class="artikel-raster" style="justify-content:start">
+    <div class="artikel-raster artikel-raster-links">
       <div class="prosa">
         <p>Am 29. März 1996 fassten in Rostock-Markgrafenheide die Kameraden Bodo Freist, Gerd Kleinschmidt, Michael Kretzschmar, Werner Lukoschat, Peter Müller, Siegfried Prinz, Wolfgang Schmieder, Hans Steike und Horst Wilhelm den Entschluss, eine Marinekameradschaft für ehemalige Angehörige der Küstenschutz-Schiffe (KSS) zu gründen. Am 1. Oktober 1996 wurde die Marinekameradschaft KSS e.V. unter der Nummer 1414 in das Vereinsregister des Amtsgerichtes Rostock eingetragen.</p>
         <p>Der gemeinnützige Verein stellte sich diese Aufgaben: Suche und Halten von Kontakten zu ehemaligen Angehörigen der KSS; Organisieren von Kameradschaftstreffen; Erforschen der Geschichte der KSS durch Nutzung öffentlicher und privater Quellen; Veröffentlichung der Erkenntnisse in Mitglieder-Informationen, Broschüren, Publikationen und im Internet; Organisierung maritimen Gedankenaustausches. Die Mitglieder wohnten über ganz Deutschland verteilt, von der Ostsee bis zur Nordsee, von der Oder über den Thüringer bis zum Bayrischen Wald. Um 2006 pegelte sich der Mitgliederstand bei mehr als sechzig Kameraden ein.</p>
@@ -33,7 +33,7 @@ const pfad = [{ name: 'Der Verein', url: '/verein' }];
         <p>Im Dezember 2021 verabschiedete sich der Vorstand mit einem <a href="/verein/abschied">letzten Brief</a> von den Lesern der Website. Die Mitgliederversammlung hatte beschlossen, den Verein zum 31. Dezember 2021 aufzulösen. Die Nutzungsrechte an allen Broschüreninhalten wurden an Manfred Köhler übertragen. Dieses Archiv führt die Arbeit in seinem Sinne fort.</p>
       </div>
       <aside class="seitenleiste">
-        {bilder.length > 0 && <section><div class="galerie" style="grid-template-columns: 1fr 1fr">{bilder.map((b) => <figure><a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift} loading="lazy" /></a></figure>)}</div><p><a href="/bilder/verein">Alle Bilder aus dem Vereinsleben</a></p></section>}
+        {bilder.length > 0 && <section><div class="galerie galerie-paar">{bilder.map((b) => <figure><a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift} loading="lazy" /></a></figure>)}</div><p><a href="/bilder/verein">Alle Bilder aus dem Vereinsleben</a></p></section>}
         <section>
           <h2>Seiten</h2>
           <ul>

@@ -84,12 +84,12 @@ const felder: [string, string | undefined][] = art === 'schiff' ? [
     )}
     {meineBilder.length > 8 && <p><a href={`/bilder/${info.slug}`}>Alle {meineBilder.length} Bilder im Bildarchiv</a></p>}
 
-    <div class="artikel-raster" style="justify-content: start">
+    <div class="artikel-raster artikel-raster-links">
       <div class={art === 'schiff' ? 'prosa' : ''}>
         {art === 'schiff' ? <Content /> : (
           <>
             <h2 style="margin-top:0">Die Schiffe dieser Klasse</h2>
-            <div class="karten" style="grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr))">
+            <div class="karten">
               {geschwister.map((x) => (
                 <article class="schiffskarte">
                   {risse[p] && <div class="riss"><img src={risse[p]} alt={`Seitenriss ${info.name}`} loading="lazy" /></div>}

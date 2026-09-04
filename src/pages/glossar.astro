@@ -45,7 +45,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'DefinedTermSet', na
   <div class="hülle">
     <Brotkrumen pfad={[{ name: 'Glossar', url: '/glossar' }]} />
     <header class="artikelkopf"><h1>Glossar</h1><p class="zusammenfassung">Abkürzungen und Begriffe, die in den Beiträgen ständig vorkommen. Die Erklärungen sind redaktionelle Zusammenfassungen des Archivs, keine Broschürentexte.</p></header>
-    <dl class="lesen" style="margin-left:0">
+    <dl class="lesen lesen-links">
       {begriffe.map(([n, d]) => <div style="margin-bottom:1rem"><dt style="font-family:var(--font-display);font-weight:600;font-size:1.3rem;color:var(--marine)">{n}</dt><dd style="margin:0">{d}</dd></div>)}
     </dl>
   </div>

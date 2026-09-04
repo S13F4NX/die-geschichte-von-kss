@@ -29,7 +29,7 @@ const pos = alle.findIndex((h) => h.data.teil === d.teil);
 <Base title={`KSS-Broschüre Teil ${d.teil} (${d.jahr})`} description={beschreibung} breadcrumbs={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }]} jsonLd={jsonLd} image={`/broschueren/seiten/teil-${nn}${d.pdfs ? 'a' : ''}/s-01.jpg`}>
   <div class="hülle">
     <Brotkrumen pfad={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }]} />
-    <div class="artikel-raster" style="grid-template-columns: minmax(0, 1fr) minmax(14rem, 20rem)">
+    <div class="artikel-raster artikel-raster-weit">
       <div>
         <header class="artikelkopf">
           <div class="rubrik">KSS-Broschüre · erschienen {d.jahr}</div>
@@ -66,13 +66,13 @@ const pos = alle.findIndex((h) => h.data.teil === d.teil);
 
         <section class="abschnitt">
           <div class="abschnitt-kopf"><h2>Vorwort</h2></div>
-          <div class="prosa lesen" style="margin-left: 0"><Content /></div>
+          <div class="prosa lesen lesen-links"><Content /></div>
         </section>
 
         {index?.quellennachweis && (
           <section class="abschnitt">
             <div class="abschnitt-kopf"><h2>Quellennachweis</h2></div>
-            <div class="prosa lesen" style="margin-left: 0; white-space: pre-line">{index.quellennachweis}</div>
+            <div class="prosa lesen lesen-links" style="white-space: pre-line">{index.quellennachweis}</div>
           </section>
         )}
       </div>
