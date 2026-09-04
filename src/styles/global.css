@@ -91,7 +91,7 @@ tbody tr:nth-child(even) { background: rgba(16, 16, 49, 0.045); }
 /* Layout */
 .hülle { width: min(100% - 2.5rem, var(--breite-weit)); margin-inline: auto; }
 .lesen { width: min(100% - 2.5rem, var(--breite-lesen)); margin-inline: auto; }
-.lesen > table, .prosa table { display: block; overflow-x: auto; }
+.lesen > table, .prosa table { display: block; overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
 .prosa { font-size: 1.15rem; }
 .prosa p { margin-bottom: 1.2em; }
 .prosa h2 { font-size: 1.9rem; }
@@ -158,7 +158,7 @@ a.stempel:hover { border-color: var(--marine); color: var(--marine); }
 .liste .neben { font-family: var(--font-display); font-size: 1rem; color: var(--text-leise); margin-top: 0.15rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; }
 .liste .kurz { color: var(--text-weich); margin: 0.3rem 0 0; font-size: 1rem; max-width: 60rem; }
 
-.raster { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+.raster { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); }
 .karte { background: var(--karte); border: 1px solid var(--linie-fein); border-top: 3px solid var(--schiffsgrau); padding: 1.2rem 1.3rem 1.4rem; }
 .karte h3 { margin-top: 0; font-size: 1.5rem; }
 .karte h3 a { color: var(--marine); text-decoration: none; }
@@ -232,7 +232,7 @@ figcaption { font-family: var(--font-display); font-size: 0.98rem; color: var(--
 .zahlen span { color: #b8c3cc; font-size: 0.95rem; }
 
 /* Schiffsdatenblatt */
-.datenblatt { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.6rem 2rem; margin: 1.5rem 0 2.5rem; background: var(--karte); border: 1px solid var(--linie-fein); padding: 1.2rem 1.4rem; }
+.datenblatt { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); gap: 0.6rem 2rem; margin: 1.5rem 0 2.5rem; background: var(--karte); border: 1px solid var(--linie-fein); padding: 1.2rem 1.4rem; }
 .datenblatt div { border-bottom: 1px solid var(--linie-fein); padding: 0.35rem 0; }
 .datenblatt dt { font-family: var(--font-display); color: var(--text-leise); font-size: 1rem; }
 .datenblatt dd { margin: 0; font-weight: 500; }
@@ -245,7 +245,7 @@ figcaption { font-family: var(--font-display); font-size: 0.98rem; color: var(--
 .galerie figcaption { padding: 0.5rem 0.7rem 0.7rem; }
 
 /* Broschüre */
-.heftreihe { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 1.2rem; }
+.heftreihe { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(11rem, 100%), 1fr)); gap: 1.2rem; }
 .heft { text-decoration: none; color: var(--marine); }
 .heft img { display: block; width: 100%; border: 1px solid var(--linie); box-shadow: 0 2px 8px rgba(16,16,49,0.14); background: #fff; }
 .heft b { display: block; font-family: var(--font-display); font-size: 1.3rem; margin-top: 0.5rem; }
@@ -370,7 +370,7 @@ a { transition: color var(--dauer-kurz) var(--ease-anlegen), text-decoration-col
 }
 
 /* Beitragskarten: Bild, Titel, Herkunft */
-.karten { display: grid; gap: 1.5rem; }
+.karten { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr)); }
 .bkarte { display: flex; flex-direction: column; background: var(--karte); border: 1px solid var(--linie-fein); border-top: 3px solid var(--marine); overflow: hidden; }
 .bkarte:hover { border-top-color: var(--gold); background: #fff; }
 .bkarte-bild { display: block; background: var(--papier-tief); line-height: 0; }
@@ -403,7 +403,7 @@ a { transition: color var(--dauer-kurz) var(--ease-anlegen), text-decoration-col
 .schiffskarte dd { margin: 0; }
 
 /* Klassenkarten auf der Schiffsübersicht */
-.klassenkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1.6rem; margin: 2rem 0 0; align-items: start; }
+.klassenkarten { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); gap: 1.6rem; margin: 2rem 0 0; align-items: start; }
 .klassenkarte { display: flex; flex-direction: column; background: var(--karte); border: 1px solid var(--linie-fein); border-top: 3px solid var(--marine); overflow: hidden; transition: border-top-color var(--dauer-mittel) var(--ease-anlegen), background-color var(--dauer-mittel) var(--ease-anlegen); }
 .klassenkarte:hover { border-top-color: var(--gold); background: #fff; }
 .kk-bild { display: block; background: #fff; line-height: 0; padding: 1.2rem 1.3rem; border-bottom: 1px solid var(--linie-fein); }
@@ -427,7 +427,7 @@ a { transition: color var(--dauer-kurz) var(--ease-anlegen), text-decoration-col
 .schiffsknopf:hover { border-color: var(--gold); background: var(--gold-hell); color: var(--marine); }
 
 /* Bildarchiv */
-.bildgitter { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1.2rem; }
+.bildgitter { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: 1.2rem; }
 .bildgitter-klein { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.8rem; }
 .archivbild { margin: 0; background: var(--karte); border: 1px solid var(--linie-fein); display: flex; flex-direction: column; }
 .archivbild a { display: block; line-height: 0; background: var(--papier-tief); }
@@ -507,15 +507,24 @@ figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-wid
 
 /* Schiffsdarstellung: Nachbau der interaktiven Seite des Vereins */
 .darstellung-raster { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.6rem; align-items: start; margin-top: 1rem; }
-@media (max-width: 56rem) { .darstellung-raster { grid-template-columns: 1fr; } }
-.darstellung-riss { position: relative; background: #fff; border: 1px solid var(--linie-fein); padding: 1rem; }
+@media (max-width: 56rem) {
+  .darstellung-raster { grid-template-columns: 1fr; }
+  .darstellung-info, .darstellung-hinweis { position: static; left: auto; right: auto; bottom: auto; margin-top: 0.8rem; }
+}
+.darstellung-riss { position: relative; background: #fff; border: 1px solid var(--linie-fein); padding: 1rem; min-height: 12rem; }
 .darstellung-riss > img { width: 100%; display: block; }
-.darstellung-info { margin-top: 0.8rem; border-top: 2px solid var(--gold); padding-top: 0.7rem; }
-.darstellung-info b { font-family: var(--font-display); font-size: 1.25rem; color: var(--marine); display: block; margin-bottom: 0.35rem; }
+.darstellung-hinweis { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; font-family: var(--font-display); font-size: 1rem; color: var(--text-leise); border-top: 1px dashed var(--linie); padding-top: 0.5rem; }
+.darstellung-info {
+  position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
+  background: var(--marine); color: #eef1f7; border-left: 3px solid var(--gold);
+  padding: 0.7rem 0.9rem 0.8rem; box-shadow: 0 6px 20px rgba(16,16,49,0.35);
+  animation: hoch 220ms var(--ease-anlegen) both;
+}
+.darstellung-info b { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold-hell); display: block; margin-bottom: 0.35rem; line-height: 1.15; }
 .darstellung-info dl { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.9rem; margin: 0; font-size: 0.98rem; }
-.darstellung-info dt { font-family: var(--font-display); color: var(--text-leise); }
+.darstellung-info dt { font-family: var(--font-display); color: #a9b4c8; }
 .darstellung-info dd { margin: 0; }
-.darstellung-info dd.ohne { grid-column: 1 / -1; color: var(--text-leise); font-style: italic; }
+.darstellung-info dd.ohne { grid-column: 1 / -1; color: #a9b4c8; font-style: italic; }
 .darstellung-felder { display: grid; gap: 1rem; }
 .darstellung-feld { background: var(--marine); color: #e6ebf2; padding: 0.8rem 1rem 1rem; }
 .darstellung-feld h3 { color: var(--gold-hell); margin: 0 0 0.4rem; font-size: 1.15rem; letter-spacing: 0.02em; }
@@ -548,7 +557,7 @@ figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-wid
 @media (max-width: 30rem) { .nach-oben span { display: none; } .nach-oben { padding: 0.6rem; } }
 
 /* Personenregister */
-.personen { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.9rem; }
+.personen { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr)); gap: 0.9rem; }
 .person { display: flex; flex-direction: column; gap: 0.15rem; text-decoration: none; background: var(--karte); border: 1px solid var(--linie-fein); border-left: 3px solid var(--schiffsgrau); padding: 0.7rem 0.9rem 0.8rem; color: var(--text); transition: border-left-color var(--dauer-kurz) var(--ease-anlegen), background-color var(--dauer-kurz) var(--ease-anlegen); }
 .person:hover { border-left-color: var(--gold); background: #fff; }
 .person b { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--marine); line-height: 1.15; }
@@ -559,3 +568,55 @@ figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-wid
 .anhang-riss img { width: 100%; display: block; }
 .anhang-riss figcaption { font-family: var(--font-display); color: var(--text-weich); margin-top: 0.5rem; border-left: 2px solid var(--gold); padding-left: 0.6rem; }
 .anhang-riss .herkunft { display: block; color: var(--text-leise); font-size: 0.9rem; }
+
+/* Navigation auf kleinen Bildschirmen */
+.nav-schalter {
+  display: none; align-items: center; gap: 0.55rem;
+  background: none; border: 1.5px solid rgba(214, 165, 24, 0.55); color: #fff;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
+  padding: 0.4rem 0.75rem; border-radius: var(--radius); cursor: pointer;
+  transition: border-color var(--dauer-kurz) var(--ease-anlegen), background-color var(--dauer-kurz) var(--ease-anlegen);
+}
+.nav-schalter:hover { border-color: var(--gold); background: rgba(214, 165, 24, 0.14); }
+.nav-striche { display: inline-flex; flex-direction: column; gap: 3px; width: 18px; }
+.nav-striche span { display: block; height: 2px; background: var(--gold-hell); border-radius: 1px; transition: transform var(--dauer-mittel) var(--ease-anlegen), opacity var(--dauer-kurz) var(--ease-anlegen); }
+.nav-schalter[aria-expanded='true'] .nav-striche span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav-schalter[aria-expanded='true'] .nav-striche span:nth-child(2) { opacity: 0; }
+.nav-schalter[aria-expanded='true'] .nav-striche span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+@media (max-width: 56.25rem) {
+  .kopf-innen { flex-wrap: nowrap; align-items: center; }
+  .marke { min-width: 0; flex: 1 1 auto; }
+  .marke-kss { font-size: 1.35rem; white-space: normal; }
+  .marke-titel { display: none; }
+  .marke-wappen { width: 40px; height: 40px; }
+  .nav-schalter { display: inline-flex; flex: none; }
+  .nav {
+    display: grid; grid-template-columns: 1fr;
+    flex-basis: 100%; gap: 0; margin: 0;
+    max-height: 0; overflow: hidden; visibility: hidden;
+    transition: max-height var(--dauer-lang) var(--ease-anlegen), visibility var(--dauer-lang);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .nav[data-offen] { max-height: 32rem; visibility: visible; }
+  .nav a {
+    padding: 0.75rem 0.2rem; font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); border-left: 3px solid transparent;
+    padding-left: 0.6rem;
+  }
+  .nav a:hover, .nav a[aria-current='page'] { border-bottom-color: rgba(255,255,255,0.1); border-left-color: var(--gold); background: rgba(214, 165, 24, 0.1); }
+  .nav a:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav { transition: none; }
+}
+
+/* Bedienbarkeit auf Berührungsgeräten */
+@media (pointer: coarse) {
+  .nav a, .schiffsknopf, .jahresnav a, .anlage, .stempel { min-height: 2.75rem; display: inline-flex; align-items: center; }
+  .anlage { min-height: 2.5rem; }
+  .liste .titel a, .bkarte h3 a, .person b { line-height: 1.25; }
+}
+/* Lange Wörter und Verweise nicht über den Rand laufen lassen */
+.prosa, .liste .kurz, .bkarte-text p, .archivbild figcaption, .kk-kurz { overflow-wrap: anywhere; }
+.prosa a { overflow-wrap: anywhere; }

@@ -104,6 +104,7 @@ const id = `sd-${projekt.replace('.', '-')}`;
     <div class="darstellung-raster">
       <div class="darstellung-riss">
         <img src={riss.src} alt={riss.alt} loading="lazy" />
+        <div class="darstellung-hinweis" data-hinweis>Zeiger auf eine Anlage rechts bewegen</div>
         <div class="darstellung-info" data-info hidden>
           <b data-info-titel></b>
           <dl data-info-daten></dl>
@@ -142,6 +143,7 @@ const id = `sd-${projekt.replace('.', '-')}`;
       if (!rohdaten) return;
       const daten = JSON.parse(rohdaten.textContent || '{}');
       const box = wurzel.querySelector<HTMLElement>('[data-info]');
+      const hinweis = wurzel.querySelector<HTMLElement>('[data-hinweis]');
       const titel = wurzel.querySelector<HTMLElement>('[data-info-titel]');
       const liste = wurzel.querySelector<HTMLElement>('[data-info-daten]');
       if (!box || !titel || !liste) return;
@@ -157,6 +159,7 @@ const id = `sd-${projekt.replace('.', '-')}`;
           titel.textContent = knopf.dataset.text || '';
           liste.innerHTML = '<dd class="ohne">Für diese Anlage enthält Anhang 1 der Broschüre Teil 2 keine Einzeldaten.</dd>';
           box.hidden = false;
+          if (hinweis) hinweis.hidden = true;
           return;
         }
         const d = daten[schluessel];
@@ -166,9 +169,11 @@ const id = `sd-${projekt.replace('.', '-')}`;
           .map(([k, label]) => `<dt>${label}</dt><dd>${d[k]}</dd>`)
           .join('') + `<dt>Quelle</dt><dd>${d.quelle}</dd>`;
         box.hidden = false;
+        if (hinweis) hinweis.hidden = true;
       };
       const verbergen = () => {
         box.hidden = true;
+        if (hinweis) hinweis.hidden = false;
         wurzel.querySelectorAll('.anlage').forEach((k) => k.classList.remove('aktiv'));
       };
       wurzel.querySelectorAll<HTMLElement>('.anlage').forEach((knopf) => {
