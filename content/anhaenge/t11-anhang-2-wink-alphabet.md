@@ -2,49 +2,47 @@
 title: "Anhang 2: Wink-Alphabet der SSK/ Volksmarine"
 autoren: []
 kategorie: "anhang"
-rubrik: "Anhänge"
+rubrik: "Anhangteil"
 broschuere: 11
-seiten: [48, 48]
 pdfteil: "a"
+seiten: [48, 48]
 projekte: []
 schiffe: []
 orte: []
 zeitraum: ""
-zusammenfassung: "Ganzseitige Tafel „WINKALPHABET“ der Seestreitkräfte/ Volksmarine: Winkerzeichen mit zwei Winkerflaggen für die Buchstaben a bis z sowie die Hilfszeichen Ausgangsstellung/Unterbrechungsstellung, Anruf, Verstanden – klar, Nicht verstanden, Platz wechseln und Ausstreichen. Umlaute und j werden umschrieben (ä = ae, ö = oe, ü = ue, j = ii)."
-schlagworte: ["Winkalphabet", "Winkerzeichen", "Signaldienst", "Winkerflaggen", "Hilfszeichen", "Volksmarine"]
-quelle: "Marinekameradschaft KSS e.V.: Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 11 (2013)"
+zusammenfassung: "Tafel des Winkalphabets der Seestreitkräfte und der Volksmarine: die Flaggenstellungen für die Buchstaben a bis z und die Hilfszeichen für Anruf, Verstanden, Nicht verstanden, Platz wechseln und Ausstreichen."
+schlagworte: ["Winken", "Signaldienst", "Ausbildung", "Seemannschaft"]
+quelle: "Marinekameradschaft KSS e.V.: Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 11 (2013), Anhang 2"
 ---
-*Abbildung (Teil 11, S. 48): Ganzseitige Tafel „WINKALPHABET“ – Winkerzeichen mit zwei Winkerflaggen für die Buchstaben a bis z sowie die Hilfszeichen.*
 
-Der Anhang besteht aus einer einzigen ganzseitigen Tafel. Die Winkerstellungen selbst sind ausschließlich zeichnerisch dargestellt; im folgenden sind die auf der Tafel lesbaren Beschriftungen wiedergegeben.
+Der Anhang besteht aus einer ganzseitigen Tafel. Sie zeigt für jeden Buchstaben die Stellung der beiden Winkflaggen sowie die gebräuchlichen Hilfszeichen.
 
-## Überschrift und Legende der Tafel
+*Abbildung (Teil 11a, S. 48): Winkalphabet der Seestreitkräfte und der Volksmarine*
 
-**WINKALPHABET**
+## Was die Tafel zeigt
 
-| Buchstabe | Bedeutung |
-| --- | --- |
-| ä | = ae |
-| j | = ii |
-| ö | = oe |
-| ü | = ue |
+Über der Buchstabenreihe stehen die Umschriften für die Umlaute:
 
-## Dargestellte Buchstabenzeichen
+| Zeichen | Umschrift |
+|---|---|
+| ä | ae |
+| ö | oe |
+| ü | ue |
+| j | ii |
 
-Die Tafel zeigt die Winkerstellungen in vier Zeilen:
+Darunter folgen in vier Reihen die Flaggenstellungen für die Buchstaben **a** bis **g**, **h** bis **o**, **p** bis **u** und **v** bis **z**. Der Buchstabe j erscheint nicht als eigene Stellung, er wird nach der obenstehenden Regel umschrieben.
 
-- 1. Zeile: a, b, c, d, e, f, g
-- 2. Zeile: h, i, k, l, m, n, o
-- 3. Zeile: p, q, r, s, t, u
-- 4. Zeile: v, w, x, y, z
+## Hilfszeichen
 
-## HILFSZEICHEN
+Den Abschluss bilden die Hilfszeichen der Tafel, jeweils mit der Beschriftung des Originals:
 
-| Zeichen | Bedeutung |
-| --- | --- |
-| Beide Flaggen gesenkt vor dem Körper | Ausgangsstellung oder Unterbrechungsstellung |
-| Kreisende Bewegung beider Arme | Anruf |
-| Beide Arme waagerecht (oder auch nur Waagerechthalten eines Armes) | Verstanden – klar |
-| Beide Arme hoch (oder auch nur Hochhalten eines Armes) | Nicht verstanden |
-| Ein Arm waagerecht, ein Arm schräg hoch | Platz wechseln |
-| Beide Flaggen schräg vor dem Körper mit Ausstreichbewegung | Ausstreichen |
+| Zeichen | Beschriftung auf der Tafel |
+|---|---|
+| Grundstellung | Ausgangsstellung oder Unterbrechungsstellung |
+| Anruf | Anruf |
+| Bestätigung | Verstanden – klar (oder auch nur Waagerechthalten eines Armes) |
+| Rückfrage | Nicht verstanden (oder auch nur Hochhalten eines Armes) |
+| Standortwechsel | Platz wechseln |
+| Streichung | Ausstreichen |
+
+> Anmerkung des Archivs: Die Zuordnung der einzelnen Flaggenstellungen zu den Buchstaben lässt sich nur an der Abbildung ablesen und wird hier nicht in Worte übersetzt.

@@ -1,5 +1,5 @@
 ---
-title: "Die Raddampfkorvette \"Danzig\" - Urgroßmutter aller Korvetten in den deutschen Marinen"
+title: "Die Raddampfkorvette „Danzig“ - Urgroßmutter aller Korvetten in den deutschen Marinen"
 autoren: ["Dr. Günter Stavorinus"]
 kategorie: "leser"
 rubrik: "Leser melden sich zu Wort"
