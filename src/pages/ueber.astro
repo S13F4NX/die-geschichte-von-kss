@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+const pfad = [{ name: 'Über dieses Archiv', url: '/ueber' }];
+---
+<Base title="Über dieses Archiv" description="Wie dieses Archiv entstanden ist: aus den zwölf Broschüren und der Website der Marinekameradschaft KSS e.V., unverändert übernommen, offen für Forschung, Suchmaschinen und KI-Systeme." breadcrumbs={pfad}>
+  <div class="hülle"><Brotkrumen pfad={pfad} /></div>
+  <article class="lesen prosa">
+    <header class="artikelkopf"><h1>Über dieses Archiv</h1></header>
+    <p>„Die Geschichte von KSS“ ist ein digitales Archiv für die Nachwelt. Es sichert, was die Marinekameradschaft KSS e.V. in fünfundzwanzig Jahren über die Küstenschutzschiffe der Volksmarine zusammengetragen hat, und macht es dauerhaft, schnell und ohne Hürden zugänglich.</p>
+    <h2>Woher die Inhalte stammen</h2>
+    <ul>
+      <li><strong>Die Broschüren.</strong> Teil 2 bis 11 der Reihe „Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine“ (2003–2013) liegen als PDF vor. Jeder Beitrag wurde in eine eigene Seite überführt, jede Originalseite als Bild abgelegt, jede Broschüre als PDF hinterlegt. Die Ereignistafel folgt der letzten Fassung (Teil 11, Stand Dezember 2012).</li>
+      <li><strong>Die Website.</strong> marinekameradschaft-kss.de war von 2002 bis 2021 online. Beiträge, Fotos, Zeichnungen und Vereinsberichte, die dort veröffentlicht wurden, sind mit Hilfe der Wayback Machine des Internet Archive wiederhergestellt.</li>
+      <li><strong>Datenblätter, Glossar, Einleitungen.</strong> Die Schiffsseiten, das Glossar und die kurzen Hinführungen auf den Übersichtsseiten sind redaktionelle Zusammenfassungen dieses Archivs, erstellt aus den Broschüren. Sie sind als solche erkennbar und ersetzen die Originaltexte nicht.</li>
+    </ul>
+    <h2>Grundsatz: Die Texte bleiben, wie sie sind</h2>
+    <p>Die Beiträge wurden von ihren Autorinnen und Autoren geschrieben und werden hier so wiedergegeben. Nichts ist gekürzt, umformuliert oder an heutige Rechtschreibung angepasst. Schreibweisen wie „daß“ oder „Saßnitz“ neben „Sassnitz“ stehen so in den Heften. Nur hart umbrochene Zeilen, Silbentrennungen und Seitenzahlen der PDFs wurden technisch bereinigt. Wo die Redaktion der Broschüren Anmerkungen gemacht hat, sind sie als solche gekennzeichnet. Private Anschriften und Telefonnummern aus den Kontaktadressen wurden nicht übernommen.</p>
+    <h2>Offen für Menschen und Maschinen</h2>
+    <p>Die Seite ist statisch, ohne Datenbank, ohne Tracking und ohne Cookies. Jede Beitragsseite existiert zusätzlich als Markdown (Adresse plus „.md“). Die Ereignistafel ist als JSON und Markdown abrufbar, alle Inhalte in <a href="/llms.txt">llms.txt</a> und <a href="/llms-full.txt">llms-full.txt</a> zusammengefasst. Strukturierte Daten (schema.org) beschreiben Artikel, Schiffe, Autoren, Broschüren und Chronik. Suchmaschinen und KI-Crawler sind ausdrücklich zugelassen. Wer die Inhalte in Forschung, Unterricht, Museen oder Publikationen verwendet, wird gebeten, die <a href="/quellen">Urheber</a> zu nennen.</p>
+    <h2>Mitmachen</h2>
+    <p>Fehler in Datenblättern, fehlende Bildunterschriften, Hinweise zu Fotos oder ergänzende Erinnerungen: Rückmeldungen sind willkommen, siehe <a href="/impressum">Impressum</a>. Korrekturen an Broschürentexten werden nicht vorgenommen, wohl aber als Anmerkung ergänzt, so wie es die Berichtigungslisten der Kameradschaft selbst gehalten haben.</p>
+  </article>
+</Base>

@@ -1,0 +1,19 @@
+# Astro
+dist/
+.astro/
+node_modules/
+
+# System
+.DS_Store
+*.log
+
+# Umgebung
+.env
+.env.production
+.dev.vars
+
+# Broschüren-PDFs und abgeleitete Bilder sind groß und werden beim Import erzeugt.
+# Sie gehören nicht in die Versionsverwaltung.
+public/broschueren/pdf/
+public/broschueren/seiten/
+public/broschueren/fotos/

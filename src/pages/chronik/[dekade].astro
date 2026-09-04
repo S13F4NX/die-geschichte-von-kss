@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Ereignisliste from '../../components/Ereignisliste.astro';
+import { ereignisse, DEKADEN } from '../../lib/chronik';
+export async function getStaticPaths() {
+  const alle = await ereignisse();
+  return DEKADEN.map((d) => ({ params: { dekade: d.slug }, props: { d, eintraege: alle.filter((e) => e.jahr >= d.von && e.jahr <= d.bis) } }));
+}
+const { d, eintraege } = Astro.props;
+const idx = DEKADEN.findIndex((x) => x.slug === d.slug);
+const jahre = [...new Set(eintraege.map((e) => e.jahr))];
+const beschreibung = `Ereignistafel der Küstenschutzschiffe der Volksmarine ${d.von}–${d.bis}: ${eintraege.length} Ereignisse. ${d.kurz}`;
+---
+<Base title={`Ereignistafel ${d.von}–${d.bis}`} description={beschreibung} breadcrumbs={[{ name: 'Chronik', url: '/chronik' }, { name: d.name, url: `/chronik/${d.slug}` }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Chronik', url: '/chronik' }, { name: d.name, url: `/chronik/${d.slug}` }]} />
+    <header class="artikelkopf">
+      <div class="rubrik">Ereignistafel {d.von}–{d.bis}</div>
+      <h1>{d.name}</h1>
+      <p class="zusammenfassung">{d.kurz}</p>
+    </header>
+    <nav class="jahresnav" aria-label="Jahre">{jahre.map((j) => <a href={`#jahr-${j}`}>{j}</a>)}</nav>
+    <Ereignisliste eintraege={eintraege} />
+    <nav class="meta" style="margin-top: 3rem; justify-content: space-between">
+      {idx > 0 ? <a href={`/chronik/${DEKADEN[idx - 1].slug}`}>← {DEKADEN[idx - 1].name}</a> : <span />}
+      {idx < DEKADEN.length - 1 ? <a href={`/chronik/${DEKADEN[idx + 1].slug}`}>{DEKADEN[idx + 1].name} →</a> : <span />}
+    </nav>
+  </div>
+</Base>

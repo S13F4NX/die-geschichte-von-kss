@@ -1,0 +1,146 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import Ereignisliste from '../../components/Ereignisliste.astro';
+import Schiffsdarstellung from '../../components/Schiffsdarstellung.astro';
+import { PROJEKTE, SITE } from '../../lib/site';
+import { schiffsIndex, erwaehntSchiff } from '../../lib/schiffe';
+import { alleBeitraege, sortiereBroschuere } from '../../lib/inhalt';
+import { ereignisse } from '../../lib/chronik';
+import archivBilder from '../../../content/data/archivbilder.json';
+const risse: Record<string, string> = { '50': '/schiffsrisse/projekt-50.gif', '1159': '/schiffsrisse/projekt-1159.gif', '133.1': '/schiffsrisse/projekt-133.gif' };
+
+export async function getStaticPaths() {
+  const { schiffe } = await schiffsIndex();
+  const pfade: any[] = schiffe.map((s) => ({ params: { slug: s.id }, props: { art: 'schiff', schiff: s } }));
+  for (const [p, info] of Object.entries(PROJEKTE)) pfade.push({ params: { slug: info.slug }, props: { art: 'projekt', projekt: p } });
+  return pfade;
+}
+const { art } = Astro.props;
+const alle = (await alleBeitraege()).sort(sortiereBroschuere);
+const ev = await ereignisse();
+const { schiffe } = await schiffsIndex();
+const bilder = archivBilder as { src: string; alt: string; bildunterschrift: string; projekt?: string; schiffe?: string[]; quelle?: string; w?: number; h?: number }[];
+
+let titel = '', beschreibung = '', jsonLd: any = {}, Content: any = null, s: any = null, info: any = null, p = '';
+let beitraege: any[] = [], anhaenge: any[] = [], ereignisseHier: any[] = [], meineBilder: any[] = [], geschwister: any[] = [];
+
+if (art === 'schiff') {
+  s = Astro.props.schiff; p = s.data.projekt; info = PROJEKTE[p];
+  titel = `KSS „${s.data.name}“ (${info.klasse}, Projekt ${p})`;
+  beschreibung = `${s.data.zusammenfassung} Datenblatt mit Bordnummern, Indienststellung, Kommandanten, Ereignissen und allen Geschichten aus dem Archiv der Marinekameradschaft KSS e.V.`;
+  Content = (await render(s)).Content;
+  const passt = (n: string) => n === s.data.name || (s.data.name.startsWith('Berlin') && n === 'Berlin') || s.data.bordnummern.includes(n) || n === `KSS ${s.data.bordnummern[0]}`;
+  beitraege = alle.filter((e) => e.sammlung !== 'anhaenge' && e.schiffe.some(passt));
+  anhaenge = alle.filter((e) => e.sammlung === 'anhaenge' && (e.schiffe.some(passt) || e.projekte.includes(p)));
+  ereignisseHier = ev.filter((e) => erwaehntSchiff(e.text, s.data.name, s.data.bordnummern) || e.schiffe.some(passt));
+  meineBilder = bilder.filter((b) => b.schiffe?.some(passt));
+  geschwister = schiffe.filter((x) => x.data.projekt === p);
+  jsonLd = {
+    '@context': 'https://schema.org', '@type': 'Vehicle', name: s.data.name, alternateName: s.data.bordnummern, description: s.data.zusammenfassung, vehicleModelDate: s.data.stapellauf,
+    manufacturer: s.data.bauwerft ? { '@type': 'Organization', name: s.data.bauwerft } : undefined,
+    additionalType: 'https://www.wikidata.org/wiki/Q161705', category: `${info.klasse} / Projekt ${p}`,
+    url: new URL(`/schiffe/${s.id}`, Astro.site).href, image: meineBilder[0] ? new URL(meineBilder[0].src, Astro.site).href : undefined,
+  };
+} else {
+  p = Astro.props.projekt; info = PROJEKTE[p];
+  titel = `${info.name} – ${info.klasse}`;
+  beschreibung = `${info.kurz} Im Dienst der Volksmarine ${info.zeitraum}. Technische Daten, Bewaffnung, alle Schiffe, Chronik und Geschichten.`;
+  beitraege = alle.filter((e) => e.sammlung !== 'anhaenge' && e.projekte.includes(p));
+  anhaenge = alle.filter((e) => e.sammlung === 'anhaenge' && e.projekte.includes(p));
+  ereignisseHier = ev.filter((e) => e.projekte.includes(p));
+  meineBilder = bilder.filter((b) => b.projekt === p && !b.schiffe?.length).concat(bilder.filter((b) => b.projekt === p && b.schiffe?.length));
+  geschwister = schiffe.filter((x) => x.data.projekt === p);
+  jsonLd = { '@context': 'https://schema.org', '@type': 'Article', headline: titel, description: beschreibung, inLanguage: 'de', publisher: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.', url: SITE.url } };
+}
+const pfad = art === 'schiff' ? [{ name: 'Die Schiffe', url: '/schiffe' }, { name: info.name, url: `/schiffe/${info.slug}` }, { name: s.data.name, url: `/schiffe/${s.id}` }] : [{ name: 'Die Schiffe', url: '/schiffe' }, { name: info.name, url: `/schiffe/${info.slug}` }];
+const felder: [string, string | undefined][] = art === 'schiff' ? [
+  ['Klasse', `${info.klasse} (NATO) · Projekt ${p}`], ['Typ', s.data.typ], ['Bordnummern', s.data.bordnummern.join(', ')], ['Sowjetischer Name / Baunummer', s.data.sowjetischerName], ['Bauwerft', s.data.bauwerft], ['Stapellauf', s.data.stapellauf], ['Indienststellung', s.data.indienststellung], ['Außerdienststellung', s.data.ausserdienststellung], ['Verbleib', s.data.verbleib], ['Stützpunkt', s.data.stuetzpunkt], ['Verband', s.data.verband],
+] : [];
+---
+<Base title={titel} description={beschreibung} breadcrumbs={pfad} jsonLd={jsonLd} image={meineBilder[0]?.src}>
+  <div class="hülle">
+    <Brotkrumen pfad={pfad} />
+    <header class="artikelkopf">
+      <div class="rubrik">{art === 'schiff' ? `${info.name} · ${info.klasse}` : `Schiffsklasse · ${info.zeitraum}`}</div>
+      <h1>{art === 'schiff' ? `KSS „${s.data.name}“` : `${info.name} – ${info.klasse}`}</h1>
+      <p class="zusammenfassung">{art === 'schiff' ? s.data.zusammenfassung : info.kurz}</p>
+    </header>
+
+    {art === 'schiff' && (
+      <dl class="datenblatt">
+        {felder.filter(([, v]) => v).map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+    )}
+
+    {meineBilder.length > 0 && (
+      <div class="galerie" style="margin-bottom: 2rem">
+        {meineBilder.slice(0, art === 'schiff' ? 8 : 6).map((b) => (
+          <figure><a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift} loading="lazy" width={b.w} height={b.h} /></a>{b.bildunterschrift && <figcaption>{b.bildunterschrift}</figcaption>}</figure>
+        ))}
+      </div>
+    )}
+    {meineBilder.length > 8 && <p><a href={`/bilder/${info.slug}`}>Alle {meineBilder.length} Bilder im Bildarchiv</a></p>}
+
+    <div class="artikel-raster" style="justify-content: start">
+      <div class={art === 'schiff' ? 'prosa' : ''}>
+        {art === 'schiff' ? <Content /> : (
+          <>
+            <h2 style="margin-top:0">Die Schiffe dieser Klasse</h2>
+            <div class="karten" style="grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr))">
+              {geschwister.map((x) => (
+                <article class="schiffskarte">
+                  {risse[p] && <div class="riss"><img src={risse[p]} alt={`Seitenriss ${info.name}`} loading="lazy" /></div>}
+                  <div class="inhalt">
+                    <h3><a href={`/schiffe/${x.id}`}>{x.data.name}</a></h3>
+                    <dl>
+                      {x.data.bordnummern.length > 0 && <><dt>Bordnummer</dt><dd>{x.data.bordnummern.join(', ')}</dd></>}
+                      {x.data.indienststellung && <><dt>In Dienst</dt><dd>{x.data.indienststellung.split(' (')[0].split(';')[0]}</dd></>}
+                      {x.data.ausserdienststellung && <><dt>Außer Dienst</dt><dd>{x.data.ausserdienststellung.split(' (')[0].split(';')[0]}</dd></>}
+                    </dl>
+                    <p>{x.data.zusammenfassung}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <aside class="seitenleiste">
+        {art === 'schiff' && (
+          <section>
+            <h2>Schwesterschiffe</h2>
+            <ul>{geschwister.filter((x) => x.id !== s.id).map((x) => <li><a href={`/schiffe/${x.id}`}>{x.data.name}</a></li>)}<li><a href={`/schiffe/${info.slug}`}>Projektseite {info.name}</a></li></ul>
+          </section>
+        )}
+        {anhaenge.length > 0 && (
+          <section>
+            <h2>Technik und Daten</h2>
+            <ul>{anhaenge.slice(0, 12).map((e) => <li><a href={e.url}>{e.title}</a></li>)}</ul>
+          </section>
+        )}
+        <section>
+          <h2>Weiter</h2>
+          <ul><li><a href={`/geschichten/${info.slug}`}>Alle Geschichten über {info.name}</a></li><li><a href="/chronik">Ereignistafel</a></li><li><a href={`/bilder/${info.slug}`}>Bildarchiv {info.name}</a></li></ul>
+        </section>
+      </aside>
+    </div>
+
+    {art === 'projekt' && <Schiffsdarstellung projekt={p} />}
+
+    {beitraege.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Geschichten und Beiträge</h2><span class="klein">{beitraege.length} Beiträge</span></div>
+        <Beitragsliste eintraege={beitraege} />
+      </section>
+    )}
+    {ereignisseHier.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Aus der Ereignistafel</h2><a href="/chronik">Gesamte Chronik</a></div>
+        <Ereignisliste eintraege={ereignisseHier} />
+      </section>
+    )}
+  </div>
+</Base>

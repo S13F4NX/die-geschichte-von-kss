@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Ereignisliste from '../../components/Ereignisliste.astro';
+import { ereignisse, DEKADEN } from '../../lib/chronik';
+import { PROJEKTE } from '../../lib/site';
+import einleitung from '../../../content/data/ereignistafel-einleitung.md?raw';
+const alle = await ereignisse();
+const jahre = [...new Set(alle.map((e) => e.jahr))];
+const titel = 'Ereignistafel der Küstenschutzschiffe 1956–1991';
+const beschreibung = `Chronik der Küstenschutzschiffe der Volksmarine: ${alle.length} datierte Ereignisse von der Gründung der Nationalen Volksarmee 1956 bis zu den letzten Fahrten 1991, zusammengestellt von der Marinekameradschaft KSS e.V. (Stand Dezember 2012).`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: titel,
+  description: beschreibung,
+  inLanguage: 'de',
+  creator: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.' },
+  temporalCoverage: '1956/1991',
+  spatialCoverage: 'Ostsee, DDR',
+  keywords: ['Volksmarine', 'Küstenschutzschiff', 'KSS', 'Projekt 50', 'Projekt 1159', 'Projekt 133.1', 'Chronik'],
+  distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: new URL('/chronik/ereignistafel.json', Astro.site).href }],
+  license: new URL('/quellen', Astro.site).href,
+};
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Chronik', url: '/chronik' }]} jsonLd={jsonLd}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Chronik', url: '/chronik' }]} />
+    <header class="artikelkopf">
+      <div class="rubrik">Chronik</div>
+      <h1>Ereignistafel 1956–1991</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <div class="lesen" style="margin-left: 0">
+      <div class="hinweis" set:html={einleitung.replace(/\n\n/g, '<br><br>')} />
+    </div>
+    <div class="raster" style="margin: 2rem 0">
+      {DEKADEN.map((d) => (
+        <div class="karte">
+          <h3><a href={`/chronik/${d.slug}`}>{d.name}</a></h3>
+          <p>{d.kurz}</p>
+          <p class="klein">{alle.filter((e) => e.jahr >= d.von && e.jahr <= d.bis).length} Ereignisse</p>
+        </div>
+      ))}
+    </div>
+    <p>Die drei Schiffsklassen: {Object.values(PROJEKTE).map((p, i) => <><a href={`/schiffe/${p.slug}`}>{p.name} ({p.klasse}, {p.zeitraum})</a>{i < 2 ? ', ' : '.'}</>)} Die vollständige Ereignistafel steht auch <a href="/chronik/ereignistafel.json">als JSON</a> und <a href="/chronik/ereignistafel.md">als Markdown</a> zur Verfügung.</p>
+    <nav class="jahresnav" aria-label="Jahre">{jahre.map((j) => <a href={`#jahr-${j}`}>{j}</a>)}</nav>
+    <Ereignisliste eintraege={alle} />
+  </div>
+</Base>

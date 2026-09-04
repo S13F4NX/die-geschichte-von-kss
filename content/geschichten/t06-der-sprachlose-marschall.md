@@ -1,0 +1,26 @@
+---
+title: "Der sprachlose Marschall"
+autoren: ["Klaus Martin"]
+kategorie: "amuesantes"
+rubrik: "Amüsantes"
+broschuere: 6
+seiten: [55, 55]
+projekte: ["1159"]
+schiffe: ["Rostock"]
+orte: ["Saßnitz"]
+zeitraum: "1981"
+zusammenfassung: "Während der Übung „Sojus-81“ kommt Marschall Kulikow mit Armeegeneral Hoffmann an Bord der „Rostock“ und will mit dem Kommandanten eines sowjetischen Zerstörers sprechen. Weil die gedeckte UKW-Verbindung ausfällt, wird der offene Anrufkanal 412 genutzt – auf dem ein Hilfsschiff der Volksmarine dem Marschall mit „MOI NOWÜ KURS – DEWJANOSTO GRADUSOW“ immer wieder ins Wort fällt."
+schlagworte: ["Sojus-81", "Marschall Kulikow", "UKW-Kanal 412", "Funkverbindung", "Armeegeneral Hoffmann"]
+quelle: "Marinekameradschaft KSS e.V.: 1956–2006 / 1996–2006 – 50. Jahrestag der Indienststellung der ersten KSS, 10 Jahre Marinekameradschaft KSS e.V., Teil 6 (2007)"
+---
+April 1981 – die „Rostock“ lag im Saßnitzer Hafen – alles wirbelte, denn es hatte sich im Rahmen der Übung „Sojus-81“ ganz großer Besuch angesagt. Der Oberkommandierende der Streitkräfte des Warschauer Vertrages, Marschall der Sowjetunion Kulikow, in Begleitung des Ministers für Nationale Verteidigung der DDR, Armeegeneral Hoffmann, sollte an Bord kommen. Jeder der die Vorbereitung eines solchen Besuches mal mitgemacht hat, weiß, was da alles so angesagt war.
+
+Neben uns lag ein Zerstörer der BRF und damit auch alles bei der Zusammenarbeit klappt, war ich noch einmal zusammen mit Oberleutnant Hartmann, dem GA-IV-Kommandeur, bei unseren „Kollegen“, um die Einzelheiten durchzusprechen. Dabei ging es auch um die richtigen Dokumente zur Verschlüsselung von Nachrichten. Es existierten ja solche für die VM, für die BRF und dann die noch für die VOF. Stimmten die verwendeten Dokumente nicht überein, gab es keine Verbindung oder keine Verständigung. Jedenfalls war alles für den nächsten Tag geklärt und wir kehrten zufrieden an Bord zurück.
+
+Alles lief dann auch ab wie am Schnürchen. Wir liefen mit unserem hohen Besuch Richtung Übungsgebiet. In Sichtweite manövrierte auch der sowjetische Zerstörer. Plötzlich tauchte Oberleutnant Hartmann ganz aufgeregt auf der Brücke auf und raunte mir zu: „Der ‚Russe’ meldet sich nicht mehr auf dem verschlüsselten UKW-Kanal!!!“ Wir hatten nämlich am Vortag ausgemacht, ständig miteinander eine spezielle gedeckte UKW-Verbindung zu schalten, um für jede Eventualität bereit zu sein. Und diese kam dann auch kurz nach dieser Hiobsbotschaft.
+
+Der Marschall erschien mit seinem Tross auf der Brücke und wünschte mit dem Kommandanten des Zerstörers zu sprechen. Was tun? Einen Marschall kann man schließlich nicht so lange warten lassen. Also Weisung an den Funkraum, einfach mit dem offenen, ständig geschaltenen UKW-Kanal 412 (darf normalerweise nur als Anrufkanal genutzt werden) die Verbindung zum Zerstörer aufzunehmen, den Kommandanten des Zerstörers ans Mikro zu holen und dann diesen Kanal auf die Steuerbord-Seite der Brücke unseres Schiffes zu schalten. Das klappte auch sehr schnell. Wir hörten die Meldung des sowjetischen Kommandanten und der Marschall nahm den Hörer in die Hand und holte tief Luft. Bevor er jedoch etwas sagen konnte, ertönte aus dem Lautsprecher eine tiefe, ruhige Stimme mit deutlich deutschem Akzent: „MOI NOWÜ KURS – DEWJANOSTO GRADUSOW“. Vermutlich war es der Kapitän eines Hilfsschiffes der Volksmarine, der zu seiner befohlenen Position lief. Verdutzt schaute Marschall Kulikow auf den Hörer, murmelte etwas und wollte wieder ansetzen – der andere war aber wieder schneller und erneut hörten wir die Durchsage. Jetzt brach ein bisschen Hektik aus. Vom Funkraum her hörte man unseren Funktechniker, Stabsobermeister „Benno“ Bensch, wie er sehr laut versuchte, Funkstille auf der für uns sehr wichtigen, weil einzigen funktionierenden UKW-Verbindung zu fordern. Ein Aktentaschenträger des Ministers musste auf seine berechtigte Frage, ob das wirklich eine gedeckte Verbindung sei, beruhigt werden: „Selbstverständlich, was denken Sie denn!“. Einige Begleiter des Marschalls wurden auch schon nervös – nur der Marschall nicht. Ruhig saß er am Tisch des Wachoffiziers und wartete geduldig, bis er von mir endlich ein Zeichen bekam, dass jetzt alles klar sei und er seine „Worte ans Volk“ richten konnte. Wie erwartet wurden dabei keine Geheimnisse ausgeplaudert.
+
+Und auch die sonst sehr strenge Funküberwachung der Volksmarine spielte mit. Entweder hatten sie etwas von dem hohen Besuch mitbekommen oder das Russisch war Ihnen zu russisch, so dass sie es nicht wagten, auf diese sonst nicht genehmigte Plauderei auf dem Kanal 412 eine Rüge zu erteilen. Das wäre ja was geworden – eine Rüge an den Marschall!!! Ob es an einem „Zeitsprung“, an einem falschen Dokument oder etwas anderen gelegen hat, dass der „Russe“ uns nicht mehr antwortete, ist nie geklärt worden. Aber immer noch habe ich das „MOI NOWÜ KURS – DEWJANOSTO GRADUSOW“ im Ohr. Von diesem „Ereignis“ existiert übrigens auch ein Foto in der 2. Auflage des Buches „Volksmarine auf Wacht“ - darauf Marschall Kulikow am WO-Tisch der „Rostock“ und ich daneben. Leider habe ich nur die 1. Ausgabe. Bis jetzt habe ich vergeblich versucht, die 2. Auflage irgendwie aufzutreiben. Kann mir jemand dieses Foto scannen oder kopieren und dann zukommen lassen?
+
+— Klaus Martin

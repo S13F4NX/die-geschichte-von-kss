@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import Artikel from '../../../layouts/Artikel.astro';
+export async function getStaticPaths() {
+  return (await getCollection('web')).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<Artikel entry={entry} sammlung="web" basisPfad="/verein/beitraege" elternName="Der Verein" markdownUrl={`/verein/beitraege/${entry.id}.md`} />

@@ -1,0 +1,422 @@
+{
+  "teil": 4,
+  "inhaltsverzeichnis": [
+    {
+      "rubrik": "Vorwort",
+      "title": "Vorwort/Kontaktadressen",
+      "datei": "broschueren/teil-04.md",
+      "seiten": [
+        3,
+        3
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "In alten Zeitschriften geblättert",
+      "datei": "geschichten/t04-in-alten-zeitschriften-geblaettert.md",
+      "seiten": [
+        4,
+        6
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „In alten Zeitschriften geblättert …..“; enthält Nachdrucke aus „Armeerundschau“ 10/59 und 12/60 sowie aus der Betriebszeitung des Transformatorenwerkes „Karl Liebknecht“"
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Unter Störtebekers Piraten",
+      "datei": "geschichten/t04-unter-stoertebekers-piraten.md",
+      "seiten": [
+        6,
+        10
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "So nicht, Kesselstoker!",
+      "datei": "geschichten/t04-so-nicht-kesselstoker.md",
+      "seiten": [
+        10,
+        11
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "1159-Ausbildung in Baku",
+      "datei": "geschichten/t04-1159-ausbildung-in-baku.md",
+      "seiten": [
+        11,
+        26
+      ],
+      "hinweis": "Gemeinschaftsbeitrag von acht Kameraden (Ballwanz, Kästner, Köhler, Müller, Schmieder, Steike, Rusch); Fotos u. a. von Michael Meiske"
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Fla-Raketenkomplex OSA-M (Pr. 1159)",
+      "datei": "geschichten/t04-fla-raketenkomplex-osa-m.md",
+      "seiten": [
+        27,
+        33
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Beschreibung des Raketenkomplexes OSA-M“"
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Aus dem Alltag der Neptunwerft – oder eine außergewöhnliche Dockung",
+      "datei": "geschichten/t04-eine-aussergewoehnliche-dockung.md",
+      "seiten": [
+        33,
+        35
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Eine außergewöhnliche Dockung“"
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Stabsdienst in See",
+      "datei": "geschichten/t04-stabsdienst-in-see.md",
+      "seiten": [
+        35,
+        41
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Tauchobjekt Essbesteck",
+      "datei": "geschichten/t04-tauchobjekt-essbesteck.md",
+      "seiten": [
+        42,
+        42
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Tauchobjekt Eßbesteck“"
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Saßnitzer Landgangsimpressionen",
+      "datei": "geschichten/t04-sassnitzer-landgangsimpressionen.md",
+      "seiten": [
+        42,
+        43
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Saßnitzer Landgangs-Impressionen“"
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Bordkater Felix",
+      "datei": "geschichten/t04-bordkater-felix.md",
+      "seiten": [
+        44,
+        45
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Bordkater „Felix““"
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Rees in der O-Messe (1. Fortsetzung)",
+      "datei": "geschichten/t04-rees-in-der-o-messe-1-fortsetzung.md",
+      "seiten": [
+        45,
+        47
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "„Melde: Schiff fest!“",
+      "datei": "geschichten/t04-melde-schiff-fest.md",
+      "seiten": [
+        47,
+        48
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Gefährlicher Liegeplatz",
+      "datei": "geschichten/t04-gefaehrlicher-liegeplatz.md",
+      "seiten": [
+        48,
+        48
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Ein gefährlicher Liegeplatz“"
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Auf Großer Fahrt per Eisenbahn",
+      "datei": "geschichten/t04-auf-grosser-fahrt-per-eisenbahn.md",
+      "seiten": [
+        49,
+        51
+      ],
+      "hinweis": "Enthält die Teilbeiträge „Fahrt im Kampagne-Waggon“ (Wolfgang Schmieder) und den Bericht über die Reisegruppe über Kiew (Hans Steike)"
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Umgefallen",
+      "datei": "geschichten/t04-umgefallen.md",
+      "seiten": [
+        51,
+        51
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 1: KSS-Lied",
+      "datei": "geschichten/t04-kss-lied.md",
+      "seiten": [
+        52,
+        53
+      ],
+      "hinweis": "Notenblatt (S. 52) und zwei Textvarianten (S. 53)"
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 2: ACH's und Kommandanten (Pr. 133, 4. Sicherungsbrigade, Warnemünde)",
+      "datei": "anhaenge/t04-achs-und-kommandanten-kss-133.md",
+      "seiten": [
+        54,
+        55
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Anhang 2: ACH’s und Kommandanten KSS 133.1 (4. Flottille, Warnemünde)“"
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 3: Nachrichten-, Funkmeß-, Funkmeß-Waffenleit- und hydroakustische Anlagen Pr. 133",
+      "datei": "anhaenge/t04-ausruestung-pr-133.md",
+      "seiten": [
+        56,
+        57
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 4: Fahrt- und Ankerstunden, gefahrene Seemeilen KSS „Karl Marx“ und KSS „Rostock“ (Auszug)",
+      "datei": "anhaenge/t04-fahrtstunden-seemeilen-karl-marx-rostock.md",
+      "seiten": [
+        58,
+        58
+      ],
+      "hinweis": "Im Inhaltsverzeichnis als „Anhang 4: Fahrtstunden und gefahrene Seemeilen KSS „Karl Marx“ und „Rostock“ (Auszüge)“"
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 5: Grafiken von Hans Räde",
+      "datei": "anhaenge/t04-grafiken-hans-raede.md",
+      "seiten": [
+        59,
+        63
+      ],
+      "hinweis": "Reiner Grafikteil ohne gedruckte Überschrift; zehn Federzeichnungen auf fünf Seiten"
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 6: Berichtigungsliste",
+      "datei": "anhaenge/t04-berichtigungsliste.md",
+      "seiten": [
+        64,
+        64
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 7: Ereignistafel",
+      "datei": null,
+      "seiten": [
+        65,
+        77
+      ],
+      "hinweis": "nicht übernommen, siehe Gesamt-Ereignistafel (Bearbeitungsschluß: Dezember 2004)"
+    }
+  ],
+  "quellennachweis": "**Quellennachweis**\n\nHier ist nur das Material aufgeführt, das nicht durch Mitglieder der MK KSS e. V. Warnemünde erarbeitet wurde bzw. das sich nicht in deren Eigentum befindet.\n\n**Fotos:** Bildmappe der Politischen Verwaltung der VM (Ausgabe von 1988.), Volker Liebscher (Berlin), Klaus Maaß (Neustrelitz), Michael Meiske (Rostock)\n\n**Episoden/ Amüsantes:**\n\n| Beitrag | Autor |\n|---|---|\n| Eine außergewöhnliche Dockung: | Wilhelm Meyer, Egon Wirth (Rostock) |\n| Saßnitzer Landgangs-Impressionen: | Karl-Heinz Breitenstein (Greifswald) |\n\n**Grafiken im Anhangteil:** Hans Räde (Fürstenwalde)\n\n**KSS-Lied:** Musik: Fred Donner (†), Arrangement: Christian Körber (Rostock)",
+  "bilder": [
+    {
+      "seite": 1,
+      "bildunterschrift": "",
+      "artikel": "broschueren/teil-04.md",
+      "hinweis": "Titelseite: drei Fotos von Küstenschutzschiffen (KSS Pr. 50, KSS 141 „Rostock“ Pr. 1159, KSS in Fahrt) sowie das Emblem der Marinekameradschaft KSS e. V."
+    },
+    {
+      "seite": 10,
+      "bildunterschrift": "Bild: KSS 1-62 (die spätere „Karl Marx“)",
+      "artikel": "geschichten/t04-so-nicht-kesselstoker.md"
+    },
+    {
+      "seite": 10,
+      "bildunterschrift": "Bild: StB-Turboheizölpumpe im Kesselraum",
+      "artikel": "geschichten/t04-so-nicht-kesselstoker.md"
+    },
+    {
+      "seite": 11,
+      "bildunterschrift": "Bild: StB-Turbinenfahrstand",
+      "artikel": "geschichten/t04-so-nicht-kesselstoker.md"
+    },
+    {
+      "seite": 11,
+      "bildunterschrift": "Bild: BB-Turbinenfahrstand",
+      "artikel": "geschichten/t04-so-nicht-kesselstoker.md"
+    },
+    {
+      "seite": 12,
+      "bildunterschrift": "Bild: Blick über die Bucht von Baku",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 13,
+      "bildunterschrift": "Bild: Erdöl-Bohrtum in Süch",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 14,
+      "bildunterschrift": "Bild: Stabsgebäude der KBBMKY (neuere Aufnahme)",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 15,
+      "bildunterschrift": "Bild: Unterkunftsgebäude der KBBMKY (Foto von außerhalb der Schule)",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 16,
+      "bildunterschrift": "Bild: Hydroakustiker-Klasse",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 17,
+      "bildunterschrift": "Bild: Mädchenturm – Wahrzeichen von Baku",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 18,
+      "bildunterschrift": "Bild: Denkmal der 26 Bakuer Kommissare",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 19,
+      "bildunterschrift": "Bild: Sensation – Schnee in Baku",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 20,
+      "bildunterschrift": "Bild: Leninpalast (Kulturpalast)",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 21,
+      "bildunterschrift": "Bild: Regierungsgebäude am Leninplatz",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 22,
+      "bildunterschrift": "Bild: Tauziehen vor internationalem Publikum",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md",
+      "hinweis": "zwei Fotos nebeneinander mit gemeinsamer Bildunterschrift"
+    },
+    {
+      "seite": 23,
+      "bildunterschrift": "Bild: Station der Bakuer Metro",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 25,
+      "bildunterschrift": "Bild: Neftjannije Kamny –eine Erdölstadt im Meer",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 26,
+      "bildunterschrift": "Bild: Tempel der Feueranbeter",
+      "artikel": "geschichten/t04-1159-ausbildung-in-baku.md"
+    },
+    {
+      "seite": 28,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-fla-raketenkomplex-osa-m.md",
+      "hinweis": "Zeichnung des Antennenkomplexes mit den Antennen SOZ, SSZ, SPK 1/2 und SWR sowie Sender, Stabilisierungssystem und Hydraulikversorgung"
+    },
+    {
+      "seite": 28,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-fla-raketenkomplex-osa-m.md",
+      "hinweis": "Foto der ausgefahrenen Startanlage ZIF-122 mit zwei Raketen an den Startbalken"
+    },
+    {
+      "seite": 29,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-fla-raketenkomplex-osa-m.md",
+      "hinweis": "Skizze des Aufbaus der Rakete RZ-13 mit Legende der zehn Baugruppen"
+    },
+    {
+      "seite": 32,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-fla-raketenkomplex-osa-m.md",
+      "hinweis": "Foto eines Raketenstarts von der Startanlage eines KSS Pr. 1159"
+    },
+    {
+      "seite": 38,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-stabsdienst-in-see.md",
+      "hinweis": "Skizze der sechs Begleitsektoren um das U-Boot mit Sektorengrenzen nach Peilung"
+    },
+    {
+      "seite": 52,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t04-kss-lied.md",
+      "hinweis": "Notenblatt des KSS-Liedes (Text: Hans Steike, Musik: Fred Donner (†), Arrangement: Christian Körber)"
+    },
+    {
+      "seite": 59,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „13.5.72 auf der Ostmole“ – Molenfeuer und Steinmole in Warnemünde, signiert H. Räde"
+    },
+    {
+      "seite": 59,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „19.7.1987 Warnemünde“ – Blick vom Wasser auf Warnemünde mit Kirche, Leuchtturm und Schlepper, signiert Hans Räde"
+    },
+    {
+      "seite": 60,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „2.7.1987 Lotsenanleger“ – Lotsenanleger mit Schiffen, Frachter im Seekanal und Hotel Neptun, signiert Hans Räde"
+    },
+    {
+      "seite": 60,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „Der Seekanal 84“ – Seekanal Warnemünde mit Hotel Neptun, Schlepper und Schiffen, signiert Hans Räde"
+    },
+    {
+      "seite": 61,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung des KSS „Rostock“ (Bordnummer 141) mit handschriftlichen Angaben zu Indienststellung, Deplacement, Antrieb und Besatzung, signiert H. Räde, 18.03.1990"
+    },
+    {
+      "seite": 61,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Skizzenblatt mit dem KSS „Parchim“ an der Pier in Warnemünde aus mehreren Perspektiven, datiert 12.05.81, signiert Hans Räde"
+    },
+    {
+      "seite": 62,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Skizzenblatt „Rostock und Parchim an der Pier der IV. Flottille, 12.05.1981“, signiert Hans Räde"
+    },
+    {
+      "seite": 62,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Zeichnung „Beim Tonnenleger vor Warnemünde, 20.3.79“, signiert Hans Räde"
+    },
+    {
+      "seite": 63,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „Fischerhafen Warnemünde“ – Fischkutter am Alten Strom, signiert Hans Räde"
+    },
+    {
+      "seite": 63,
+      "bildunterschrift": "",
+      "artikel": "anhaenge/t04-grafiken-hans-raede.md",
+      "hinweis": "Federzeichnung „Durchblick zum Überseehafen“ – rohrgedeckte Häuser, im Hintergrund die Kräne des Überseehafens, signiert Hans Räde 92"
+    }
+  ]
+}

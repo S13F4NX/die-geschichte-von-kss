@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import { alleBeitraege, sortiereBroschuere } from '../../lib/inhalt';
+const alle = (await alleBeitraege()).filter((e) => e.sammlung === 'anhaenge').sort(sortiereBroschuere);
+const technik = (await alleBeitraege()).filter((e) => e.sammlung === 'geschichten' && e.schlagworte.some((s) => /technik|ausbildung|bewaffnung|waffen/i.test(s))).sort(sortiereBroschuere);
+
+const gruppen: { name: string; test: (e: any) => boolean; kurz: string }[] = [
+  { name: 'Taktisch-technische Daten und Bewaffnung', kurz: 'Abmessungen, Antrieb, Waffen, Ortungs- und Nachrichtenanlagen der drei Projekte.', test: (e) => /taktisch|ttd|daten|bewaffnung|anlagen|ausrüstung|ausruestung|navigations|sowj/i.test(e.title) },
+  { name: 'Besatzungen, Kommandanten und Führung', kurz: 'Kommandanten, Brigade- und Abteilungschefs, Offiziersbesetzungen bei Indienststellung.', test: (e) => /kommandant|bch|ach|offizier|besetzung|führung|fuehrung/i.test(e.title) },
+  { name: 'Aufbau, Gefechtsorganisation und Dienst', kurz: 'Aufbau der Schiffe, Gefechtsstruktur, Kommandotabellen, Rollenbuch, Terminarbeiten, Seesack.', test: (e) => /aufbau|gefechts|kommandotabelle|rollenbuch|terminarbeit|seesack|wink|munition|fahrtstunden|dienst an bord/i.test(e.title) },
+  { name: 'Grafiken und Seitenrisse', kurz: 'Zeichnungen von Hans Räde und Hans Beyer, Seitenrisse der drei Projekte, Bildteile.', test: (e) => /grafik|seitenriss|seitenrisse|bildteil|zeichnung/i.test(e.title) },
+  { name: 'Wendezeit, Literatur und Berichtigungen', kurz: 'Chronologie der Wendezeit in der 4. Flottille, Volksmarine-Literatur, Berichtigungslisten der Redaktion.', test: (e) => /wende|literatur|berichtigung|leser|patenschaft|buch der guten/i.test(e.title) },
+];
+const zugeordnet = new Set<string>();
+const gruppiert = gruppen.map((g) => {
+  const eintraege = alle.filter((e) => !zugeordnet.has(e.id) && g.test(e));
+  eintraege.forEach((e) => zugeordnet.add(e.id));
+  return { ...g, eintraege };
+});
+const rest = alle.filter((e) => !zugeordnet.has(e.id));
+const titel = 'Technik, Daten und Anhänge der Küstenschutzschiffe';
+const beschreibung = `${alle.length} Anhänge aus den KSS-Broschüren: taktisch-technische Daten, Bewaffnung, Ausrüstung, Kommandanten- und Besatzungslisten, Gefechtsorganisation, Kommandotabellen und Grafiken zu Projekt 50, 1159 und 133.1.`;
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Technik und Daten', url: '/wissen' }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Technik und Daten', url: '/wissen' }]} />
+    <header class="artikelkopf">
+      <h1>Technik, Daten und Anhänge</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <p>Die Anhänge der Broschüren sind das Faktengerüst des Archivs. Sie wurden von den Mitgliedern der Marinekameradschaft aus eigenen Unterlagen, Erinnerungen und Literatur zusammengetragen und über die Jahre in Berichtigungslisten präzisiert. Die <a href="/chronik">Ereignistafel</a> und die <a href="/schiffe">Schiffsseiten</a> bauen darauf auf.</p>
+    {gruppiert.map((g) => g.eintraege.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>{g.name}</h2></div>
+        <p class="klein">{g.kurz}</p>
+        <Beitragsliste eintraege={g.eintraege} zeigeKategorie={false} morph />
+      </section>
+    ))}
+    {rest.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Weitere Anhänge</h2></div>
+        <Beitragsliste eintraege={rest} zeigeKategorie={false} morph />
+      </section>
+    )}
+    {technik.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Technik- und Ausbildungsbeiträge aus dem Episodenteil</h2></div>
+        <Beitragsliste eintraege={technik} zeigeKategorie={false} morph />
+      </section>
+    )}
+  </div>
+</Base>

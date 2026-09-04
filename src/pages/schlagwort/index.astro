@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import { schlagwortIndex } from '../../lib/inhalt';
+const idx = [...(await schlagwortIndex()).entries()].sort((a, b) => a[1].name.localeCompare(b[1].name, 'de'));
+---
+<Base title="Schlagworte" description="Alle Schlagworte des KSS-Archivs: Schiffe, Orte, Themen und Begriffe aus den Broschüren der Marinekameradschaft KSS e.V." breadcrumbs={[{ name: 'Schlagworte', url: '/schlagwort' }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Schlagworte', url: '/schlagwort' }]} />
+    <header class="artikelkopf"><h1>Schlagworte</h1><p class="zusammenfassung">{idx.length} Schlagworte und Orte, die den Beiträgen zugeordnet sind.</p></header>
+    <ul style="columns: 3 14rem; list-style: none; padding: 0; margin: 0; column-gap: 2rem;">
+      {idx.map(([slug, v]) => <li style="margin: 0.2rem 0; break-inside: avoid"><a href={`/schlagwort/${slug}`}>{v.name}</a> <span class="klein">({v.eintraege.length})</span></li>)}
+    </ul>
+  </div>
+</Base>

@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+const titel = 'Die MK KSS e.V. verabschiedet sich von ihrer Internetseite';
+const beschreibung = 'Der Abschiedsbrief des Vorstands der Marinekameradschaft KSS e.V. vom Dezember 2021: 25 Jahre Vereinsarbeit, zwölf Broschüren, die Homepage seit 2002 und die Auflösung zum 31. Dezember 2021.';
+const pfad = [{ name: 'Der Verein', url: '/verein' }, { name: 'Abschied 2021', url: '/verein/abschied' }];
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Article', headline: titel, description: beschreibung, datePublished: '2021-12', inLanguage: 'de', author: { '@type': 'Organization', name: 'Der Vorstand der Marinekameradschaft KSS e.V.' } };
+---
+<Base title={titel} description={beschreibung} breadcrumbs={pfad} jsonLd={jsonLd} type="article">
+  <div class="hülle"><Brotkrumen pfad={pfad} /></div>
+  <article class="lesen" data-pagefind-body>
+    <header class="artikelkopf">
+      <div class="rubrik">Marinekameradschaft KSS e.V. · Dezember 2021</div>
+      <h1>Die MK KSS e.V. verabschiedet sich von ihrer Internetseite</h1>
+      <p class="zusammenfassung">Dieser Text stand ab Dezember 2021 als letzte Seite auf marinekameradschaft-kss.de. Er ist hier unverändert wiedergegeben.</p>
+    </header>
+    <div class="prosa">
+      <p>Unsere Marinekameradschaft gründete sich 1996 mit dem Ziel, die Erinnerungen an die Küstenschutz-Schiffe (KSS) der Volksmarine vom Projekt 50, 1159 und 133.1 wach zu halten und wenigstens einen kleinen Teil der in unserer persönlichen Dienstzeit erfahrenen Kameradschaft weiter zu leben. KSS? Projekte? Die meisten der heute Marine-Interessierten werden mit diesen Begriffen wenig anfangen können. Die damaligen von der NATO gebrauchten Codes geben da schon eher Auskunft: Es handelte sich um die Fregatten der „Riga“- bzw. „Koni“-Klasse und um die U-Jagd-Korvetten der „Parchim“-Klasse.</p>
+      <p>Als eingetragener Verein waren wir zur Gemeinnützigkeit verpflichtet. Dazu hatten wir in unserer Satzung die Unterstützung militärwissenschaftlicher Forschung durch eigenständige Beiträge zu den KSS der Volksmarine festgeschrieben. So wurden fleißig Zahlen, Daten, Fakten und persönliche Erlebnisse aller Art zusammengetragen und in 12 kleinen Broschüren veröffentlicht. Diese landeten nicht nur bei unseren Mitgliedern, sondern auch bei Interessenten außerhalb der Kameradschaft, in maritimen Museen, bei Marine-Autoren und sogar in der Fachinformationsstelle der Deutschen Marine. Doch so richtig öffentlichkeitswirksam war das alles noch nicht. Das änderte sich erst, als die Kameraden Manfred und Stefan Köhler dem Vorstand vorschlugen, eine kameradschaftseigene Homepage einzurichten. Die war ab 2002 online, machte in ansprechender Form die Ergebnisse unserer KSS-Recherchen publik und gab regelmäßig Auskunft zur Vereinsarbeit.</p>
+      <p>Jetzt schreiben wir das Jahr 2021. 25 Jahre Arbeit als eingetragener Verein liegen hinter uns. Es ist Zeit für den „Ruhestand“. Viele Kameraden haben ihre letzte große Reise bereits antreten müssen, andere sind gesundheitlich angeschlagen. Familiäre Verpflichtungen haben sich um Enkel und Urenkel erweitert. Interessenlagen haben sich verändert. Neben diesen persönlichen Faktoren haben auch bürokratische Hürden, die mit „e.V.“ verbunden sind, dazu geführt, dass durch die Mitgliederversammlung beschlossen wurde, zum 31.12.2021 die Marinekameradschaft KSS e.V. aufzulösen. Damit ist auch die Homepage abzuschalten.</p>
+      <p>Unser geistiges Erbe – das in den Broschüren gespeicherte Wissen – wird nicht untergehen. Es lebt auf der Seite „Freunde von KSS“ weiter, denn dem Betreiber, unserem ehemaligen Kameraden Manfred Köhler, wurden die Nutzungsrechte an allen Broschüren-Inhalten übertragen. So werden die KSS der Volksmarine im Netz weiter leben, auch wenn es uns als Marinekameradschaft KSS nicht mehr gibt.</p>
+      <p>Rostock, im Dezember 2021<br />Der Vorstand</p>
+    </div>
+  </article>
+</Base>

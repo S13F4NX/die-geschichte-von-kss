@@ -1,0 +1,170 @@
+---
+import Base from './Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+import { PROJEKTE, KATEGORIEN, projektSlug, slugify, heftPfad, SITE } from '../lib/site';
+import { fotosFuer, seitenBilder } from '../lib/fotos';
+import { abbildungenEinsetzen, markierteSeiten } from '../lib/abbildungen';
+import { verwandte } from '../lib/verwandt';
+
+interface Props {
+  entry: any;              // CollectionEntry
+  sammlung: 'geschichten' | 'anhaenge' | 'web';
+  basisPfad: string;       // z. B. /geschichten
+  elternName: string;      // z. B. Geschichten
+  markdownUrl?: string;
+}
+const { entry, sammlung, basisPfad, elternName, markdownUrl } = Astro.props;
+const d = entry.data;
+const url = `${basisPfad}/${entry.id}`;
+const kat = KATEGORIEN[d.kategorie];
+const fotos = d.broschuere ? fotosFuer(d.broschuere, d.seiten, d.pdfteil) : [];
+const eigeneBilder = d.bilder ?? [];
+const seiten = d.broschuere ? seitenBilder(d.broschuere, d.seiten, d.pdfteil) : [];
+const beschreibung = d.zusammenfassung || `${d.title} – ein Beitrag aus dem Archiv der Marinekameradschaft KSS e.V. zu den Küstenschutzschiffen der Volksmarine.`;
+const bildUrl = eigeneBilder[0]?.src ?? fotos[0]?.src;
+const verwandt = await verwandte(entry, sammlung, 6);
+const morphName = 'a-' + url.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: beschreibung,
+  inLanguage: 'de',
+  author: d.autoren.length ? d.autoren.map((a: string) => ({ '@type': 'Person', name: a })) : { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.' },
+  publisher: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.', url: SITE.url },
+  isPartOf: d.broschuere ? { '@type': 'Book', name: `Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil ${d.broschuere}`, url: new URL(`/broschueren/teil-${d.broschuere}`, Astro.site).href } : undefined,
+  datePublished: d.datum ?? undefined,
+  articleSection: kat?.name,
+  keywords: [...d.schlagworte, ...d.schiffe, ...d.orte, ...d.projekte.map((p: string) => `Projekt ${p}`)].join(', '),
+  about: d.projekte.map((p: string) => ({ '@type': 'Thing', name: `${PROJEKTE[p]?.name ?? p} (${PROJEKTE[p]?.klasse ?? ''})` })),
+  mentions: d.schiffe.map((s: string) => ({ '@type': 'Vehicle', name: s })),
+  image: bildUrl ? new URL(bildUrl, Astro.site).href : undefined,
+  mainEntityOfPage: new URL(url, Astro.site).href,
+  url: new URL(url, Astro.site).href,
+  license: 'https://die-geschichte-von-kss.de/quellen',
+  copyrightHolder: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V. und die genannten Autoren' },
+};
+const { Content } = await import('astro:content').then((m) => m.render(entry));
+// Die Abbildungsmarken im Text durch die echten Bilder ersetzen.
+const rendered: string | undefined = (entry as any).rendered?.html;
+const eingebaut = rendered ? abbildungenEinsetzen(rendered, d.pdfteil) : { html: '', eingesetzt: 0 };
+const imTextGenutzt = markierteSeiten(entry.body ?? '');
+// Am Ende nur zeigen, was nicht schon im Text steht.
+const nachlese = fotos.filter((f) => !imTextGenutzt.has(`${d.broschuere}${d.pdfteil ?? ''}-${f.seite}`));
+---
+<Base
+  title={d.title}
+  description={beschreibung}
+  type="article"
+  image={bildUrl}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ name: elternName, url: basisPfad }, ...(kat && sammlung === 'geschichten' ? [{ name: kat.name, url: `${basisPfad}/${kat.slug}` }] : []), { name: d.title, url }]}
+  published={d.datum}
+  markdownUrl={markdownUrl}
+>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: elternName, url: basisPfad }, ...(kat && sammlung === 'geschichten' ? [{ name: kat.name, url: `${basisPfad}/${kat.slug}` }] : []), { name: d.title, url }]} />
+  </div>
+  <article class="hülle artikel-raster" data-pagefind-body>
+    <div>
+      <header class="artikelkopf">
+        {d.rubrik && <div class="rubrik">{d.rubrik}</div>}
+        <h1 transition:name={morphName}>{d.title}</h1>
+        <div class="meta">
+          {d.autoren.length > 0 && <span>{d.autoren.length === 1 ? 'Von' : 'Von'} {d.autoren.map((a: string, i: number) => <><a href={`/personen/${slugify(a)}`}>{a}</a>{i < d.autoren.length - 1 ? ', ' : ''}</>)}</span>}
+          {d.broschuere && <span><a href={`/broschueren/teil-${d.broschuere}`}>KSS-Broschüre Teil {d.broschuere}</a></span>}
+          {d.datum && <span><time datetime={d.datum}>{d.datum}</time></span>}
+          {d.zeitraum && <span>Zeit: {d.zeitraum}</span>}
+        </div>
+        {d.zusammenfassung && <p class="zusammenfassung" data-pagefind-meta="zusammenfassung">{d.zusammenfassung}</p>}
+      </header>
+
+      {eigeneBilder.length > 0 && (
+        <div class="bildreihe">
+          {eigeneBilder.map((b: any) => (
+            <figure>
+              <a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift || d.title} loading="lazy" decoding="async" /></a>
+              {b.bildunterschrift && <figcaption>{b.bildunterschrift}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
+
+      <div class="prosa">
+        {eingebaut.eingesetzt > 0 ? <Fragment set:html={eingebaut.html} /> : <Content />}
+      </div>
+
+      {nachlese.length > 0 && (
+        <section class="abschnitt">
+          <div class="abschnitt-kopf"><h2>Weitere Abbildungen auf diesen Seiten</h2></div>
+          <div class="bildreihe">
+            {nachlese.map((f) => (
+              <figure>
+                <a href={f.src}><img src={f.src} alt={f.bildunterschrift || `Abbildung aus KSS-Broschüre Teil ${d.broschuere}, Seite ${f.seite}`} loading="lazy" decoding="async" width={f.w} height={f.h} /></a>
+                <figcaption>{f.bildunterschrift ? f.bildunterschrift : `Seite ${f.seite}`}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {verwandt.length > 0 && (
+        <section class="abschnitt" data-pagefind-ignore>
+          <div class="abschnitt-kopf"><h2>Verwandte Beiträge</h2></div>
+          <ul class="liste">
+            {verwandt.map((v) => (
+              <li>
+                <div class="titel"><a href={v.url}>{v.title}</a></div>
+                <div class="neben">{v.autoren?.length ? <span>{v.autoren.join(', ')}</span> : null}{v.broschuere ? <span>Teil {v.broschuere}</span> : null}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+
+    <aside class="seitenleiste" data-pagefind-ignore>
+      {d.quelle && (
+        <section>
+          <h2>Quelle</h2>
+          <p>{d.quelle}</p>
+          {d.broschuere && <p><a href={`/broschueren/teil-${d.broschuere}`}>Zur Broschüre Teil {d.broschuere}</a></p>}
+        </section>
+      )}
+      {seiten.length > 0 && (
+        <section>
+          <h2>Originalseiten</h2>
+          <div class="originalseiten">
+            {seiten.map((s) => (
+              <a href={`${heftPfad(d.broschuere, d.pdfteil)}#seite-${s.nr}`} title={`Seite ${s.nr}`}><img src={s.thumb} alt={`Originalseite ${s.nr} der Broschüre Teil ${d.broschuere}`} loading="lazy" width="72" /></a>
+            ))}
+          </div>
+        </section>
+      )}
+      {(d.projekte.length > 0 || d.schiffe.length > 0 || d.orte.length > 0 || d.zeitraum) && (
+        <section>
+          <h2>Einordnung</h2>
+          <dl>
+            {d.projekte.length > 0 && <><dt>Projekt</dt><dd>{d.projekte.map((p: string, i: number) => <><a href={`/schiffe/${projektSlug(p)}`}>{PROJEKTE[p]?.name ?? p}{PROJEKTE[p] ? ` (${PROJEKTE[p].klasse})` : ''}</a>{i < d.projekte.length - 1 ? ', ' : ''}</>)}</dd></>}
+            {d.schiffe.length > 0 && <><dt>Schiffe</dt><dd>{d.schiffe.map((s: string, i: number) => <><a href={`/schiffe/${slugify(s)}`}>{s}</a>{i < d.schiffe.length - 1 ? ', ' : ''}</>)}</dd></>}
+            {d.orte.length > 0 && <><dt>Orte</dt><dd>{d.orte.join(', ')}</dd></>}
+            {d.zeitraum && <><dt>Zeit</dt><dd>{d.zeitraum}</dd></>}
+          </dl>
+        </section>
+      )}
+      {d.schlagworte.length > 0 && (
+        <section>
+          <h2>Schlagworte</h2>
+          <ul>{d.schlagworte.map((s: string) => <li><a href={`/schlagwort/${slugify(s)}`}>{s}</a></li>)}</ul>
+        </section>
+      )}
+      {markdownUrl && (
+        <section>
+          <h2>Für Maschinen</h2>
+          <p><a href={markdownUrl}>Diesen Beitrag als Markdown</a></p>
+        </section>
+      )}
+    </aside>
+  </article>
+</Base>

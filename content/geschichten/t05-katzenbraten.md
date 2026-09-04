@@ -1,0 +1,28 @@
+---
+title: "Katzenbraten"
+autoren: ["Udo Hoppe"]
+kategorie: "amuesantes"
+rubrik: "Amüsantes"
+broschuere: 5
+seiten: [34, 35]
+projekte: ["50"]
+schiffe: ["Karl Liebknecht"]
+orte: ["Warnemünde", "Rostock", "Hohe Düne"]
+zeitraum: "1968"
+zusammenfassung: "Udo Hoppe, E-Meister auf der „Karl Liebknecht“, erzählt die ganze Geschichte hinter dem in Teil 4 erwähnten Katzenessen von 1968: Weil Oberbootsmann Jürgen Wendt ständig davon redete, einmal eine Katze essen zu wollen, fing Hoppe eine zutrauliche Katze am Fähranleger, ließ sie als „Kaninchen“ braten und servierte sie der Meisterei. Später erfuhr er sogar den Namen des Tieres, und Kommandant Fritz Naumann verhängte einen Verweis."
+schlagworte: ["Katze", "Meisterei", "Streich", "Verweis", "Bordleben"]
+quelle: "Marinekameradschaft KSS e.V.: Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 5 (2006)"
+---
+Im vergangenen Jahr hatte ich die Homepage der Marinekameradschaft KSS Warnemünde entdeckt und erhielt so Kenntnis von den KSS-Broschüren. Bald hatte ich alle vier Teile in der Hand. Und was finde ich im Teil 4 unter „Rees in der O-Messe“? Meinen Namen in Verbindung mit einem Katzen-Essen in der Meisterei meines damaligen Schiffes. Wenn nach 36 Jahren diese Story veröffentlicht wurde, bedeutet dies nichts anderes, als daß sich einige Mitkämpfer noch an mich erinnert haben. Alleine dafür möchte ich mich ganz herzlich bedanken. Ich will aber auch die Gelegenheit nutzen, um hier die ganze Geschichte zu erzählen. Ich gebe ja zu, aus heutiger Sicht betrachtet, ist sie etwas makaber. Aber es ist die Wahrheit und nichts als die Wahrheit.
+
+Es war also im Sommer 1968. Ich diente als E-Meister auf dem Schiff „Karl Liebknecht“. Wir lagen im Heimatstützpunkt Warnemünde. Kommandant war zu der Zeit der gefürchtete Fritz Naumann. Eigentlich war der Auslöser dieses Vorfalles gar nicht ich, sondern unser Oberbootsmann Jürgen Wendt. Er lag der Meisterei schon längere Zeit mit dem Wunsch in den Ohren, einmal eine Katze essen zu wollen, wenn er doch bloß eine hätte. Dieses Gerede ging über viele Tage. Ich hatte es dann satt und das Schicksal nahm seinen Lauf. Ich schritt zur Tat.
+
+Mir war schon längere Zeit eine Katze aufgefallen, die sich sehr zutraulich immer im Bereich des Fähranlegers am Warnemünder Seekanal aufhielt. Eine günstige Gelegenheit ergab sich, als ich eines Morgens auf dienstlichem Landgang zum Zahnarzt nach Rostock unterwegs war. Wieder traf ich auf das anhängliche Tier. Es war nicht schwer, die Katze zu mir zu locken. Sie strich mir um die Beine und ließ sich streicheln. Dann ein schneller Griff und schwupp, verschwand in meiner Tasche. Nach dem Zahnarztbesuch nahm ich sie mit nach Hause. Ich wohnte ja in Rostock. Das Ende des armen Tieres war gekommen. Ich schlachtete sie fachgerecht und nahm den enthäuteten Körper der Katze ohne Pfoten, Kopf und Schwanz mit an Bord des Schiffes. In der Meistermesse fragte ich den Bootsmann noch einmal, ob er wirklich einmal eine Katze essen wolle. Zu diesem Zeitpunkt hätte er noch Nein sagen können. Dann hätte ich die Katze außenbords geworfen und nichts wäre passiert. Der Bootsmann schwang jedoch weiterhin seine große Klappe, sagte ja, und bejammerte gleich wieder, er hätte ja keine. Jetzt holte ich die tote Katze aus der Tasche und legte sie in der Meistermesse vor ihm auf den Tisch. Sie sah aber wirklich so aus wie ein Kaninchen. Der Bootsmann sah mich fragend an. „Da hast du deine Katze!“ Nun schluckte er doch etwas. Ein Zurück gab es aber nicht mehr, wenn er nicht als Feigling dastehen wollte.
+
+Nun wurde es ernst. Ich bat das Kombüsenpersonal mir das „Kaninchen“ zu braten, was den Jungs auch vorzüglich gelang. Bevor wir dann abends mit der ganzen Meisterei den Braten gegessen haben, sagte ich noch einmal allen, daß es sich um einen Katzenbraten handelt. Aber wie so oft im Leben wurde auch hier die Wahrheit nicht geglaubt. Alle dachten, sie essen ein Kaninchen und alle beteuerten danach, es hätte ihnen vorzüglich geschmeckt. Nur der Bootsmann, der merkwürdig langsam schluckte, und ich wussten, daß hier in Wahrheit ein Katzentier verspeist worden war.
+
+Einige Monate später hatte der Turbinenmeister Hannesschläger Urlaub. Zusammen mit seiner Frau war er in einem der kleinen Häuschen auf der Hohen Düne untergekommen. Die Vermieterin hatte eine Katze. Frau Hannesschläger bemerkte gegenüber der Vermieterin, daß diese Katze aber sehr niedlich und zutraulich sei. Darauf die Vermieterin: „Das ist noch gar nichts. Wir hatten noch bis vor kurzem eine Katze, die war noch viel zutraulicher. Sie hieß Mucky. Und Mucky hatte meinen Mann immer morgens zur Fähre begleitet und ist nachmittags mit ihm wieder zurück gekommen. Doch eines Tages kam sie nicht mehr nach Hause.“ So erfuhr ich dann noch den Namen des bedauernswerten Opfers, das allen so gut geschmeckt hatte.
+
+Aber irgendwie muß an Bord dann wohl doch die Wahrheit durchgesickert sein. Eines Tages wurde ich in die Kommandantenkammer befohlen. Dort stand schon großer Bahnhof: der grimmige Fritz persönlich, dazu PV, I, WO und Leutnant Feihl als LI. Mir wurde vorgeworfen, dass ich in der Meistermesse eine Katze zum Verzehr angeboten hätte. Das konnte ich nicht abstreiten. Dann folgten die üblichen unsinnigen Fragen wie „Was haben Sie sich dabei gedacht?“ Ich erzählte also den ganzen Vorgang. Gerettet hat mich schließlich, daß ich ja allen gesagt hatte, daß sie eine Katze essen. Daß es mir keiner glauben wollte, war schließlich nicht meine Schuld. Ich kam mit einem Verweis davon, aber – wie sich nach 36 Jahren zeigte – war eine unsterbliche KSS-Geschichte geboren.
+
+— Udo Hoppe

@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Bildgitter from '../../components/Bildgitter.astro';
+import { PROJEKTE, slugify } from '../../lib/site';
+import { alleBilder, ARTEN } from '../../lib/bildarchiv';
+
+export async function getStaticPaths() {
+  const bilder = alleBilder();
+  const pfade: any[] = [];
+
+  pfade.push({ params: { gruppe: 'alle' }, props: { name: 'Alle Bilder', kurz: 'Der vollständige Bildbestand des Archivs, nach Herkunft geordnet.', bilder } });
+
+  for (const [p, info] of Object.entries(PROJEKTE)) {
+    const b = bilder.filter((x) => x.projekte.includes(p));
+    if (b.length) pfade.push({ params: { gruppe: info.slug }, props: { name: `${info.name} · ${info.klasse}`, kurz: `${b.length} Bilder der Küstenschutzschiffe des Projekts ${p}. ${info.kurz}`, bilder: b, weiter: `/schiffe/${info.slug}`, weiterName: 'Zur Projektseite' } });
+  }
+  for (const [a, info] of Object.entries(ARTEN)) {
+    const b = bilder.filter((x) => x.art === a);
+    if (b.length) pfade.push({ params: { gruppe: info.slug }, props: { name: info.name, kurz: `${b.length} Bilder. ${info.kurz}`, bilder: b } });
+  }
+  const sammel = (feld: 'orte' | 'schiffe' | 'personen', prefix: string) => {
+    const m = new Map<string, { name: string; bilder: any[] }>();
+    for (const b of bilder) for (const w of b[feld]) {
+      const k = slugify(w); if (!k) continue;
+      if (!m.has(k)) m.set(k, { name: w, bilder: [] });
+      m.get(k)!.bilder.push(b);
+    }
+    for (const [k, v] of m) {
+      const label = feld === 'orte' ? 'Ort' : feld === 'schiffe' ? 'Schiff' : 'Person';
+      pfade.push({ params: { gruppe: `${prefix}-${k}` }, props: { name: v.name, kurz: `${v.bilder.length} Bilder. ${label}: ${v.name}.`, bilder: v.bilder, weiter: feld === 'schiffe' ? `/schiffe/${k}` : null, weiterName: 'Zum Datenblatt' } });
+    }
+  };
+  sammel('orte', 'ort');
+  sammel('schiffe', 'schiff');
+  sammel('personen', 'person');
+  return pfade;
+}
+const { name, kurz, bilder, weiter, weiterName } = Astro.props;
+const nachTeil = [...new Set(bilder.map((b: any) => b.teil).filter(Boolean))].sort((a: any, b: any) => a - b);
+const ohneTeil = bilder.filter((b: any) => !b.teil);
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ImageGallery', name: `Bildarchiv: ${name}`, description: kurz, inLanguage: 'de', numberOfItems: bilder.length };
+---
+<Base title={`Bildarchiv: ${name}`} description={kurz} breadcrumbs={[{ name: 'Bildarchiv', url: '/bilder' }, { name, url: Astro.url.pathname }]} jsonLd={jsonLd} image={bilder[0]?.src}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Bildarchiv', url: '/bilder' }, { name, url: Astro.url.pathname }]} />
+    <header class="artikelkopf">
+      <div class="rubrik">Bildarchiv</div>
+      <h1>{name}</h1>
+      <p class="zusammenfassung">{kurz}{weiter && <> <a href={weiter}>{weiterName}</a>.</>}</p>
+    </header>
+    {ohneTeil.length > 0 && <Bildgitter bilder={ohneTeil} />}
+    {nachTeil.map((t: any) => {
+      const b = bilder.filter((x: any) => x.teil === t);
+      return (
+        <section class="abschnitt">
+          <div class="abschnitt-kopf"><h2>Aus Broschüre Teil {t}</h2><a href={`/broschueren/teil-${t}`}>Zum Heft</a></div>
+          <Bildgitter bilder={b} />
+        </section>
+      );
+    })}
+  </div>
+</Base>

@@ -1,0 +1,30 @@
+---
+title: "Vorleine – Feuer!"
+autoren: ["Dieter Gaasenbeek"]
+kategorie: "amuesantes"
+rubrik: "Amüsantes"
+broschuere: 10
+seiten: [41, 42]
+projekte: ["50"]
+schiffe: ["702", "Friedrich Engels"]
+orte: ["Sassnitz"]
+zeitraum: "1960"
+zusammenfassung: "Dieter Gaasenbeek erinnert sich an seine erste Seefahrt am 1. Advent 1960 als BÜ-Gast auf dem Hauptbefehlsstand des KSS 702 und an das Anlegemanöver in Saßnitz, bei dem er die Kommandos „Vorleine über Poller“ und „Achterspring über“ mangels seemännischer Sprachkenntnisse als „Vorleine – Feuer!“ und „An Bootsmann – spring über!“ weitergab."
+schlagworte: ["BÜ-Gast", "Hauptbefehlsstand", "Anlegemanöver", "Seemannssprache", "Kommandant Dembiany", "Erste Seefahrt"]
+quelle: "Marinekameradschaft KSS e.V.: Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 10 (2011)"
+---
+Meine erste Seefahrt - es war der 1. Advent 1960. Alles bisher Gelernte sollte nun in der Praxis erprobt und angewendet werden. Jeder Matrose hatte eine Rolle (schriftlich festgelegte Aufgabenstellung) bekommen, die er bei einem entsprechenden Einsatz abzuarbeiten hatte.
+
+Ich hatte die Aufgabe, auf dem Hauptbefehlsstand Kommandos vom Kommandanten und dem GA-Kommandeur an die einzelnen Abteilungen und Gefechtsstationen zu übermitteln. Mit dieser Aufgabe gehörte ich dem Feuerleitzug an und nicht mehr nur der „Arie“. Das war natürlich ein gewaltiger Schritt nach oben, der auch darin seine Bestätigung fand, dass ich nun auf meinem linken Ärmel neben dem Arilaufbahnabzeichen noch das Zeichen für Feuerleit tragen durfte. Traumhafte Zusammenstellungen von Laufbahnabzeichen waren vereinzelt auf den Ärmeln einiger Matrosen zu sehen, die entweder von ungeheuren Erfahrungen sprachen oder davon, dass sie damit besonders angeben wollten.
+
+*Abbildung (Teil 10, S. 41): HBS (Backbord-Seite), Platz des BÜ-Gasten. Quelle: Manfred Kretzschmar*
+
+Diese Aufgabe als BÜ-Gast (Befehls-Übermittler) auf dem Hauptbefehlsstand des KSS 702 war nicht ganz leicht zu bewältigen, noch dazu, da sie immer in unmittelbarer Nähe des Kommandanten erfolgte. Bei dieser ersten Seefahrt hatte ich den Stabsmatrosen Geratsch an meiner Seite, der mir half, diese Aufgabe erstmals zu erfüllen. Ich werde das Gefühl nie vergessen, als wir zum ersten Mal von der Pier ablegten. Bei einem derartig großen Schiff merkt man überhaupt nicht, wenn es sich in Bewegung setzt. Als ich nochmals auf die Pier schaute, waren wir bereits einige Meter von ihr abgerückt und ich fasste an meine Taschen und wollte sagen: „Mensch, hast du denn alles mitgenommen?“ Ich hatte das Gefühl, etwas vergessen zu haben. Dabei war mein ganzes Hab und Gut mit an Bord, und ich beruhigte mich. Dieses Gefühl werde ich nimmer mehr los. Es sollte aber noch viel schlimmere Gefühle geben als die hier beschriebenen.
+
+Als ich bei der nächsten Seefahrt alleine auf mich angewiesen war, musste ich feststellen, dass ich einige Defizite im Umgang mit der seemännischen Sprache hatte. Hier bestätigte sich meine thüringische Herkunft. Wir liefen nach einigen Tagen wieder in Saßnitz ein und meine Aufgabe bestand darin, die Befehle des Kommandanten an die Manövergruppen weiterzuleiten. Da ich mehrmals Rückfragen an meinen Kommandanten Kapitänleutnant Dembiany stellte, knurrte er mich barsch-seemännisch an, dass es, wenn ich etwas nicht verstanden habe, nicht „Wie bitte?“ heißt sondern „Nicht verstanden!“ Danach war ich etwas eingeschüchtert, traute mich nicht mehr nachzufragen und gab mir große Mühe, alles richtig zu machen.
+
+Bei einem Anlegemanöver muss alles sehr präzise und schnell ablaufen, um das Schiff gefahrlos an der Pier festzumachen. Als das Kommando „Vorleine über Poller“ erfolgte, war ich mit meinem Latein völlig am Ende. Das hatte ich noch nie gehört. Ich konnte mit Poller nichts anfangen und eine weitere Rückfrage erlaubte ich mir nicht mehr. So übermittelte ich an die Manövergruppe Back den phonetisch ähnlich klingenden Befehl „Vorleine – Feuer!“ Na, da war was los auf der Back und auf dem HBS. Das Leinenkommando krümmte sich vor Lachen, als am Ende der Strippe mein umformulierter Befehl verkündet wurde. Es blieb wenig Zeit, sich darüber zu auszulassen. Die nächsten Aufgaben waren zu erfüllen. Jetzt war die Manövergruppe Schanz an der Reihe und schnell musste gehandelt werden, um das Backsen der Schiffsschrauben zu unterstützen. Dazu der Befehl des Kommandanten: „An Bootsmann - Achterspring über!“ Ich konnte mit diesem Begriff wiederum überhaupt nichts anfangen. Das war eine ganze Nummer zu groß für mich. Da aber Eile geboten war und alles Schlag auf Schlag gehen musste, formulierte ich nach meinem Gehör den Befehl „An Bootsmann - spring über!“ Als dieser den Befehl erhörte, wusste er natürlich genau, was gemeint war. Aber er übermittelte dem Kommandanten, dass er noch nicht springen könne, weil der Abstand zur Pier noch zu groß sei. Die Folge war, dass sich alle auf dem HBS und der Manövergruppe Schanz vor Lachen krümmten. Ich wusste, dass ich einen gewaltigen Fehler begangen hatte, und es war mir auch außerordentlich peinlich, aber es war geschehen. Ich konnte nichts mehr korrigieren. Ich war blamiert! Diese Story verbreitete sich natürlich rasch und am gleichen Abend wurde ich in unserer Kneipe im Hafen mit „Vorleine – Feuer!“ begrüßt. Erst nachdem ich mit meinem Klavierspiel in der Kneipe für gute Stimmung sorgte, konnte ich mein beschädigtes Ansehen wieder verbessern. Die Sache mit der Vorleine und dem Bootsmann wurde auch in einer Zeitschrift verewigt (sh. auch KSS-Broschüre, Teil 8, Seite 20, Auszug aus der GST-Zeitschrift „Seesport“).
+
+An dieser Stelle kann ich sagen, dass ich mir fortan sehr viel Mühe gab, alle an mich gestellten Anforderungen vorbildlich zu erfüllen. Ich lernte schnell alle notwendigen seemännischen Begriffe. Missverständnisse zwischen dem Kommandanten und mir traten nicht mehr auf. Ich bin heute noch stolz darauf, dass ich bei Ausfall des VO (Versorgungsoffizier) den Maschinentelegrafen bedienen durfte und gemeinsam mit dem Kommandanten oder seinem Gehilfen, Kapitänleutnant Urmoneit, hervorragende An- und Ablegemanöver hinlegte.
+
+— Dieter Gaasenbeek

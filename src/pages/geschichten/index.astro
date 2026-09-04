@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import { alleBeitraege, sortiereBroschuere } from '../../lib/inhalt';
+import { KATEGORIEN, PROJEKTE } from '../../lib/site';
+const alle = (await alleBeitraege()).filter((e) => e.sammlung === 'geschichten').sort(sortiereBroschuere);
+const kats = ['episode', 'amuesantes', 'zeitschrift', 'leser', 'gedicht'];
+const nachKat = (k: string) => alle.filter((e) => e.kategorie === k);
+const titel = 'Geschichten und Episoden von den Küstenschutzschiffen';
+const beschreibung = `${alle.length} Erlebnisberichte, Erinnerungen, Anekdoten und Zeitschriftenartikel ehemaliger KSS-Fahrer der Volksmarine – aus den zwölf Broschüren der Marinekameradschaft KSS e.V.`;
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Geschichten', url: '/geschichten' }]} jsonLd={{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: titel, description: beschreibung, inLanguage: 'de' }}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Geschichten', url: '/geschichten' }]} />
+    <header class="artikelkopf">
+      <h1>Geschichten und Episoden</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <p>Die Beiträge stammen aus den Rubriken „Episoden und Gedanken“, „Amüsantes“, „In alten Zeitschriften geblättert“ und „Leser melden sich zu Wort“ der KSS-Broschüren (2000–2013). Alle Texte sind unverändert wiedergegeben, so wie die Autoren sie geschrieben haben.</p>
+    <div class="raster" style="margin: 1.5rem 0 2.5rem">
+      {kats.map((k) => (
+        <div class="karte">
+          <h3><a href={`/geschichten/${KATEGORIEN[k].slug}`}>{KATEGORIEN[k].name}</a></h3>
+          <p>{KATEGORIEN[k].beschreibung}</p>
+          <p class="klein">{nachKat(k).length} Beiträge</p>
+        </div>
+      ))}
+      {Object.entries(PROJEKTE).map(([p, info]) => (
+        <div class="karte gold">
+          <h3><a href={`/geschichten/${info.slug}`}>Über {info.name}</a></h3>
+          <p>{info.klasse}, {info.zeitraum}</p>
+          <p class="klein">{alle.filter((e) => e.projekte.includes(p)).length} Beiträge</p>
+        </div>
+      ))}
+    </div>
+    {kats.map((k) => nachKat(k).length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2 id={KATEGORIEN[k].slug}>{KATEGORIEN[k].name}</h2><a href={`/geschichten/${KATEGORIEN[k].slug}`}>Alle {nachKat(k).length} Beiträge</a></div>
+        <Beitragsliste eintraege={nachKat(k).slice(0, 8)} zeigeKategorie={false} morph />
+      </section>
+    ))}
+  </div>
+</Base>

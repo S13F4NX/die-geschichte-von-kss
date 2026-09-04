@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import { alleBeitraege, sortiereBroschuere } from '../../lib/inhalt';
+import { KATEGORIEN, PROJEKTE } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const alle = (await alleBeitraege()).filter((e) => e.sammlung === 'geschichten').sort(sortiereBroschuere);
+  const pfade = [];
+  for (const [k, info] of Object.entries(KATEGORIEN)) {
+    const eintraege = alle.filter((e) => e.kategorie === k);
+    if (eintraege.length) pfade.push({ params: { kategorie: info.slug }, props: { name: info.name, beschreibung: info.beschreibung, eintraege, zeigeKategorie: false } });
+  }
+  for (const [p, info] of Object.entries(PROJEKTE)) {
+    const eintraege = alle.filter((e) => e.projekte.includes(p));
+    pfade.push({ params: { kategorie: info.slug }, props: { name: `Geschichten über ${info.name} (${info.klasse})`, beschreibung: `Erlebnisberichte und Anekdoten rund um die Küstenschutzschiffe des Projekts ${p}, ${info.zeitraum}.`, eintraege, zeigeKategorie: true } });
+  }
+  return pfade;
+}
+const { name, beschreibung, eintraege, zeigeKategorie } = Astro.props;
+const desc = `${name}: ${eintraege.length} Beiträge aus den KSS-Broschüren der Marinekameradschaft KSS e.V. ${beschreibung}`;
+---
+<Base title={name} description={desc} breadcrumbs={[{ name: 'Geschichten', url: '/geschichten' }, { name, url: Astro.url.pathname }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Geschichten', url: '/geschichten' }, { name, url: Astro.url.pathname }]} />
+    <header class="artikelkopf">
+      <h1>{name}</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <Beitragsliste eintraege={eintraege} zeigeKategorie={zeigeKategorie} morph />
+  </div>
+</Base>

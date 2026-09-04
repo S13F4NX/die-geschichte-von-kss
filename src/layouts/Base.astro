@@ -1,0 +1,161 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  image?: string;
+  jsonLd?: object | object[];
+  breadcrumbs?: { name: string; url: string }[];
+  published?: string;
+  modified?: string;
+  noindex?: boolean;
+  bodyClass?: string;
+  markdownUrl?: string;
+}
+const {
+  title, description, type = 'website', image, jsonLd, breadcrumbs, published, modified, noindex = false, bodyClass = '', markdownUrl,
+} = Astro.props;
+const canonical = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title === SITE.name ? `${SITE.name} – ${SITE.claim}` : `${title} – ${SITE.name}`;
+const ogImage = new URL(image ?? '/og-default.jpg', Astro.site).href;
+
+const ld: object[] = [];
+if (jsonLd) ld.push(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]));
+if (breadcrumbs?.length) {
+  ld.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: new URL(b.url, Astro.site).href })),
+  });
+}
+const nav = [
+  { href: '/schiffe', label: 'Die Schiffe' },
+  { href: '/chronik', label: 'Chronik 1956–1991' },
+  { href: '/geschichten', label: 'Geschichten' },
+  { href: '/wissen', label: 'Technik & Daten' },
+  { href: '/bilder', label: 'Bildarchiv' },
+  { href: '/broschueren', label: 'Broschüren' },
+  { href: '/verein', label: 'Der Verein' },
+];
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    {markdownUrl && <link rel="alternate" type="text/markdown" title="Markdown-Fassung" href={markdownUrl} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex ? <meta name="robots" content="noindex,follow" /> : <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />}
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="de_DE" />
+    {published && <meta property="article:published_time" content={published} />}
+    {modified && <meta property="article:modified_time" content={modified} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#17242e" />
+    <meta name="language" content="de" />
+    {ld.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a class="sr-only" href="#inhalt">Zum Inhalt springen</a>
+    <header class="kopf" transition:persist transition:name="kopf">
+      <div class="hülle kopf-innen">
+        <a class="marke" href="/" aria-label="Startseite: Die Geschichte von KSS">
+          <img class="marke-wappen" src="/marke/mk-kss-logo-96.png" width="52" height="52" alt="Wappen der Marinekameradschaft KSS e.V. Warnemünde: Anker mit Lorbeerkranz" />
+          <span class="marke-text">
+            <span class="marke-kss">Die Geschichte von KSS</span>
+            <span class="marke-titel">Küstenschutzschiffe der Volksmarine 1956–1990</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Hauptnavigation">
+          {nav.map((n) => <a href={n.href} aria-current={path === n.href || path.startsWith(n.href + '/') ? 'page' : undefined}>{n.label}</a>)}
+          <a class="suche" href="/suche" aria-current={path === '/suche' ? 'page' : undefined}>Suche</a>
+        </nav>
+      </div>
+    </header>
+    <main id="inhalt">
+      <slot />
+    </main>
+    <a class="nach-oben" href="#inhalt" data-nach-oben aria-label="Zum Seitenanfang">
+      <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg>
+      <span>Nach oben</span>
+    </a>
+    <footer class="fuss" transition:name="fuss">
+      <div class="hülle fuss-innen">
+        <div>
+          <h3>Die Geschichte von KSS</h3>
+          <p>Digitales Archiv zu den Küstenschutzschiffen (KSS) der Volksmarine der DDR: Projekt 50 (Riga-Klasse), Projekt 1159 (Koni-Klasse) und Projekt 133.1 (Parchim-Klasse). Zusammengetragen von der ehemaligen Marinekameradschaft KSS e.V., Rostock-Warnemünde (1996–2021).</p>
+        </div>
+        <div>
+          <h3>Archiv</h3>
+          <ul>
+            <li><a href="/schiffe">Die Schiffe</a></li>
+            <li><a href="/chronik">Ereignistafel 1956–1991</a></li>
+            <li><a href="/geschichten">Geschichten und Episoden</a></li>
+            <li><a href="/wissen">Technik, Daten und Anhänge</a></li>
+            <li><a href="/personen">Kommandanten und Autoren</a></li>
+            <li><a href="/stuetzpunkte">Stützpunkte</a></li>
+            <li><a href="/bilder">Bildarchiv</a></li>
+            <li><a href="/broschueren">Die zwölf KSS-Broschüren</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Über diese Seite</h3>
+          <ul>
+            <li><a href="/verein">Die Marinekameradschaft KSS e.V.</a></li>
+            <li><a href="/verein/abschied">Abschied der Kameradschaft (2021)</a></li>
+            <li><a href="/glossar">Glossar</a></li>
+            <li><a href="/ueber">Über dieses Archiv</a></li>
+            <li><a href="/quellen">Quellen und Urheber</a></li>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+            <li><a href="/llms.txt">llms.txt</a> · <a href="/rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hülle fuss-unten">
+        Texte und Bilder: Marinekameradschaft KSS e.V. und die genannten Autoren. Die Broschürentexte werden unverändert wiedergegeben. Betrieben von Stefan Köhler, Lübeck. Erstveröffentlichung der Inhalte 1999–2021 unter marinekameradschaft-kss.de.
+      </div>
+    </footer>
+    <script>
+      function nachObenBereit() {
+        const knopf = document.querySelector('[data-nach-oben]');
+        if (!knopf) return;
+        const pruefen = () => {
+          if (window.scrollY > 700) knopf.setAttribute('data-sichtbar', '');
+          else knopf.removeAttribute('data-sichtbar');
+        };
+        pruefen();
+        window.addEventListener('scroll', pruefen, { passive: true });
+        knopf.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sanft = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: sanft ? 'smooth' : 'auto' });
+          document.getElementById('inhalt')?.focus?.();
+        });
+      }
+      nachObenBereit();
+      document.addEventListener('astro:page-load', nachObenBereit);
+    </script>
+  </body>
+</html>

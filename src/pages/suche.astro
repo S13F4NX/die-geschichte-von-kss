@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+---
+<Base title="Suche im KSS-Archiv" description="Volltextsuche in allen Geschichten, Anhängen, Schiffsseiten und der Ereignistafel der Küstenschutzschiffe der Volksmarine." breadcrumbs={[{ name: 'Suche', url: '/suche' }]} noindex={true}>
+  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Suche', url: '/suche' }]} />
+    <header class="artikelkopf"><h1>Suche</h1><p class="zusammenfassung">Volltextsuche über alle Geschichten, Anhänge, Schiffe und die Ereignistafel. Beispiele: „Orkan 1967“, „Kesselgast“, „OSA-M“, „Halle“, „Baku“.</p></header>
+    <div class="lesen" style="margin-left: 0">
+      <div id="suche"></div>
+      <noscript><p class="hinweis">Die Suche benötigt JavaScript. Ohne JavaScript helfen die <a href="/schlagwort">Schlagworte</a>, das <a href="/geschichten">Inhaltsverzeichnis der Geschichten</a> und die <a href="/chronik">Chronik</a>.</p></noscript>
+    </div>
+  </div>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: '#suche', showSubResults: true, showImages: false, excerptLength: 30, translations: { placeholder: 'Suchbegriff eingeben …', clear_search: 'Leeren', load_more: 'Weitere Ergebnisse', search_label: 'Suche', filters_label: 'Filter', zero_results: 'Keine Treffer für [SEARCH_TERM]', many_results: '[COUNT] Treffer für [SEARCH_TERM]', one_result: '[COUNT] Treffer für [SEARCH_TERM]', alt_search: 'Keine Treffer für [SEARCH_TERM]. Stattdessen Ergebnisse für [DIFFERENT_TERM]', search_suggestion: 'Keine Treffer für [SEARCH_TERM]. Versuchen Sie: ', searching: 'Suche nach [SEARCH_TERM] …' } });
+      const q = new URLSearchParams(location.search).get('q');
+      if (q) { const i = document.querySelector('#suche input'); if (i) { i.value = q; i.dispatchEvent(new Event('input', { bubbles: true })); } }
+    });
+  </script>
+</Base>

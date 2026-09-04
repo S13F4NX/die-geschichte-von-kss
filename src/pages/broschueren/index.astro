@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+const hefte = (await getCollection('broschueren')).sort((a, b) => a.data.teil - b.data.teil);
+const titel = 'Die KSS-Broschüren der Marinekameradschaft KSS e.V.';
+const beschreibung = 'Zwölf Broschüren „Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine“ (1999–2013) mit Episoden, Anekdoten, technischen Daten und der Ereignistafel – vollständig als Text, Seitenansicht und PDF.';
+const teilKey = (t: number, p = '') => `teil-${String(t).padStart(2, '0')}${p}`;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'BookSeries', name: 'Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine', description: beschreibung, inLanguage: 'de',
+  author: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.' },
+  hasPart: hefte.map((h) => ({ '@type': 'Book', name: h.data.titel, position: h.data.teil, datePublished: String(h.data.jahr), url: new URL(`/broschueren/teil-${h.data.teil}`, Astro.site).href })),
+};
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Broschüren', url: '/broschueren' }]} jsonLd={jsonLd}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Broschüren', url: '/broschueren' }]} />
+    <header class="artikelkopf">
+      <h1>Die zwölf KSS-Broschüren</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <div class="lesen" style="margin-left: 0">
+      <p>Im Januar 2000 gab die Kameradschaft eine erste kleine Broschüre heraus; Teil 10 erinnert an das „kleine blaue DIN A5–Heftchen des Jahres 2000“. Daraus wurde eine Reihe, die bis Januar 2013 fortgesetzt wurde, meist zur Mitgliederversammlung im Januar, wahlweise als Computer-Ausdruck oder als CD. Teil 8 zog 2009 Bilanz: „Alle bisherigen Teile zusammen ergeben insgesamt 530 Seiten“, darin 45 Beiträge unter „Episoden und Gedanken“, 59 unter „Amüsantes“ und 42 Anhänge von 35 Autoren. Der Abschiedsbrief des Vorstands von 2021 spricht von zwölf Broschüren, die auch bei Interessenten außerhalb der Kameradschaft, in maritimen Museen, bei Marine-Autoren und in der Fachinformationsstelle der Deutschen Marine landeten.</p>
+      <p>Hier sind die Teile 2 bis 11 vollständig erschlossen: jeder Beitrag als eigene Seite, jede Originalseite als Bild, jedes Heft als PDF. Von Teil 1 lagen dem Archiv keine Druckdaten vor; die alte Vereinswebsite überliefert davon das Inhaltsverzeichnis.</p>
+    </div>
+    <div class="heftreihe" style="margin-top: 2rem">
+      {hefte.map((h) => (
+        <a class="heft" href={`/broschueren/teil-${h.data.teil}`}>
+          <img src={`/broschueren/seiten/${teilKey(h.data.teil, h.data.pdfs ? 'a' : '')}/klein/s-01.jpg`} alt={`Titelseite ${h.data.titel}`} loading="lazy" width="220" />
+          <b>Teil {h.data.teil}</b>
+          <span>{h.data.jahr}{h.data.seitenzahl ? ` · ${h.data.seitenzahl} Seiten` : ''}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

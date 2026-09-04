@@ -1,0 +1,171 @@
+---
+/**
+ * Nachbau der Schiffsdarstellung der früheren Vereinswebsite.
+ * Die Listen der Waffen- und Ortungsanlagen sind wörtlich von dort übernommen.
+ * Die Originalgrafiken, auf denen die jeweilige Anlage im Riss hervorgehoben war,
+ * sind in der Wayback Machine nicht überliefert; erhalten ist nur die Grundzeichnung.
+ * Statt die Hervorhebungen nachzuerfinden, zeigt dieser Nachbau beim Überfahren
+ * die belegten Angaben aus Anhang 1 der Broschüre Teil 2.
+ */
+interface Props { projekt: string }
+const { projekt } = Astro.props;
+
+// Angaben zur Bewaffnung, wörtlich aus: Marinekameradschaft KSS e.V.,
+// Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 2,
+// Anhang 1 „Taktisch-technische Daten und Bewaffnung (ergänzt)“.
+const daten: Record<string, { ziel?: string; rohre?: string; reichweite?: string; kadenz?: string; geschoss?: string; quelle: string }> = {
+  'B-34 USMA': { ziel: 'See-, Luft- und Landziele', rohre: '1 Rohr / 100 mm', reichweite: '124 Kbl (ca. 23 km)', kadenz: '15 Schuß/min', geschoss: 'Splitterspreng- und Panzergranatpatronen', quelle: 'Teil 2, Anhang 1' },
+  'W-11-M': { ziel: 'See- und Luftziele', rohre: '2 Rohre / 37 mm', reichweite: '9500 m / 880 m/s', kadenz: '180 Schuß/min/Rohr', geschoss: 'Splitterspreng- und Panzerbrandgranatpatronen', quelle: 'Teil 2, Anhang 1' },
+  'AK-726': { ziel: 'See- und Luftziele', rohre: '2 Rohre / 76 mm', reichweite: '15500 m / 980 m/s', kadenz: '90 Schuß/min/Rohr', geschoss: 'Splittergranatpatronen', quelle: 'Teil 2, Anhang 1' },
+  'AK-725': { ziel: 'See- und Luftziele', rohre: '2 Rohre / 57 mm', reichweite: '13500 m / 1020 m/s', kadenz: '180 Schuß/min/Rohr', geschoss: 'Splittergranatpatronen', quelle: 'Teil 2, Anhang 1' },
+  'AK-230': { ziel: 'See- und Luftziele', rohre: '2 Rohre / 30 mm', reichweite: '4000 m / 1050 m/s', kadenz: '1000 Schuß/min/Rohr', geschoss: 'Splitterspreng- und Panzergranatpatronen', quelle: 'Teil 2, Anhang 1' },
+  'OSA-M': { ziel: 'Luftziele Nahbereich', rohre: 'Zwillingsstarter ZIF-122', reichweite: '2000–12000 m', geschoss: 'Feststoff-Rakete RZ-13, Mach 2', quelle: 'Teil 2, Anhang 1' },
+  'FASTA-4': { ziel: 'Luftziele Nahbereich', rohre: 'Vierlingsstarter', reichweite: '3600 m', geschoss: 'tragbare Rakete „Strela“, Mach 1,5', quelle: 'Teil 2, Anhang 1' },
+  'RBU-6000': { ziel: 'U-Boote (Distanz)', rohre: '12 Rohre / 213 mm', reichweite: '5500 m', geschoss: 'Reaktive Wasserbombe RGB-60', quelle: 'Teil 2, Anhang 1' },
+  'RBU-1200': { ziel: 'U-Boote (Distanz)', rohre: '5 Rohre / 213 mm', reichweite: '1200 m', geschoss: 'Reaktive Wasserbombe RGB-12', quelle: 'Teil 2, Anhang 1' },
+  'BMB-2': { ziel: 'U-Boote (Überlauf)', rohre: '1 Rohr', reichweite: '40–120 m', geschoss: 'Wasserbombe WB-1', quelle: 'Teil 2, Anhang 1' },
+  'Torpedo 53-39 PM': { ziel: 'Überwasserschiffe', rohre: 'Zwillingsrohrsatz / 533 mm', reichweite: '8000 m bei 39 kn, 4000 m bei 51 kn', geschoss: 'Dampfgastorpedo, Ladungsgewicht 317 kg', quelle: 'Teil 2, Anhang 1' },
+  'SÄT-40': { ziel: 'U-Boote (Distanz)', rohre: 'Einzelrohr OTA-40 / 400 mm', reichweite: '7500 m / 29 kn', geschoss: 'Zielsuchender E-Torpedo, Einsatztiefe 20–200 m', quelle: 'Teil 2, Anhang 1' },
+};
+
+// Bedienfelder, wörtlich von der Seite schiffsdarstellungen/<projekt>/darstellung.php
+// der Website marinekameradschaft-kss.de (Stand 2015/2016).
+const felder: Record<string, { titel: string; eintraege: { text: string; daten?: string }[] }[]> = {
+  '50': [
+    { titel: 'Bewaffnung', eintraege: [
+      { text: '100 mm Geschütz', daten: 'B-34 USMA' },
+      { text: '37 mm Doppellafetten', daten: 'W-11-M' },
+      { text: 'Artillerie-FM-Anlage "Jakor 2M"' },
+      { text: 'FM-Anlage "Fut-N"' },
+      { text: 'Minenschienen' },
+    ] },
+    { titel: 'Weitere Anlagen', eintraege: [
+      { text: 'Optisches E-Meßgerät' },
+      { text: 'RBU 1200', daten: 'RBU-1200' },
+      { text: 'Zwillingstorpedosatz', daten: 'Torpedo 53-39 PM' },
+      { text: 'WABO-Ablaufgerüste' },
+      { text: 'WABO-Werfer', daten: 'BMB-2' },
+    ] },
+  ],
+  '1159': [
+    { titel: 'Bewaffnung', eintraege: [
+      { text: '76mm Doppellafette (AK 726)', daten: 'AK-726' },
+      { text: '30mm Doppellafette (AK 230)', daten: 'AK-230' },
+      { text: 'Raketenzwillingsstarter (ZIF-122)', daten: 'OSA-M' },
+      { text: 'Reaktiver Wasserbombenwerfer (RBU 6000)', daten: 'RBU-6000' },
+      { text: 'Düppelwerfer' },
+      { text: 'Minenschienen' },
+    ] },
+    { titel: 'Waffenleitradar', eintraege: [
+      { text: 'Waffenleitradar AK 726 (Fut-B)' },
+      { text: 'Waffenleitradar AK 230 (MR 104)' },
+      { text: 'Raketenwaffenleitradar 8Ä10' },
+    ] },
+    { titel: 'Ortung', eintraege: [
+      { text: 'Radar See- und Luftraumbeobachtung (MR-302)' },
+      { text: 'Hydroakustische Anlage (MG322T)' },
+    ] },
+  ],
+  '133.1': [
+    { titel: 'Bewaffnung', eintraege: [
+      { text: '30mm Geschütz "Ak-230"', daten: 'AK-230' },
+      { text: 'Minenschinen' },
+      { text: '57mm Geschütz "Ak-725"', daten: 'AK-725' },
+    ] },
+    { titel: 'Waffenleitradar', eintraege: [
+      { text: 'FUM-Anlage "MR-302"' },
+      { text: 'RBU-6000', daten: 'RBU-6000' },
+      { text: 'Luftabwehrrakete "Strela"', daten: 'FASTA-4' },
+    ] },
+  ],
+};
+
+const risse: Record<string, { src: string; alt: string }> = {
+  '50': { src: '/schiffsrisse/projekt-50.gif', alt: 'Seitenriss und Draufsicht eines Küstenschutzschiffes des Projektes 50 mit der Bordnummer 142' },
+  '1159': { src: '/schiffsrisse/projekt-1159.gif', alt: 'Seitenriss und Draufsicht eines Küstenschutzschiffes des Projektes 1159 mit der Bordnummer 141' },
+  '133.1': { src: '/schiffsrisse/projekt-133.gif', alt: 'Seitenriss eines Küstenschutzschiffes des Projektes 133.1 mit der Bordnummer 224' },
+};
+
+const meine = felder[projekt] ?? [];
+const riss = risse[projekt];
+const id = `sd-${projekt.replace('.', '-')}`;
+---
+{riss && (
+  <section class="abschnitt darstellung" id={id}>
+    <div class="abschnitt-kopf"><h2>Schiffsdarstellung</h2></div>
+    <p class="klein">Nachbau der Schiffsdarstellung von der Website der Marinekameradschaft KSS e.V. Die Aufstellung der Anlagen ist wörtlich von dort übernommen. Auf der alten Seite hieß es dazu: „Berühren Sie mit dem Cursor die aufgezählten Waffen.“ Die Grafiken, die dabei die jeweilige Anlage im Riss hervorhoben, sind im Internet Archive nicht überliefert. Dieser Nachbau zeigt stattdessen die Angaben aus Anhang 1 der Broschüre Teil 2.</p>
+    <div class="darstellung-raster">
+      <div class="darstellung-riss">
+        <img src={riss.src} alt={riss.alt} loading="lazy" />
+        <div class="darstellung-info" data-info hidden>
+          <b data-info-titel></b>
+          <dl data-info-daten></dl>
+        </div>
+      </div>
+      <div class="darstellung-felder">
+        {meine.map((sp) => (
+          <div class="darstellung-feld">
+            <h3>{sp.titel}</h3>
+            <ul>
+              {sp.eintraege.map((e) => (
+                <li>
+                  <button type="button" class="anlage" data-anlage={e.daten ?? ''} data-text={e.text}
+                          aria-describedby={e.daten ? `${id}-info` : undefined}>{e.text}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+    <script type="application/json" set:html={JSON.stringify(daten)} data-anlagendaten />
+  </section>
+)}
+
+<script>
+  function darstellungBereit() {
+    document.querySelectorAll<HTMLElement>('.darstellung').forEach((wurzel) => {
+      const rohdaten = wurzel.querySelector('[data-anlagendaten]');
+      if (!rohdaten) return;
+      const daten = JSON.parse(rohdaten.textContent || '{}');
+      const box = wurzel.querySelector<HTMLElement>('[data-info]');
+      const titel = wurzel.querySelector<HTMLElement>('[data-info-titel]');
+      const liste = wurzel.querySelector<HTMLElement>('[data-info-daten]');
+      if (!box || !titel || !liste) return;
+
+      const beschriftung: Record<string, string> = {
+        ziel: 'Ziel', rohre: 'Rohre / Kaliber', reichweite: 'Reichweite', kadenz: 'Kadenz', geschoss: 'Geschoßart',
+      };
+      const zeigen = (knopf: HTMLElement) => {
+        const schluessel = knopf.dataset.anlage;
+        wurzel.querySelectorAll('.anlage').forEach((k) => k.classList.remove('aktiv'));
+        knopf.classList.add('aktiv');
+        if (!schluessel || !daten[schluessel]) {
+          titel.textContent = knopf.dataset.text || '';
+          liste.innerHTML = '<dd class="ohne">Für diese Anlage enthält Anhang 1 der Broschüre Teil 2 keine Einzeldaten.</dd>';
+          box.hidden = false;
+          return;
+        }
+        const d = daten[schluessel];
+        titel.textContent = knopf.dataset.text || schluessel;
+        liste.innerHTML = Object.entries(beschriftung)
+          .filter(([k]) => d[k])
+          .map(([k, label]) => `<dt>${label}</dt><dd>${d[k]}</dd>`)
+          .join('') + `<dt>Quelle</dt><dd>${d.quelle}</dd>`;
+        box.hidden = false;
+      };
+      const verbergen = () => {
+        box.hidden = true;
+        wurzel.querySelectorAll('.anlage').forEach((k) => k.classList.remove('aktiv'));
+      };
+      wurzel.querySelectorAll<HTMLElement>('.anlage').forEach((knopf) => {
+        knopf.addEventListener('mouseenter', () => zeigen(knopf));
+        knopf.addEventListener('focus', () => zeigen(knopf));
+        knopf.addEventListener('click', () => zeigen(knopf));
+      });
+      wurzel.querySelector('.darstellung-felder')?.addEventListener('mouseleave', verbergen);
+    });
+  }
+  darstellungBereit();
+  document.addEventListener('astro:page-load', darstellungBereit);
+</script>

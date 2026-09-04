@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import { schlagwortIndex, sortiereBroschuere } from '../../lib/inhalt';
+export async function getStaticPaths() {
+  const idx = await schlagwortIndex();
+  return [...idx.entries()].map(([slug, v]) => ({ params: { slug }, props: { name: v.name, eintraege: v.eintraege.sort(sortiereBroschuere) } }));
+}
+const { name, eintraege } = Astro.props;
+const desc = `${eintraege.length} Beiträge zum Schlagwort „${name}“ aus dem KSS-Archiv der Marinekameradschaft KSS e.V.`;
+---
+<Base title={`Schlagwort: ${name}`} description={desc} breadcrumbs={[{ name: 'Schlagworte', url: '/schlagwort' }, { name, url: Astro.url.pathname }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Schlagworte', url: '/schlagwort' }, { name, url: Astro.url.pathname }]} />
+    <header class="artikelkopf"><div class="rubrik">Schlagwort</div><h1>{name}</h1><p class="zusammenfassung">{desc}</p></header>
+    <Beitragsliste eintraege={eintraege} morph />
+  </div>
+</Base>

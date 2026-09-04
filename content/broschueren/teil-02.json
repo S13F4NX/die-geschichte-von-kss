@@ -1,0 +1,39 @@
+{
+  "teil": 2,
+  "inhaltsverzeichnis": [
+    {"rubrik": "Vorwort", "title": "Vorwort/Kontaktadressen", "datei": "broschueren/teil-02.md", "seiten": [3, 3]},
+    {"rubrik": "Episoden und Gedanken", "title": "Aller Anfang ist schwer", "datei": "geschichten/t02-aller-anfang-ist-schwer.md", "seiten": [4, 6]},
+    {"rubrik": "Episoden und Gedanken", "title": "Von Schwarzhälsen, Kesselwanzen und Masutochsen", "datei": "geschichten/t02-von-schwarzhaelsen-kesselwanzen-und-masutochsen.md", "seiten": [6, 10]},
+    {"rubrik": "Episoden und Gedanken", "title": "KSS in Kronstadt", "datei": "geschichten/t02-kss-in-der-festung-kronstadt.md", "seiten": [11, 19]},
+    {"rubrik": "Episoden und Gedanken", "title": "Geschwaderstimmung", "datei": "geschichten/t02-geschwaderstimmung.md", "seiten": [19, 23]},
+    {"rubrik": "Amüsantes", "title": "Mißverständnis", "datei": "geschichten/t02-missverstaendnis.md", "seiten": [24, 25]},
+    {"rubrik": "Amüsantes", "title": "Bieralarm", "datei": "geschichten/t02-bieralarm.md", "seiten": [25, 25]},
+    {"rubrik": "Amüsantes", "title": "Der einsame Rufer", "datei": "geschichten/t02-der-einsame-rufer.md", "seiten": [25, 26]},
+    {"rubrik": "Amüsantes", "title": "Gestörte Nachtruhe", "datei": "geschichten/t02-gestoerte-nachtruhe.md", "seiten": [26, 26]},
+    {"rubrik": "Amüsantes", "title": "Wie ein KSS zu einem Motorrad kam", "datei": "geschichten/t02-wie-ein-kss-zu-einem-motorrad-kam.md", "seiten": [26, 27]},
+    {"rubrik": "Amüsantes", "title": "Hermann Streckers Straßenbau", "datei": "geschichten/t02-hermann-streckers-strassenbau.md", "seiten": [27, 28]},
+    {"rubrik": "Amüsantes", "title": "Ostseeland III", "datei": "geschichten/t02-ostseeland-iii.md", "seiten": [28, 29]},
+    {"rubrik": "Amüsantes", "title": "Taucheinsatz im „geheimen“ Auftrag", "datei": "geschichten/t02-taucheinsatz-im-geheimen-auftrag.md", "seiten": [29, 30]},
+    {"rubrik": "Amüsantes", "title": "Strandbeölung", "datei": "geschichten/t02-die-strandbeoelung.md", "seiten": [30, 30]},
+    {"rubrik": "Amüsantes", "title": "Der verrückte Fernseher", "datei": "geschichten/t02-der-verrueckte-fernseher.md", "seiten": [31, 32]},
+    {"rubrik": "Amüsantes", "title": "Vorbeugende Instandsetzung von Elektromotoren", "datei": "geschichten/t02-vorbeugende-instandsetzung-von-elektromotoren.md", "seiten": [32, 32]},
+    {"rubrik": "Amüsantes", "title": "Wasser oder Wodka – das war hier die Frage", "datei": "geschichten/t02-wasser-oder-wodka.md", "seiten": [32, 33]},
+    {"rubrik": "Anhänge", "title": "Anhang 1: Taktisch-technische Daten (ergänzte TTD Pr. 133.1)", "datei": "anhaenge/t02-anhang-1-taktisch-technische-daten.md", "seiten": [34, 35]},
+    {"rubrik": "Anhänge", "title": "Anhang 2: BCH’s, ACH’s, Kommandanten (Pr. 50 und 1159)", "datei": "anhaenge/t02-anhang-2-bch-ach-kommandanten.md", "seiten": [36, 37]},
+    {"rubrik": "Anhänge", "title": "Anhang 3: Offiziersbesetzung bei Indienststellung (Pr. 50 und 1159)", "datei": "anhaenge/t02-anhang-3-offiziersbesetzung-bei-indienststellung.md", "seiten": [38, 40]},
+    {"rubrik": "Anhänge", "title": "Anhang 4: Seitenrisse KSS Pr. 50, 1159, 133.1", "datei": "anhaenge/t02-anhang-4-seitenrisse.md", "seiten": [41, 43]},
+    {"rubrik": "Anhänge", "title": "Anhang 5: KSS Pr. 50 (Aufbau, Gefechtsorganisation)", "datei": "anhaenge/t02-anhang-5-kss-pr-50-aufbau-gefechtsorganisation.md", "seiten": [44, 47]},
+    {"rubrik": "Anhänge", "title": "Anhang 6: KSS Pr. 1159 (Aufbau, Gefechtsorganisation)", "datei": "anhaenge/t02-anhang-6-kss-pr-1159-aufbau-gefechtsorganisation.md", "seiten": [48, 50]},
+    {"rubrik": "Anhänge", "title": "Anhang 7: KSS Pr. 133.1 (Aufbau, Gefechtsorganisation)", "datei": "anhaenge/t02-anhang-7-kss-pr-133-1-aufbau-gefechtsorganisation.md", "seiten": [51, 53]},
+    {"rubrik": "Anhänge", "title": "Anhang 8: Kommandotabellen Waffeneinsatz", "datei": "anhaenge/t02-anhang-8-kommandotabellen-waffeneinsatz.md", "seiten": [54, 62]},
+    {"rubrik": "Anhänge", "title": "Anhang 9: Ereignistafel (ergänzt)", "datei": null, "seiten": [63, 70], "hinweis": "nicht übernommen, siehe Gesamt-Ereignistafel"},
+    {"rubrik": "Anhänge", "title": "Anhang 10: Bildteil", "datei": null, "seiten": [], "hinweis": "im Inhaltsverzeichnis der Broschüre aufgeführt, in der vorliegenden PDF-Datei (71 Seiten) jedoch nicht enthalten"}
+  ],
+  "quellennachweis": "Herausgegeben im Januar 2003:\n\n© 2003 Marinekameradschaft KSS e.V. Rostock-Warnemünde\n\nAlle Rechte vorbehalten",
+  "bilder": [
+    {"seite": 1, "bildunterschrift": "", "artikel": "broschueren/teil-02.md", "hinweis": "Titelseite: Zeichnungen der drei KSS-Typen (Projekt 1159, Projekt 50, Projekt 133.1) und Emblem der Marinekameradschaft KSS e.V. Warnemünde"},
+    {"seite": 41, "bildunterschrift": "KSS Projekt 50", "artikel": "anhaenge/t02-anhang-4-seitenrisse.md"},
+    {"seite": 42, "bildunterschrift": "KSS Projekt 1159", "artikel": "anhaenge/t02-anhang-4-seitenrisse.md"},
+    {"seite": 43, "bildunterschrift": "KSS Projekt 133.1", "artikel": "anhaenge/t02-anhang-4-seitenrisse.md"}
+  ]
+}

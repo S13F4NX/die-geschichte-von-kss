@@ -1,0 +1,12 @@
+---
+interface Props { pfad: { name: string; url: string }[] }
+const { pfad } = Astro.props;
+---
+<nav class="brotkrumen" aria-label="Sie sind hier">
+  <ol>
+    <li><a href="/">Start</a></li>
+    {pfad.map((p, i) => (
+      <li>{i === pfad.length - 1 ? <span aria-current="page">{p.name}</span> : <a href={p.url}>{p.name}</a>}</li>
+    ))}
+  </ol>
+</nav>

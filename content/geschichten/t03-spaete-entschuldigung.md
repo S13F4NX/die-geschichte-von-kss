@@ -1,0 +1,33 @@
+---
+title: "Späte Entschuldigung oder: Ein spannender Tag auf der „Rostock“"
+autoren: ["Thomas Rahmig"]
+kategorie: "amuesantes"
+rubrik: "Amüsantes"
+broschuere: 3
+seiten: [42, 43]
+projekte: ["1159"]
+schiffe: ["Rostock"]
+orte: ["Warnemünde"]
+zeitraum: "1980er Jahre"
+zusammenfassung: "Der ehemalige Kreisel-Maat Thomas Rahmig gesteht, wie er einen Obermaat scherzhaft aufforderte, einen unverplombten roten Knopf zu drücken – den Auslöser der Feuerlöschanlage des Raketensilos der „Rostock“. Das Silo lief voll, die Raketen mußten abgerüstet und das Wasser von der Besatzung per Handpumpe gelenzt werden; die Untersuchung endete mit der Annahme einer Selbstauslösung. Jahre später bittet der Autor die Betroffenen um Absolution."
+schlagworte: ["Raketensilo", "Feuerlöschanlage", "Besonderes Vorkommnis", "Kreiselkompaß", "Beichte", "Anekdote"]
+quelle: "Marinekameradschaft KSS e.V.: Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 3 (2003)"
+---
+
+> Anmerkung der Redaktion: Thomas Rahmig diente als Kreisel-Maat auf dem KSS „Rostock“. Heute ist die „Beichte“ es wert, unter „Amüsantes“ eingestuft zu werden. Als sie passierte, war sie allerdings ein schwerwiegendes sogenanntes „Besonderes Vorkommnis“ und – wäre die Geschichte herausgekommen – hätten die beiden Beteiligten wohl nichts zu lachen gehabt. Thomas hat uns erlaubt, seinen Bericht in unsere Geschichtensammlung aufzunehmen und zu veröffentlichen.
+
+Zum Verständnis meiner Geschichte muss ich für alle Nicht-KSS-Fahrer kurz einige Fakten vorausschicken: Erstens - Der Dienst als DuD (Diensthabender unter Deck; vergleichbar mit UvD an Land) beinhaltete u.a. die Kontrolle diverser Siegel (Petschaften) und Plomben. Diese Kontrolle musste während des Dienstes durch den DuD mehrmals durchgeführt werden. Man konnte also davon ausgehen, dass ein altgedienter Unteroffizier den Sinn der verplombten Einrichtungen zumindest grob kannte. Zweitens - zur Bewaffnung des Schiffes gehörten u.a. Raketen zur Bekämpfung von Luftzielen. Da der Feststoffantrieb eine hochbrisante Sache war, hatte man das Raketensilo mit einer leistungsstarken Feuerlöschanlage ausgestattet. Dazu gehörte auch die Möglichkeit, den Bunker zu berieseln.
+
+Ich war schon einige Diensthalbjahre auf der Rostock als nun folgendes passierte. Ich kam mit einem Obermaat meines Diensthalbjahres - nennen wir ihn Obermaat X - den Niedergang von meiner Gefechtsstation I-3-1 (Kreiselkompaß-Raum) herauf, wo wir Kaffee getrunken hatten. In der Nähe der Luke zu dieser Gefechtsstation war ein kleiner roter Knopf angebracht. Eigentlich sollte ein Metall-Deckel den Knopf schützen, aber die Plombe war, wie so oft, von irgendwem abgefummelt worden und nun baumelte die kleine Alu-Kappe lose herum. Im Vorbeigehen und mit der gleichen Ernsthaftigkeit, mit der man angesichts einer offenliegenden Starkstromleitung zu einem Freund sagen würde: “Jetzt musst du da mal ranfassen!“ sagte ich zum Obermaat X: „Jetzt musst du da mal drücken!“ Und ehe ich reagieren konnte, drückte X den Knopf, schaute mich mit großen Augen an und fragte „Und nu?“
+
+Im nächsten Moment hatte ich einen Schweißausbruch und wahrscheinlich mehr Adrenalin in meinen Adern als Blut. Nichts wie weg! In Panik riss ich mein Käppi herunter, wischte mir über den Knopf und spurtete mit Obermaat X den Niedergang zum Hauptverkehrsgang hinauf und weiter zum HBS (Haupt-Befehlsstand). Noch im Laufen hörte ich schon die Schreie im Hauptverkehrsgang: „...DAS RAKETENSILO IST GEFLUTET!!!“ Der Leser ahnt es sicher schon: Bei dem Knopf handelte es sich um einen der Auslöser der Feuerlöschanlage für das Raketensilo. Die Beschriftung war zwar russisch, aber wie schon gesagt, von einem altgedienten Obermaaten mit DuD-Erfahrung hatte ich erwartet, dass er den Knopf und seine Bedeutung zumindest durch seinen Wachdienst kannte.
+
+Auf der Brücke gossen wir uns schnell einen Kaffe ein und verabredeten ein gegenseitiges Alibi. Wenige Minuten später erschienen diverse bordfremde Herren in Uniform und in Zivil, nahmen Fingerabdrücke (keine da!...na so was!) und fingen mit der Befragung der Mannschaft an.
+
+Vom anschließenden Theater hatte dann wohl die gesamte Besatzung etwas. Die abgesoffenen Raketen mussten nämlich sofort von Bord und in die Fachwerkstatt. Zum Abrüsten der schweineteuren Raketen, musste das Schiff seeklar gemacht werden, was sicherlich auch nicht gerade billig war. Aus welchen Gründen auch immer, konnte man die zig Tonnen Seewasser, die die Feuerlöschanlage ins Raketensilo gepumpt hatte, nicht per Motorpumpe lenzen, sondern die Besatzung durfte sich in einer Reihe anstellen, und jeder der dran war, musste aus Leibeskräften mit einer kleinen Handpumpe pumpen, bis ihm fast die Arme abfielen, dann war der nächste dran. An dieser Leibesübung waren alle Matrosen und Unteroffiziere beteiligt außer - na wem wohl? - mir, weil die Wichtigkeit meiner Funktion - die Überwachung des Kreiselkompasses - es mir nicht erlaubte, an dererlei Aktivitäten teilzunehmen (lt. Dienstvorschrift – wirklich!). Ich weiß nicht, wie viele Stunden das Lenzen des Silos gedauert hat und ich weiß auch nicht mehr, wie lange der Artillerieabschnitt mit dem Abrüsten der Raketen beschäftigt war. Die Ackerei hat aber die halbe Nacht gedauert. Selbstverständlich waren alle Landgänge für diesen Tag gestrichen und ich bin mir fast sicher, man hat auch die Berufssoldaten, wenn sie zu Hause waren, „rein“ geholt. Jedenfalls war ich überzeugt: Sollte die Sache irgendwie ans Licht kommen, würde die Besatzung die schöne Tradition des Kielholens bestimmt wieder aufleben lassen.
+
+Und dass es auch juristisch mit der groben Kelle geben würde, da war ich mir ganz sicher. Die Sache war dermaßen blöd, dass ich der Überzeugung war, dass uns keiner diese Geschichte so abkaufen würde, wie sie wirklich passiert ist. Vermutlich würde man uns der Sabotage oder dergleichen anklagen. Und auf Schwedt (Militär-Gefängnis) hatte ich nun überhaupt keinen Bock. Also hieß es „Schnauze halten“ und durch. Die Ermittlungen wurden irgendwann eingestellt. Die Untersuchungs-Kommission war wohl zu dem Schluß gekommen, dass sich das Feuerlöschsystem beim Zusammentreffen unglücklicher Umstände selbst auslösen konnte. Nach einiger Zeit hörte ich auch auf, von dem Vorfall zu träumen.
+
+Der Leser mag nun selbst entscheiden, wie viel Prozent der Schuld auf mich fallen. Konnte ich damit rechnen, dass der sonst fachlich erstklassige Obermaat X nicht wusste, was es mit dem Knopf auf sich hat? Mitschuldig oder nicht; wie auch immer; ich möchte mich jedenfalls bei allen entschuldigen, die damals „bluten“ mussten und hoffe auf Absolution. Und immer daran denken: Hätten wir es nicht erlebt, könnten wir es nicht erzählen!
+
+— Thomas Rahmig

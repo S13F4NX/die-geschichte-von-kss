@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import Artikel from '../../layouts/Artikel.astro';
+export async function getStaticPaths() {
+  return (await getCollection('anhaenge')).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<Artikel entry={entry} sammlung="anhaenge" basisPfad="/wissen" elternName="Technik und Daten" markdownUrl={`/wissen/${entry.id}.md`} />

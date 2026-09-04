@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import { PROJEKTE } from '../../lib/site';
+import { schiffsIndex } from '../../lib/schiffe';
+import { alleBeitraege } from '../../lib/inhalt';
+
+const { schiffe } = await schiffsIndex();
+const alle = await alleBeitraege();
+const risse: Record<string, string> = { '50': '/schiffsrisse/projekt-50.gif', '1159': '/schiffsrisse/projekt-1159.gif', '133.1': '/schiffsrisse/projekt-133.gif' };
+// Nur die beschrifteten Seitenrisse der Vereinsseite. Ein beliebiges Foto einer
+// Klasse zuzuordnen wäre nicht belegbar, deshalb steht hier keines.
+const rissBord: Record<string, string> = { '50': '142 („Karl Marx“)', '1159': '141 („Rostock“)', '133.1': '224 („Waren“)' };
+
+const daten: Record<string, [string, string][]> = {
+  '50': [['Verdrängung', '1128 t normal, 1600 t maximal'], ['Länge', '91,62 m'], ['Breite', '10,15 m'], ['Geschwindigkeit', '29 kn'], ['Antrieb', 'Dampfturbinen, 2 × 10.000 PS'], ['Besatzung', '147 Mann']],
+  '1159': [['Verdrängung', '1518 t normal, 1820 t maximal'], ['Länge', '96,50 m'], ['Breite', '12,70 m'], ['Geschwindigkeit', '30,1 kn'], ['Antrieb', 'Diesel 2 × 8000 PS, Gasturbine 20.000 PS'], ['Besatzung', '110 Mann']],
+  '133.1': [['Verdrängung', '792 t, 854 t maximal'], ['Länge', '75,2 m'], ['Breite', '9,8 m'], ['Geschwindigkeit', '24,5 kn'], ['Antrieb', 'Diesel, 3 × 4750 PS'], ['Besatzung', '59 Mann']],
+};
+
+const titel = 'Die Küstenschutzschiffe der Volksmarine';
+const beschreibung = 'Die drei Klassen der Küstenschutzschiffe der Seestreitkräfte und Volksmarine der DDR: Projekt 50 (Riga-Klasse), Projekt 1159 (Koni-Klasse) und Projekt 133.1 (Parchim-Klasse) – mit Seitenrissen, technischen Daten und einem Datenblatt für jedes Schiff.';
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: titel, description: beschreibung, itemListElement: Object.values(PROJEKTE).map((info, i) => ({ '@type': 'ListItem', position: i + 1, name: `${info.name} (${info.klasse})`, url: new URL(`/schiffe/${info.slug}`, Astro.site).href })) };
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Die Schiffe', url: '/schiffe' }]} jsonLd={jsonLd}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Die Schiffe', url: '/schiffe' }]} />
+    <header class="artikelkopf">
+      <h1>Die Schiffe</h1>
+      <p class="zusammenfassung">Drei Schiffsklassen führte die Volksmarine als Küstenschutzschiff: Projekt 50, Projekt 1159 und Projekt 133.1. Die technischen Daten stehen in Anhang 1 der Broschüre Teil 2 und auf der früheren Vereinswebsite.</p>
+    </header>
+    <div class="lesen" style="margin-left:0">
+      <p>Der Vorstand der Marinekameradschaft schrieb 2021 über die eigenen Schiffe: „Die damaligen von der NATO gebrauchten Codes geben da schon eher Auskunft: Es handelte sich um die Fregatten der „Riga“- bzw. „Koni“-Klasse und um die U-Jagd-Korvetten der „Parchim“-Klasse.“ Die KSS des Projektes 50 lagen zunächst in Saßnitz; im Oktober 1965 wurde die Abteilung nach Warnemünde verlegt und der 4. Flottille unterstellt. Die Schiffe des Projektes 133.1 gehörten zur 4. Flottille in Warnemünde und zur 1. Flottille in Peenemünde.</p>
+    </div>
+
+    <div class="klassenkarten">
+      {Object.entries(PROJEKTE).map(([p, info]) => {
+        const meine = schiffe.filter((s) => s.data.projekt === p);
+        return (
+          <article class="klassenkarte">
+            <a class="kk-bild" href={`/schiffe/${info.slug}`} tabindex="-1" aria-hidden="true">
+              {risse[p] && <img class="kk-riss" src={risse[p]} alt={`Seitenriss und Draufsicht ${info.name}, ${info.klasse}, mit Bordnummer ${rissBord[p]}`} loading="lazy" />}
+            </a>
+            <div class="kk-text">
+              <h2><a href={`/schiffe/${info.slug}`}>{info.name}</a></h2>
+              <p class="kk-klasse"><span class={`stempel ${info.css}`}>{info.klasse}</span> <span>{info.zeitraum}</span></p>
+              <p class="kk-kurz">{info.kurz}</p>
+              <dl class="kk-daten">
+                {daten[p].map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+              </dl>
+              <div class="kk-schiffe">
+                {meine.map((x) => (
+                  <a class="schiffsknopf" href={`/schiffe/${x.id}`}>
+                    <b>{x.data.name}</b>
+                    {x.data.bordnummern.length > 0 && <span>{x.data.bordnummern.slice(-1)[0]}</span>}
+                  </a>
+                ))}
+              </div>
+              <p class="kk-fuss"><a class="kk-link" href={`/schiffe/${info.slug}`}>Technische Daten, Chronik und {alle.filter((e) => e.projekte.includes(p)).length} Beiträge</a></p>
+              <p class="klein">Zeichnung: Seitenriss {info.name} mit Bordnummer {rissBord[p]}, von der Website der Marinekameradschaft KSS e.V.</p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</Base>

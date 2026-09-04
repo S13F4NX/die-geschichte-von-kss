@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import { autorenIndex } from '../../lib/inhalt';
+import { slugify } from '../../lib/site';
+import personenRegister from '../../../content/data/personen.json';
+
+const idx = await autorenIndex();
+const register = personenRegister as Record<string, { rolle: string; von: string; bis: string; quelle: string }[]>;
+
+type Person = { slug: string; name: string; anzahl: number; rollen: any[]; titel: string[] };
+const karte = new Map<string, Person>();
+for (const [slug, v] of idx.entries()) {
+  karte.set(slug, { slug, name: v.name, anzahl: v.eintraege.length, rollen: register[v.name] ?? [], titel: v.eintraege.map((e) => e.title) });
+}
+for (const [name, rollen] of Object.entries(register)) {
+  const slug = slugify(name);
+  if (!karte.has(slug)) karte.set(slug, { slug, name, anzahl: 0, rollen, titel: [] });
+}
+const nachname = (n: string) => n.split(' ').slice(-1)[0];
+const alle = [...karte.values()].sort((a, b) => nachname(a.name).localeCompare(nachname(b.name), 'de'));
+const autoren = alle.filter((p) => p.anzahl > 0);
+const nurListe = alle.filter((p) => p.anzahl === 0);
+const kurzrolle = (p: Person) => p.rollen.length ? p.rollen[0].rolle + (p.rollen.length > 1 ? ` und ${p.rollen.length - 1} weitere` : '') : '';
+
+const titel = 'Personen: Autoren, Kommandanten und Besatzungen';
+const beschreibung = `${autoren.length} Autorinnen und Autoren der Beiträge sowie ${nurListe.length} weitere Personen aus den Kommandanten- und Besetzungslisten der KSS-Broschüren. Jede Person hat eine eigene Seite mit ihren Beiträgen und belegten Dienststellungen.`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: titel, description: beschreibung, inLanguage: 'de' };
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Personen', url: '/personen' }]} jsonLd={jsonLd}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Personen', url: '/personen' }]} />
+    <header class="artikelkopf">
+      <h1>Personen</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <div class="lesen" style="margin-left:0">
+      <p>Die Angaben zu Dienststellungen stammen aus den Anhängen der Broschüren: den Listen der Brigade- und Abteilungschefs, der Kommandanten aller Schiffe und der Offiziersbesetzung bei Indienststellung. Weitere biografische Angaben führt dieses Archiv nicht, weil der Verein selbst keine erhoben hat.</p>
+    </div>
+
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Autorinnen und Autoren</h2><span class="klein">{autoren.length} Personen</span></div>
+      <div class="personen">
+        {autoren.map((p) => (
+          <a class="person" href={`/personen/${p.slug}`}>
+            <b>{p.name}</b>
+            {kurzrolle(p) && <span class="rolle">{kurzrolle(p)}</span>}
+            <span class="anzahl">{p.anzahl} {p.anzahl === 1 ? 'Beitrag' : 'Beiträge'}</span>
+            <span class="klein">{p.titel.slice(0, 2).join(' · ')}{p.titel.length > 2 ? ' …' : ''}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {nurListe.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Weitere Personen aus den Listen</h2><span class="klein">{nurListe.length} Personen</span></div>
+        <p class="klein">Kommandanten, Abteilungs- und Brigadechefs sowie Offiziere der ersten Besatzungen, die keinen eigenen Beitrag verfasst haben.</p>
+        <div class="personen">
+          {nurListe.map((p) => (
+            <a class="person" href={`/personen/${p.slug}`}>
+              <b>{p.name}</b>
+              {kurzrolle(p) && <span class="rolle">{kurzrolle(p)}</span>}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</Base>

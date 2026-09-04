@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import fs from 'node:fs';
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import { alleBeitraege } from '../../lib/inhalt';
+import { KATEGORIEN } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const hefte = await getCollection('broschueren');
+  return hefte.map((h) => ({ params: { teil: String(h.data.teil) }, props: { heft: h } }));
+}
+const { heft } = Astro.props;
+const d = heft.data;
+const { Content } = await render(heft);
+const nn = String(d.teil).padStart(2, '0');
+let index: any = null;
+try { index = JSON.parse(fs.readFileSync(`content/broschueren/teil-${nn}.json`, 'utf8')); } catch {}
+const beitraege = (await alleBeitraege()).filter((e) => e.broschuere === d.teil).sort((a, b) => (a.seiten[0] ?? 0) - (b.seiten[0] ?? 0));
+const nachDatei = new Map(beitraege.map((e) => [`${e.sammlung}/${e.id}.md`, e]));
+const toc: any[] = index?.inhaltsverzeichnis ?? [];
+const rubriken = [...new Set(toc.map((t) => t.rubrik))];
+const pdfKeys = d.pdfs ? ['a', 'b', 'c'].slice(0, d.pdfs.length) : [''];
+const beschreibung = d.zusammenfassung || `${d.titel}, erschienen ${d.jahr}: ${beitraege.length} Beiträge, vollständig als Text, Originalseiten und PDF.`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Book', name: d.titel, datePublished: String(d.jahr), inLanguage: 'de', author: { '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.' }, numberOfPages: d.seitenzahl, isPartOf: { '@type': 'BookSeries', name: 'Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine' }, hasPart: beitraege.map((e) => ({ '@type': 'Article', name: e.title, url: new URL(e.url, Astro.site).href })) };
+const alle = (await getCollection('broschueren')).sort((a, b) => a.data.teil - b.data.teil);
+const pos = alle.findIndex((h) => h.data.teil === d.teil);
+---
+<Base title={`KSS-Broschüre Teil ${d.teil} (${d.jahr})`} description={beschreibung} breadcrumbs={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }]} jsonLd={jsonLd} image={`/broschueren/seiten/teil-${nn}${d.pdfs ? 'a' : ''}/s-01.jpg`}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }]} />
+    <div class="artikel-raster" style="grid-template-columns: minmax(0, 1fr) minmax(14rem, 20rem)">
+      <div>
+        <header class="artikelkopf">
+          <div class="rubrik">KSS-Broschüre · erschienen {d.jahr}</div>
+          <h1>{d.titel}</h1>
+          <p class="zusammenfassung">{beschreibung}</p>
+        </header>
+
+        <section class="abschnitt" style="margin-top: 0">
+          <div class="abschnitt-kopf"><h2>Inhalt</h2></div>
+          {rubriken.map((r) => (
+            <div>
+              <h3>{r}</h3>
+              <ul class="liste">
+                {toc.filter((t) => t.rubrik === r).map((t) => {
+                  const e = t.datei ? nachDatei.get(t.datei) : undefined;
+                  return (
+                    <li>
+                      <div class="titel">{e ? <a href={e.url}>{t.title}</a> : t.title}</div>
+                      <div class="neben">
+                        {e?.autoren?.length ? <span>{e.autoren.join(', ')}</span> : null}
+                        {t.seiten?.length ? <span>Seite {t.seiten[0]}{t.seiten[1] && t.seiten[1] !== t.seiten[0] ? `–${t.seiten[1]}` : ''}</span> : null}
+                        {t.hinweis ? <span>{t.hinweis === 'nicht übernommen, siehe Gesamt-Ereignistafel' || /ereignistafel/i.test(t.title) ? <a href="/chronik">siehe Gesamt-Ereignistafel (Stand 2012)</a> : t.hinweis}</span> : null}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+          {toc.length === 0 && beitraege.length > 0 && (
+            <ul class="liste">{beitraege.map((e) => <li><div class="titel"><a href={e.url}>{e.title}</a></div><div class="neben">{e.autoren.join(', ')}</div></li>)}</ul>
+          )}
+        </section>
+
+        <section class="abschnitt">
+          <div class="abschnitt-kopf"><h2>Vorwort</h2></div>
+          <div class="prosa lesen" style="margin-left: 0"><Content /></div>
+        </section>
+
+        {index?.quellennachweis && (
+          <section class="abschnitt">
+            <div class="abschnitt-kopf"><h2>Quellennachweis</h2></div>
+            <div class="prosa lesen" style="margin-left: 0; white-space: pre-line">{index.quellennachweis}</div>
+          </section>
+        )}
+      </div>
+      <aside class="seitenleiste">
+        <section>
+          <img src={`/broschueren/seiten/teil-${nn}${d.pdfs ? 'a' : ''}/s-01.jpg`} alt={`Titelseite Teil ${d.teil}`} width="300" style="border: 1px solid var(--linie); background: #fff" />
+        </section>
+        <section>
+          <h2>Original</h2>
+          <ul>
+            {pdfKeys.map((k, i) => <li><a href={`/broschueren/seiten/teil-${nn}${k}`}>Alle Seiten ansehen{d.pdfs ? ` (${['Textteil', 'Anhang 3', 'Anhang 4–5'][i]})` : ''}</a></li>)}
+            {pdfKeys.map((k, i) => <li><a href={`/broschueren/pdf/kss-broschuere-teil-${nn}${k}.pdf`}>PDF herunterladen{d.pdfs ? ` (${['Textteil', 'Anhang 3', 'Anhang 4–5'][i]})` : ''}</a></li>)}
+          </ul>
+        </section>
+        <section>
+          <h2>Angaben</h2>
+          <dl>
+            <dt>Reihe</dt><dd>Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine</dd>
+            <dt>Herausgeber</dt><dd>Marinekameradschaft KSS e.V., Rostock-Warnemünde</dd>
+            <dt>Jahr</dt><dd>{d.jahr}</dd>
+            {d.seitenzahl && <><dt>Umfang</dt><dd>{d.seitenzahl} Seiten</dd></>}
+            <dt>Beiträge</dt><dd>{beitraege.length} online</dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Weitere Teile</h2>
+          <ul>
+            {pos > 0 && <li><a href={`/broschueren/teil-${alle[pos - 1].data.teil}`}>← Teil {alle[pos - 1].data.teil} ({alle[pos - 1].data.jahr})</a></li>}
+            {pos < alle.length - 1 && <li><a href={`/broschueren/teil-${alle[pos + 1].data.teil}`}>Teil {alle[pos + 1].data.teil} ({alle[pos + 1].data.jahr}) →</a></li>}
+            <li><a href="/broschueren">Alle Broschüren</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Beitragsliste from '../components/Beitragsliste.astro';
+import { SITE, PROJEKTE, KATEGORIEN } from '../lib/site';
+import { alleBeitraege, sortiereBroschuere } from '../lib/inhalt';
+import { ereignisse } from '../lib/chronik';
+import archivBilder from '../../content/data/archivbilder.json';
+
+const alle = (await alleBeitraege()).sort(sortiereBroschuere);
+const geschichten = alle.filter((e) => e.sammlung === 'geschichten');
+const anhaenge = alle.filter((e) => e.sammlung === 'anhaenge');
+const ev = await ereignisse();
+const schiffe = await getCollection('schiffe');
+const hefte = await getCollection('broschueren');
+const bilder = archivBilder as any[];
+
+// Feste Auswahl markanter Einstiege, wenn vorhanden
+const wunsch = ['t03-im-schlepp-von-sewastopol-nach-warnemuende', 't06-als-kesselgast-auf-kss-1-61', 't04-1159-ausbildung-in-baku', 't03-bei-windstaerke-11-bis-12-und-schwerer-see', 't07-geschichte-des-marinestuetzpunktes-hohe-duene', 't11-historie-des-projektes-50', 't08-wendezeit-in-der-volksmarine-ein-rueckblick', 't05-verbotene-fotos'];
+const empfohlen = wunsch.map((id) => geschichten.find((e) => e.id === id || e.id.startsWith(id.slice(0, 12)))).filter(Boolean).slice(0, 6) as typeof geschichten;
+const amuesant = geschichten.filter((e) => e.kategorie === 'amuesantes').filter((_, i) => i % 7 === 0).slice(0, 5);
+const silhouette = (p: string) => bilder.find((b) => b.projekt === p && b.art === 'seitenriss');
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'de', potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/suche?q={suchbegriff}` }, 'query-input': 'required name=suchbegriff' } },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Marinekameradschaft KSS e.V.', alternateName: 'MK KSS e.V.', foundingDate: '1996-03-29', dissolutionDate: '2021-12-31', location: { '@type': 'Place', name: 'Rostock-Warnemünde' }, url: SITE.url, description: 'Verein ehemaliger Angehöriger der Küstenschutzschiffe der Volksmarine der DDR (1996–2021). Herausgeber der zwölf KSS-Broschüren.' },
+  { '@context': 'https://schema.org', '@type': 'ArchiveOrganization', name: SITE.name, url: SITE.url, archiveHeld: { '@type': 'ArchiveComponent', name: 'KSS-Broschüren und Website der Marinekameradschaft KSS e.V.', temporalCoverage: '1956/2021' } },
+];
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={jsonLd} bodyClass="start">
+  <section class="held">
+    <div class="hülle held-raster">
+      <div>
+        <div class="zeitspanne">Volksmarine der DDR · 1956 bis 1990</div>
+        <h1>Die Geschichte von KSS</h1>
+        <p class="lede">Küstenschutzschiff, kurz KSS, hieß bei der Volksmarine der DDR die Klasse ihrer größten Kampfschiffe. Die Marinekameradschaft KSS e.V. hat dokumentiert, was ihre Besatzungen erlebt haben, und es in zwölf Broschüren veröffentlicht. Dieses Archiv gibt sie unverändert wieder.</p>
+        <div class="held-aktionen">
+          <a class="knopf gold" href="/geschichten">Geschichten lesen</a>
+          <a class="knopf" href="/schiffe">Die Schiffe</a>
+          <a class="knopf" href="/chronik">Chronik 1956–1991</a>
+        </div>
+      </div>
+      <div class="silhouetten" aria-label="Seitenrisse der drei Schiffsklassen">
+        {Object.entries(PROJEKTE).map(([p, info]) => {
+          const b = silhouette(p);
+          return b ? (
+            <figure>
+              <a href={`/schiffe/${info.slug}`}><img src={b.src} alt={`Seitenriss ${info.name}, ${info.klasse}`} width={b.w} height={b.h} loading={p === '50' ? 'eager' : 'lazy'} /></a>
+              <figcaption><span>{info.name} · {info.klasse}</span><span>{info.zeitraum}</span></figcaption>
+            </figure>
+          ) : null;
+        })}
+      </div>
+    </div>
+  </section>
+
+  <div class="hülle">
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Zusammengetragen von der Marinekameradschaft KSS e.V.</h2></div>
+      <div class="lesen" style="margin-left:0">
+        <p class="prosa">Am 29. März 1996 gründeten ehemalige KSS-Fahrer in Rostock-Markgrafenheide eine Marinekameradschaft, am 1. Oktober 1996 wurde sie ins Vereinsregister eingetragen. Der Vorstand schrieb 2021 zum Abschied: „So wurden fleißig Zahlen, Daten, Fakten und persönliche Erlebnisse aller Art zusammengetragen und in 12 kleinen Broschüren veröffentlicht.“ Zum 31. Dezember 2021 löste sich der Verein auf. Dieses Archiv gibt seine Arbeit unverändert wieder. <a href="/verein">Über den Verein</a> · <a href="/verein/abschied">Der Abschiedsbrief des Vorstands</a></p>
+      </div>
+    </section>
+
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Die drei Schiffsklassen</h2><a href="/schiffe">Zu den Schiffen</a></div>
+      <div class="raster">
+        {Object.entries(PROJEKTE).map(([p, info]) => (
+          <div class="karte">
+            <h3><a href={`/schiffe/${info.slug}`}>{info.name}</a></h3>
+            <p><span class={`stempel ${info.css}`}>{info.klasse}</span> <span class="klein">{info.zeitraum}</span></p>
+            <p>{info.kurz}</p>
+            <p class="klein">{schiffe.filter((s) => s.data.projekt === p).map((s) => s.data.name).join(' · ')}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {empfohlen.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Zum Einstieg</h2><a href="/geschichten">Alle {geschichten.length} Geschichten</a></div>
+        <Beitragsliste eintraege={empfohlen} />
+      </section>
+    )}
+
+    <div class="raster" style="grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr))">
+      <section class="abschnitt" style="margin-top:0">
+        <div class="abschnitt-kopf"><h2>Amüsantes</h2><a href="/geschichten/amuesantes">Alle</a></div>
+        <p class="klein">Die „Antichronik“, wie Teil 2 sie nennt: die Sammlung der lustigen Ereignisse um KSS.</p>
+        <Beitragsliste eintraege={amuesant} zeigeKategorie={false} />
+      </section>
+      <section class="abschnitt" style="margin-top:0">
+        <div class="abschnitt-kopf"><h2>Technik und Daten</h2><a href="/wissen">Alle {anhaenge.length} Anhänge</a></div>
+        <p class="klein">Taktisch-technische Daten, Bewaffnung, Kommandanten, Gefechtsorganisation.</p>
+        <Beitragsliste eintraege={anhaenge.filter((e) => /taktisch|kommandant|osa|bewaffnung|daten/i.test(e.title)).slice(0, 5)} zeigeKategorie={false} />
+      </section>
+    </div>
+
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Die zwölf Broschüren</h2><a href="/broschueren">Alle Hefte</a></div>
+      <div class="heftreihe">
+        {hefte.sort((a, b) => a.data.teil - b.data.teil).map((h) => (
+          <a class="heft" href={`/broschueren/teil-${h.data.teil}`}>
+            <img src={`/broschueren/seiten/teil-${String(h.data.teil).padStart(2, '0')}${h.data.pdfs ? 'a' : ''}/klein/s-01.jpg`} alt={`Titelseite Teil ${h.data.teil}`} loading="lazy" width="220" />
+            <b>Teil {h.data.teil}</b><span>{h.data.jahr}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Für Forschung, Suchmaschinen und KI</h2></div>
+      <div class="lesen" style="margin-left:0">
+        <p>Jede Seite dieses Archivs gibt es auch als Markdown (URL plus „.md“), die Ereignistafel als <a href="/chronik/ereignistafel.json">JSON</a>, alles zusammen in <a href="/llms.txt">llms.txt</a> und <a href="/llms-full.txt">llms-full.txt</a>. Die Broschürentexte sind wortgetreu übernommen, die Quellen auf jeder Seite genannt. <a href="/ueber">Über dieses Archiv</a> · <a href="/quellen">Quellen und Urheber</a> · <a href="/glossar">Glossar</a></p>
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+import Beitragsliste from '../components/Beitragsliste.astro';
+import { alleBeitraege, sortiereBroschuere } from '../lib/inhalt';
+import archivBilder from '../../content/data/archivbilder.json';
+const alle = (await alleBeitraege()).sort(sortiereBroschuere);
+const orte = [
+  { name: 'Saßnitz', kurz: 'Erster Heimathafen der KSS 1956–1965. Stab der 6. Flottille, Holzpier vor dem Fährhafen, später Südmole. „Saßnitz als Marinestützpunkt“ (Teil 8 und 9) erzählt die Geschichte des Ortes.', test: (s: string) => /sa(ß|ss)nitz/i.test(s) },
+  { name: 'Warnemünde / Hohe Düne', kurz: 'Ab Oktober 1965 Heimathafen der KSS bei der 4. Flottille. Adolf Tippachs „Geschichte des Marinestützpunktes Hohe Düne 1913–1990“ (Teil 7) reicht bis in die Kaiserzeit zurück.', test: (s: string) => /hohe d(ü|ue)ne|warnem(ü|ue)nde/i.test(s) },
+  { name: 'Peenemünde', kurz: 'Sitz der 1. Flottille, zu der die 1. und die 3. UAW-Schiffsabteilung mit Schiffen des Projektes 133.1 gehörten. Die 3. UAWSA verlegte am 1. Dezember 1983 nach Warnemünde. Teil 11 hält fest, dass die „Friedrich Engels“ nach ihrer Außerdienststellung unweit des Peenemünder Hakens als Zielschiff diente.', test: (s: string) => /peenem(ü|ue)nde/i.test(s) },
+  { name: 'Kronstadt', kurz: 'Werftliegezeiten und Modernisierung der KSS Pr. 50 in der Sowjetunion 1961–1963.', test: (s: string) => /kronstadt/i.test(s) },
+  { name: 'Baku, Poti, Sewastopol', kurz: 'Ausbildung der 1159-Besatzungen am Kaspischen und Schwarzen Meer, Übernahme und Überführung der „Rostock“ 1978.', test: (s: string) => /baku|poti|sewastopol/i.test(s) },
+  { name: 'Baltijsk', kurz: 'Spezialschießabschnitte der Volksmarine im sowjetischen Flottenstützpunkt bei Kaliningrad.', test: (s: string) => /baltijsk|baltisk/i.test(s) },
+];
+const bilder = (archivBilder as any[]).filter((b) => b.gruppe === 'stuetzpunkte');
+const titel = 'Stützpunkte und Orte der Küstenschutzschiffe';
+const beschreibung = 'Saßnitz, Warnemünde-Hohe Düne, Peenemünde, Kronstadt, Baku, Baltijsk: die Orte, an denen die KSS der Volksmarine lagen, ausgebildet wurden und übten – mit allen zugehörigen Beiträgen.';
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Stützpunkte', url: '/stuetzpunkte' }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Stützpunkte', url: '/stuetzpunkte' }]} />
+    <header class="artikelkopf"><h1>Stützpunkte und Orte</h1><p class="zusammenfassung">{beschreibung}</p></header>
+    {bilder.length > 0 && <div class="galerie" style="margin-bottom:2rem">{bilder.slice(0, 8).map((b) => <figure><a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift} loading="lazy" /></a><figcaption>{b.bildunterschrift}</figcaption></figure>)}</div>}
+    {orte.map((o) => {
+      const es = alle.filter((e) => e.orte.some(o.test) || e.schlagworte.some(o.test) || o.test(e.title));
+      return es.length > 0 && (
+        <section class="abschnitt">
+          <div class="abschnitt-kopf"><h2>{o.name}</h2><span class="klein">{es.length} Beiträge</span></div>
+          <p>{o.kurz}</p>
+          <Beitragsliste eintraege={es} />
+        </section>
+      );
+    })}
+  </div>
+</Base>

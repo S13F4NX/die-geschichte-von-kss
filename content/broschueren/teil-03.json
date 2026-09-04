@@ -1,0 +1,301 @@
+{
+  "teil": 3,
+  "inhaltsverzeichnis": [
+    {
+      "rubrik": "Vorwort",
+      "title": "Vorwort/Kontaktadressen",
+      "datei": "broschueren/teil-03.md",
+      "seiten": [
+        3,
+        3
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Gedient unter vier Mützenbändern (Erinnerungen)",
+      "datei": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md",
+      "seiten": [
+        4,
+        11
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Kurs Gdynia",
+      "datei": "geschichten/t03-kurs-gdynia.md",
+      "seiten": [
+        11,
+        16
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Feuer im Schiff",
+      "datei": "geschichten/t03-feuer-im-schiff.md",
+      "seiten": [
+        16,
+        22
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Überführung des KSS „Rostock“ von Sewastopol nach Warnemünde",
+      "datei": "geschichten/t03-im-schlepp-von-sewastopol-nach-warnemuende.md",
+      "seiten": [
+        23,
+        30
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Bei Windstärke 11 bis 12 und schwerer See",
+      "datei": "geschichten/t03-bei-windstaerke-11-bis-12-und-schwerer-see.md",
+      "seiten": [
+        30,
+        32
+      ]
+    },
+    {
+      "rubrik": "Episoden und Gedanken",
+      "title": "Stabsdienst",
+      "datei": "geschichten/t03-stabsdienst-im-stuetzpunkt.md",
+      "seiten": [
+        32,
+        37
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Duschen mit Hilde",
+      "datei": "geschichten/t03-duschen-mit-hilde.md",
+      "seiten": [
+        38,
+        38
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Patenschaft im Härtetest",
+      "datei": "geschichten/t03-patenschaft-im-haertetest.md",
+      "seiten": [
+        38,
+        40
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Stabsmatrose Lifka",
+      "datei": "geschichten/t03-stabsmatrose-lifka.md",
+      "seiten": [
+        40,
+        40
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Mit einem blauen Auge davongekommen",
+      "datei": "geschichten/t03-mit-einem-blauen-auge-davongekommen.md",
+      "seiten": [
+        41,
+        41
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Skandal im Med.-Punkt",
+      "datei": "geschichten/t03-skandal-im-med-punkt.md",
+      "seiten": [
+        41,
+        42
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Späte Entschuldigung oder: Ein spannender Tag auf der „Rostock“",
+      "datei": "geschichten/t03-spaete-entschuldigung.md",
+      "seiten": [
+        42,
+        43
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Salut der Nationen",
+      "datei": "geschichten/t03-salut-der-nationen.md",
+      "seiten": [
+        43,
+        44
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Messe-Rees",
+      "datei": "geschichten/t03-rees-in-der-o-messe.md",
+      "seiten": [
+        44,
+        46
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Telefonspäße",
+      "datei": "geschichten/t03-telefon-spaesse.md",
+      "seiten": [
+        46,
+        47
+      ]
+    },
+    {
+      "rubrik": "Amüsantes",
+      "title": "Angeschmiert",
+      "datei": "geschichten/t03-angeschmiert.md",
+      "seiten": [
+        47,
+        47
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 1: Nachrichten-, Funkmeß-, Funkmeß-Waffenleit- und hydroakustische Anlagen Projekt 50",
+      "datei": "anhaenge/t03-anhang-1-nachrichten-funkmess-waffenleit-hydroakustische-anlagen-projekt-50.md",
+      "seiten": [
+        48,
+        49
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 2: Nachrichten-, Funkmeß-, Funkmeß-Waffenleit- und hydroakustische Anlagen Projekt 1159",
+      "datei": "anhaenge/t03-anhang-2-nachrichten-funkmess-waffenleit-hydroakustische-anlagen-projekt-1159.md",
+      "seiten": [
+        50,
+        52
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 3: Navigationsausrüstung Projekt 1159",
+      "datei": "anhaenge/t03-anhang-3-navigationsausruestung-projekt-1159.md",
+      "seiten": [
+        53,
+        54
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 4: Munitionsverbrauch der 100mm-Geschütze Projekt 50 beim Gefechtsschießen",
+      "datei": "anhaenge/t03-anhang-4-munitionsverbrauch-100mm-geschuetze-projekt-50.md",
+      "seiten": [
+        55,
+        56
+      ]
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 5: Ereignistafel (überarbeitet und ergänzt)",
+      "datei": null,
+      "seiten": [
+        57,
+        67
+      ],
+      "hinweis": "nicht übernommen, siehe Gesamt-Ereignistafel (Bearbeitungsschluß dieser Fassung: 19.12.2003)"
+    },
+    {
+      "rubrik": "Anhänge",
+      "title": "Anhang 6: Grafiken (Projekt 50 und Stützpunkt Saßnitz)",
+      "datei": "anhaenge/t03-anhang-6-grafiken-projekt-50-und-stuetzpunkt-sassnitz.md",
+      "seiten": [
+        68,
+        69
+      ]
+    }
+  ],
+  "quellennachweis": "**Quellenangaben**\n\n| | | |\n|---|---|---|\n| Fotos der Titelseite: | 100mm-Schießen: | Manfred Kretzschmar (Rostock) |\n| | Raketenstart: | Peter Müller (Warnemünde) |\n| | RBU-6000: | Titelseite des Buches „U-Boot und U-Jagd“, Dr. Günter Krause (Warnemünde) |\n| Fotos im Episodenteil: | | Ulrich Mädel (Frankfurt/Oder), Fred Fleischer (Berlin) |\n| Episode „Kurs Gdynia“ | | Broschüre der Pol. Verwaltung der SSK der DDR (1957) |\n| Anhang 4: | | Manfred Kretzschmar (Rostock) |\n| Grafiken im Anhangteil: | | Hans Räde (Fürstenwalde) |\n\nAlle nicht extra aufgeführten Textbeiträge und Anlagen wurden durch Mitglieder der Marinekameradschaft KSS e. V. selbst erarbeitet bzw. befinden sich im Besitz unserer Kameradschaft.\n\nHerausgegeben im Januar 2004: © 2004 Marinekameradschaft KSS e.V. Rostock-Warnemünde. Alle Rechte vorbehalten",
+  "bilder": [
+    {
+      "seite": 1,
+      "bildunterschrift": "100mm-Schießen (Foto: Manfred Kretzschmar, Rostock)",
+      "artikel": null
+    },
+    {
+      "seite": 1,
+      "bildunterschrift": "Raketenstart (Foto: Peter Müller, Warnemünde)",
+      "artikel": null
+    },
+    {
+      "seite": 1,
+      "bildunterschrift": "RBU-6000 (Titelseite des Buches „U-Boot und U-Jagd“, Dr. Günter Krause, Warnemünde)",
+      "artikel": null
+    },
+    {
+      "seite": 4,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 5,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 7,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 8,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 9,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 10,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-gedient-unter-vier-muetzenbaendern.md"
+    },
+    {
+      "seite": 18,
+      "bildunterschrift": "Maat Deckert",
+      "artikel": "geschichten/t03-feuer-im-schiff.md"
+    },
+    {
+      "seite": 18,
+      "bildunterschrift": "Ob.Matr. Fiss",
+      "artikel": "geschichten/t03-feuer-im-schiff.md"
+    },
+    {
+      "seite": 23,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-im-schlepp-von-sewastopol-nach-warnemuende.md"
+    },
+    {
+      "seite": 25,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-im-schlepp-von-sewastopol-nach-warnemuende.md"
+    },
+    {
+      "seite": 28,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-im-schlepp-von-sewastopol-nach-warnemuende.md"
+    },
+    {
+      "seite": 29,
+      "bildunterschrift": "",
+      "artikel": "geschichten/t03-im-schlepp-von-sewastopol-nach-warnemuende.md"
+    },
+    {
+      "seite": 68,
+      "bildunterschrift": "Grafiken von Hans Räde: Reportage auf KSS „Friedrich Engels“, Januar 1962 (sechs Federzeichnungen)",
+      "artikel": "anhaenge/t03-anhang-6-grafiken-projekt-50-und-stuetzpunkt-sassnitz.md"
+    },
+    {
+      "seite": 69,
+      "bildunterschrift": "Grafiken von Hans Räde: Saßnitzer Hafen, Küstenschutzschiffe an der Pier, Matrose auf Wache, Szene auf KSS „Friedrich Engels“, Januar 1962 (vier Federzeichnungen)",
+      "artikel": "anhaenge/t03-anhang-6-grafiken-projekt-50-und-stuetzpunkt-sassnitz.md"
+    }
+  ]
+}

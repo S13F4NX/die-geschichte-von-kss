@@ -1,0 +1,35 @@
+---
+import fs from 'node:fs';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+const pfad = [{ name: 'Quellen und Urheber', url: '/quellen' }];
+const hefte = (await getCollection('broschueren')).sort((a, b) => a.data.teil - b.data.teil);
+const nachweise = hefte.map((h) => {
+  const nn = String(h.data.teil).padStart(2, '0');
+  try { return { teil: h.data.teil, jahr: h.data.jahr, text: JSON.parse(fs.readFileSync(`content/broschueren/teil-${nn}.json`, 'utf8')).quellennachweis as string }; } catch { return { teil: h.data.teil, jahr: h.data.jahr, text: '' }; }
+});
+---
+<Base title="Quellen und Urheber" description="Urheber und Quellen der Texte, Fotos und Zeichnungen im Archiv der Küstenschutzschiffe: Marinekameradschaft KSS e.V., die Autoren der Broschüren, Fotografen, Marinemaler und Zeitschriften." breadcrumbs={pfad}>
+  <div class="hülle"><Brotkrumen pfad={pfad} /></div>
+  <article class="lesen prosa">
+    <header class="artikelkopf"><h1>Quellen und Urheber</h1></header>
+    <h2>Rechte</h2>
+    <p>Die Texte der Broschüren und der Vereinswebsite sind Werke der Marinekameradschaft KSS e.V. und der jeweils genannten Autorinnen und Autoren. Die Nutzungsrechte an den Broschüreninhalten wurden vom Verein bei seiner Auflösung 2021 an Manfred Köhler übertragen; dieses Archiv wird mit seinem Einverständnis von Stefan Köhler betrieben. Fotos stammen überwiegend aus Privatbesitz ehemaliger KSS-Fahrer, aus Bildmappen der Politischen Verwaltung der Volksmarine und von Bordfotozirkeln; die Fotografen konnten, wie die Herausgeber schon 2004 schrieben, nicht in allen Fällen ermittelt werden. Wer Rechte an einem Bild geltend macht, wird um Nachricht gebeten.</p>
+    <p>Zitieren und Verwenden für Forschung, Unterricht, Museen, Modellbau und Publikationen ist erwünscht. Bitte nennen Sie den Autor, die Broschüre und diese Adresse. Beispiel: <em>Hartwig Niemann: Als Kesselgast auf KSS 1-61. In: Marinekameradschaft KSS e.V. (Hrsg.): Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine, Teil 6, Rostock-Warnemünde 2007. Online: die-geschichte-von-kss.de.</em></p>
+    <h2>Quellennachweise der Broschüren</h2>
+    <p>Die Herausgeber haben in jedem Heft aufgeführt, welches Material nicht durch Mitglieder der Kameradschaft selbst erarbeitet wurde. Diese Nachweise sind hier gesammelt.</p>
+    {nachweise.filter((n) => n.text).map((n) => (
+      <section>
+        <h3>Teil {n.teil} ({n.jahr})</h3>
+        <div style="white-space: pre-line; font-size: 1rem">{n.text}</div>
+      </section>
+    ))}
+    <h2>Weitere Quellen</h2>
+    <ul>
+      <li>Website marinekameradschaft-kss.de (2002–2021), wiederhergestellt über die Wayback Machine des Internet Archive (web.archive.org).</li>
+      <li>Nachdrucke aus Zeitschriften der DDR: Armeerundschau, Ausbilder, Militärwesen, Neue Berliner Illustrierte, Ostsee-Zeitung; jeweils am Beitrag vermerkt.</li>
+      <li>„Das Kleine Buch von der Marine“ (1898), Dr. Heinrich Schröder und Georg Neudeck, bereitgestellt von Ulrich Korn.</li>
+    </ul>
+  </article>
+</Base>

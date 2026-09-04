@@ -1,0 +1,25 @@
+# Die Geschichte von KSS – digitales Archiv, frei indexierbar.
+# Inhalte für Suchmaschinen und KI-Systeme: https://die-geschichte-von-kss.de/llms.txt
+
+User-agent: *
+Allow: /
+Disallow: /suche
+
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: ia_archiver
+Allow: /
+
+Sitemap: https://die-geschichte-von-kss.de/sitemap-index.xml

@@ -1,0 +1,33 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Link: <https://die-geschichte-von-kss.de/llms.txt>; rel="alternate"; type="text/plain"; title="llms.txt"
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/broschueren/seiten/*
+  Cache-Control: public, max-age=2592000
+
+/broschueren/fotos/*
+  Cache-Control: public, max-age=2592000
+
+/broschueren/pdf/*
+  Cache-Control: public, max-age=2592000
+  Content-Disposition: inline
+
+/bilder/archiv/*
+  Cache-Control: public, max-age=2592000
+
+/pagefind/*
+  Cache-Control: public, max-age=86400
+
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8

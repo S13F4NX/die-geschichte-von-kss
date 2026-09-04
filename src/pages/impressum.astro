@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Brotkrumen from '../components/Brotkrumen.astro';
+const pfad = [{ name: 'Impressum', url: '/impressum' }];
+---
+<Base title="Impressum" description="Impressum des Archivs Die Geschichte von KSS." breadcrumbs={pfad} noindex={true}>
+  <div class="hülle"><Brotkrumen pfad={pfad} /></div>
+  <article class="lesen prosa">
+    <header class="artikelkopf"><h1>Impressum</h1></header>
+    <p>Angaben gemäß § 5 DDG</p>
+    <p>Stefan Köhler<br />Große Burgstr. 49<br />23552 Lübeck<br />Deutschland</p>
+    <p>E-Mail: mail@skoehler.net<br />Telefon: 01511-5541483</p>
+    <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Stefan Köhler, Anschrift wie oben.</p>
+    <h2>Inhalte</h2>
+    <p>Die Texte und Bilder stammen von der Marinekameradschaft KSS e.V. (1996–2021) und den jeweils genannten Autorinnen und Autoren; Näheres unter <a href="/quellen">Quellen und Urheber</a>. Trotz sorgfältiger Übernahme kann keine Gewähr für Vollständigkeit und Richtigkeit historischer Angaben übernommen werden; die Herausgeber der Broschüren haben selbst wiederholt auf mögliche Irrtümer hingewiesen.</p>
+    <h2>Haftung für Links</h2>
+    <p>Diese Seite enthält nur wenige Verweise auf externe Websites, für deren Inhalte die jeweiligen Betreiber verantwortlich sind.</p>
+  </article>
+</Base>

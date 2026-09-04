@@ -1,0 +1,26 @@
+---
+import { PROJEKTE } from '../lib/site';
+interface Props { eintraege: any[]; mitJahresueberschrift?: boolean }
+const { eintraege, mitJahresueberschrift = true } = Astro.props;
+const jahre = [...new Set(eintraege.map((e) => e.jahr))];
+---
+<div class="chronik">
+  {jahre.map((jahr) => (
+    <section>
+      {mitJahresueberschrift && <h2 class="chronik-jahr" id={`jahr-${jahr}`}>{jahr}</h2>}
+      {eintraege.filter((e) => e.jahr === jahr).map((e) => (
+        <div class="ereignis" id={e.id}>
+          <time datetime={e.datum}>{e.datumText || e.datum}</time>
+          <div>
+            <p>{e.text}</p>
+            {(e.projekte.length > 0) && (
+              <div class="marken">
+                {e.projekte.map((p: string) => PROJEKTE[p] ? <a class={`stempel ${PROJEKTE[p].css}`} href={`/schiffe/${PROJEKTE[p].slug}`}>{PROJEKTE[p].name}</a> : null)}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </section>
+  ))}
+</div>

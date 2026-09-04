@@ -1,0 +1,15 @@
+{
+  "name": "Die Geschichte von KSS",
+  "short_name": "KSS-Archiv",
+  "description": "Digitales Archiv zu den Küstenschutzschiffen der Volksmarine der DDR, zusammengetragen von der Marinekameradschaft KSS e.V.",
+  "lang": "de",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101031",
+  "theme_color": "#101031",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragsliste from '../../components/Beitragsliste.astro';
+import { alleBeitraege } from '../../lib/inhalt';
+import archivBilder from '../../../content/data/archivbilder.json';
+const web = (await alleBeitraege()).filter((e) => e.sammlung === 'web').sort((a, b) => (b.datum ?? '').localeCompare(a.datum ?? ''));
+const treffen = web.filter((e) => e.kategorie === 'verein');
+const bilder = (archivBilder as any[]).filter((b) => b.gruppe === 'verein').slice(0, 6);
+const titel = 'Die Marinekameradschaft KSS e.V. (1996–2021)';
+const beschreibung = 'Geschichte des Vereins ehemaliger Angehöriger der Küstenschutzschiffe der Volksmarine: Gründung 1996 in Rostock-Markgrafenheide, Broschüren, Homepage seit 2002, Kameradschaftstreffen, Maiauslaufen, Mitgliederversammlungen und Auflösung 2021.';
+const pfad = [{ name: 'Der Verein', url: '/verein' }];
+---
+<Base title={titel} description={beschreibung} breadcrumbs={pfad}>
+  <div class="hülle">
+    <Brotkrumen pfad={pfad} />
+    <header class="artikelkopf"><h1>Die Marinekameradschaft KSS e.V.</h1><p class="zusammenfassung">Rostock-Warnemünde, 29. März 1996 bis 31. Dezember 2021.</p></header>
+    <div class="artikel-raster" style="justify-content:start">
+      <div class="prosa">
+        <p>Am 29. März 1996 fassten in Rostock-Markgrafenheide die Kameraden Bodo Freist, Gerd Kleinschmidt, Michael Kretzschmar, Werner Lukoschat, Peter Müller, Siegfried Prinz, Wolfgang Schmieder, Hans Steike und Horst Wilhelm den Entschluss, eine Marinekameradschaft für ehemalige Angehörige der Küstenschutz-Schiffe (KSS) zu gründen. Am 1. Oktober 1996 wurde die Marinekameradschaft KSS e.V. unter der Nummer 1414 in das Vereinsregister des Amtsgerichtes Rostock eingetragen.</p>
+        <p>Der gemeinnützige Verein stellte sich diese Aufgaben: Suche und Halten von Kontakten zu ehemaligen Angehörigen der KSS; Organisieren von Kameradschaftstreffen; Erforschen der Geschichte der KSS durch Nutzung öffentlicher und privater Quellen; Veröffentlichung der Erkenntnisse in Mitglieder-Informationen, Broschüren, Publikationen und im Internet; Organisierung maritimen Gedankenaustausches. Die Mitglieder wohnten über ganz Deutschland verteilt, von der Ostsee bis zur Nordsee, von der Oder über den Thüringer bis zum Bayrischen Wald. Um 2006 pegelte sich der Mitgliederstand bei mehr als sechzig Kameraden ein.</p>
+        <h2>Was der Verein hinterlassen hat</h2>
+        <ul>
+          <li><a href="/broschueren">Die Broschürenreihe</a> „Küstenschutzschiffe (KSS) – 34 Jahre im Dienst der Volksmarine“, erschienen 2000 bis 2013. Teil 8 bilanzierte 2009 bereits 530 Seiten.</li>
+          <li><a href="/chronik">Die Ereignistafel</a>, über ein Jahrzehnt lang berichtigt und ergänzt, Stand Dezember 2012.</li>
+          <li>Die Website marinekameradschaft-kss.de, ab November 2002 online, eingerichtet von Manfred und Stefan Köhler, mit Forum, Bildergalerien, Schiffsdarstellungen und den online veröffentlichten Beiträgen.</li>
+          <li>Das <a href="/geschichten/lieder-gedichte">KSS-Lied</a>. Teil 4 kündigt die Uraufführung für den Kameradschaftsabend nach der Jahresversammlung im Januar 2005 an.</li>
+        </ul>
+        <h2>Vereinsleben</h2>
+        <p>Die Kameradschaft traf sich zur jährlichen Mitgliederversammlung mit anschließendem Kameradschaftsabend, zum „Maiauslaufen“ und im September zum mehrtägigen Kameradschafts- oder Familientreffen an wechselnden Orten. Die Berichte auf der Vereinswebsite nennen unter anderem Wilhelmshaven 2002, Berlin 2006, Laboe 2008, Magdeburg 2009, Tabarz 2010, Świnoujście 2011, die Lausitzer Seenlandschaft 2013, Bremerhaven 2014, Hann. Münden 2015, Halle (Saale) 2016, Cuxhaven 2017 und den Hohenwarte-Stausee 2018. Die Berichte sind unten versammelt.</p>
+        <h2>Das Ende</h2>
+        <p>Im Dezember 2021 verabschiedete sich der Vorstand mit einem <a href="/verein/abschied">letzten Brief</a> von den Lesern der Website. Die Mitgliederversammlung hatte beschlossen, den Verein zum 31. Dezember 2021 aufzulösen. Die Nutzungsrechte an allen Broschüreninhalten wurden an Manfred Köhler übertragen. Dieses Archiv führt die Arbeit in seinem Sinne fort.</p>
+      </div>
+      <aside class="seitenleiste">
+        {bilder.length > 0 && <section><div class="galerie" style="grid-template-columns: 1fr 1fr">{bilder.map((b) => <figure><a href={b.src}><img src={b.src} alt={b.alt || b.bildunterschrift} loading="lazy" /></a></figure>)}</div><p><a href="/bilder/verein">Alle Bilder aus dem Vereinsleben</a></p></section>}
+        <section>
+          <h2>Seiten</h2>
+          <ul>
+            <li><a href="/verein/abschied">Abschiedsbrief 2021</a></li>
+            <li><a href="/verein/satzung">Die Satzung</a></li>
+            <li><a href="/broschueren">Die Broschüren</a></li>
+            <li><a href="/ueber">Über dieses Archiv</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+    {treffen.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Treffen, Versammlungen, Berichte</h2><span class="klein">{treffen.length} Beiträge von der Vereinswebsite</span></div>
+        <Beitragsliste eintraege={treffen} zeigeKategorie={false} />
+      </section>
+    )}
+    {web.filter((e) => e.kategorie !== 'verein').length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Weitere Beiträge von der Vereinswebsite</h2></div>
+        <Beitragsliste eintraege={web.filter((e) => e.kategorie !== 'verein')} />
+      </section>
+    )}
+  </div>
+</Base>

@@ -1,0 +1,57 @@
+---
+import { PROJEKTE, KATEGORIEN } from '../lib/site';
+import { fotosFuer } from '../lib/fotos';
+
+interface Eintrag {
+  url: string; title: string; autoren?: string[]; kategorie?: string; broschuere?: number;
+  seiten?: number[]; pdfteil?: string; zeitraum?: string; projekte?: string[]; zusammenfassung?: string; datum?: string;
+}
+interface Props { eintraege: Eintrag[]; zeigeKategorie?: boolean; morph?: boolean; spalten?: string }
+const { eintraege, zeigeKategorie = true, morph = false, spalten = 'repeat(auto-fill, minmax(18rem, 1fr))' } = Astro.props;
+const morphName = (u: string) => 'a-' + u.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+/** Erstes Bild aus den Broschürenseiten des Beitrags – als Vorschau der Karte. */
+function vorschau(e: Eintrag) {
+  if (!e.broschuere || !e.seiten?.length) return null;
+  const f = fotosFuer(e.broschuere, e.seiten, e.pdfteil);
+  return f.length ? f[0] : null;
+}
+/** Fallback: die erste Originalseite als Papiervorschau. */
+function seitenbild(e: Eintrag) {
+  if (!e.broschuere || !e.seiten?.length) return null;
+  const k = `teil-${String(e.broschuere).padStart(2, '0')}${e.pdfteil ?? ''}`;
+  const n = String(Math.min(...e.seiten)).padStart(2, '0');
+  return `/broschueren/seiten/${k}/klein/s-${n}.jpg`;
+}
+---
+<div class="karten" style={`grid-template-columns: ${spalten}`}>
+  {eintraege.map((e) => {
+    const v = vorschau(e);
+    const s = v ? null : seitenbild(e);
+    return (
+      <article class={`bkarte${v ? '' : s ? ' bkarte-papier' : ' bkarte-ohne'}`}>
+        <a class="bkarte-bild" href={e.url} tabindex="-1" aria-hidden="true">
+          {v ? <img src={v.src} alt="" loading="lazy" width={v.w} height={v.h} />
+             : s ? <img src={s} alt="" loading="lazy" width="220" />
+             : <span class="bkarte-anker" aria-hidden="true"><img src="/marke/mk-kss-logo-96.png" alt="" width="64" height="64" loading="lazy" /></span>}
+        </a>
+        <div class="bkarte-text">
+          <h3><a href={e.url} transition:name={morph ? morphName(e.url) : undefined}>{e.title}</a></h3>
+          <div class="bkarte-meta">
+            {e.autoren?.length ? <span>{e.autoren.join(', ')}</span> : null}
+            {zeigeKategorie && e.kategorie && KATEGORIEN[e.kategorie] ? <span>{KATEGORIEN[e.kategorie].name}</span> : null}
+            {e.broschuere ? <span>Teil {e.broschuere}</span> : null}
+            {e.datum ? <span>{e.datum}</span> : null}
+            {e.zeitraum ? <span>{e.zeitraum}</span> : null}
+          </div>
+          {e.zusammenfassung ? <p>{e.zusammenfassung}</p> : null}
+          {e.projekte?.length ? (
+            <div class="bkarte-marken">
+              {e.projekte.map((p) => PROJEKTE[p] ? <span class={`stempel ${PROJEKTE[p].css}`}>{PROJEKTE[p].name}</span> : null)}
+            </div>
+          ) : null}
+        </div>
+      </article>
+    );
+  })}
+</div>

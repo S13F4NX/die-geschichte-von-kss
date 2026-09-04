@@ -1,0 +1,24 @@
+---
+import type { Bild } from '../lib/bildarchiv';
+interface Props { bilder: Bild[]; klein?: boolean }
+const { bilder, klein = false } = Astro.props;
+---
+<div class={`bildgitter${klein ? ' bildgitter-klein' : ''}`}>
+  {bilder.map((b) => (
+    <figure class="archivbild">
+      <a href={b.src} target="_blank" rel="noopener" aria-label={b.motiv || b.bildunterschrift || 'Bild vergrößern'}>
+        <img src={b.src} alt={b.alt} loading="lazy" decoding="async" />
+      </a>
+      <figcaption>
+        {b.bildunterschrift
+          ? <span class="bu">{b.bildunterschrift}</span>
+          : b.motiv ? <span class="motiv">{b.motiv}</span> : null}
+        <span class="herkunft">
+          {b.herkunftUrl ? <a href={b.herkunftUrl}>{b.herkunft}</a> : b.herkunft}
+          {b.artikelUrl && <> · <a href={b.artikelUrl}>zum Beitrag</a></>}
+        </span>
+        {b.bildnachweis && <span class="nachweis">Bildnachweis des Heftes: {b.bildnachweis}</span>}
+      </figcaption>
+    </figure>
+  ))}
+</div>

@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Brotkrumen from '../../../components/Brotkrumen.astro';
+import seitenzahlen from '../../../../content/data/seitenzahlen.json';
+import { alleBeitraege } from '../../../lib/inhalt';
+
+export async function getStaticPaths() {
+  const hefte = await getCollection('broschueren');
+  const pfade = [];
+  for (const h of hefte) {
+    const nn = String(h.data.teil).padStart(2, '0');
+    const keys = h.data.pdfs ? ['a', 'b', 'c'].slice(0, h.data.pdfs.length) : [''];
+    for (const k of keys) pfade.push({ params: { key: `teil-${nn}${k}` }, props: { heft: h, pdfteil: k || undefined, key: `teil-${nn}${k}` } });
+  }
+  return pfade;
+}
+const { heft, pdfteil, key } = Astro.props;
+const d = heft.data;
+const n = (seitenzahlen as Record<string, number>)[key] ?? 0;
+const beitraege = (await alleBeitraege()).filter((e) => e.broschuere === d.teil && (e.pdfteil ?? undefined) === pdfteil);
+const artikelFuer = (s: number) => beitraege.find((e) => e.seiten.length && s >= Math.min(...e.seiten) && s <= Math.max(...e.seiten));
+const teilName = pdfteil ? ` (${{ a: 'Textteil', b: 'Anhang 3', c: 'Anhang 4–5' }[pdfteil]})` : '';
+const titel = `Originalseiten: KSS-Broschüre Teil ${d.teil}${teilName}`;
+---
+<Base title={titel} description={`Alle ${n} Seiten der KSS-Broschüre Teil ${d.teil} (${d.jahr}) als Bild, mit Verweis auf die jeweilige Textfassung.`} breadcrumbs={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }, { name: 'Originalseiten', url: `/broschueren/seiten/${key}` }]}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Broschüren', url: '/broschueren' }, { name: `Teil ${d.teil}`, url: `/broschueren/teil-${d.teil}` }, { name: 'Originalseiten', url: `/broschueren/seiten/${key}` }]} />
+    <header class="artikelkopf">
+      <div class="rubrik">Originalseiten</div>
+      <h1>{d.titel}{teilName}</h1>
+      <p class="zusammenfassung">{n} Seiten. Jede Seite ist verlinkt mit der Textfassung des Beitrags, der auf ihr steht. <a href={`/broschueren/pdf/kss-broschuere-${key}.pdf`}>PDF herunterladen</a>.</p>
+    </header>
+    <div class="seitenraster">
+      {Array.from({ length: n }, (_, i) => i + 1).map((s) => {
+        const nn = String(s).padStart(2, '0');
+        const a = artikelFuer(s);
+        return (
+          <figure id={`seite-${s}`} style="margin:0">
+            <a href={`/broschueren/seiten/${key}/s-${nn}.jpg`} title={a ? a.title : `Seite ${s}`}><img src={`/broschueren/seiten/${key}/klein/s-${nn}.jpg`} alt={`Seite ${s}${a ? `: ${a.title}` : ''}`} loading="lazy" width="220" /></a>
+            <figcaption><span>Seite {s}</span>{a && <a href={a.url} style="display:block;text-align:center;font-size:0.85rem;line-height:1.25;padding:0 0.3rem 0.4rem">{a.title}</a>}</figcaption>
+          </figure>
+        );
+      })}
+    </div>
+  </div>
+</Base>

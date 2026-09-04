@@ -1,0 +1,121 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Bildgitter from '../../components/Bildgitter.astro';
+import { PROJEKTE, slugify } from '../../lib/site';
+import { alleBilder, ARTEN } from '../../lib/bildarchiv';
+
+const bilder = alleBilder();
+const mitUnterschrift = bilder.filter((b) => b.bildunterschrift);
+const schau = [
+  ...bilder.filter((b) => b.art === 'foto' && b.projekte.length && b.bildunterschrift),
+  ...bilder.filter((b) => b.art === 'foto' && b.projekte.length),
+  ...bilder.filter((b) => b.art === 'foto'),
+].filter((b, i, a) => a.indexOf(b) === i).slice(0, 12);
+
+const klassen = Object.entries(PROJEKTE).map(([p, info]) => ({
+  slug: info.slug, name: `${info.name} · ${info.klasse}`, kurz: `${info.kurz} Im Dienst ${info.zeitraum}.`,
+  anzahl: bilder.filter((b) => b.projekte.includes(p)).length,
+  bild: bilder.find((b) => b.projekte.includes(p) && b.art === 'foto') ?? bilder.find((b) => b.projekte.includes(p)),
+})).filter((k) => k.anzahl > 0);
+
+const arten = Object.entries(ARTEN).map(([a, info]) => ({
+  slug: info.slug, name: info.name, kurz: info.kurz,
+  anzahl: bilder.filter((b) => b.art === a).length,
+  bild: bilder.find((b) => b.art === a),
+})).filter((k) => k.anzahl > 0);
+
+const orte = (() => {
+  const m = new Map<string, { name: string; anzahl: number; bild: any }>();
+  for (const b of bilder) for (const o of b.orte) {
+    const k = slugify(o); if (!k) continue;
+    if (!m.has(k)) m.set(k, { name: o, anzahl: 0, bild: b });
+    m.get(k)!.anzahl++;
+  }
+  return [...m.entries()].filter(([, v]) => v.anzahl >= 2).sort((a, b) => b[1].anzahl - a[1].anzahl).slice(0, 12);
+})();
+
+const schiffe = (() => {
+  const m = new Map<string, { name: string; anzahl: number }>();
+  for (const b of bilder) for (const s of b.schiffe) {
+    const k = slugify(s); if (!k) continue;
+    if (!m.has(k)) m.set(k, { name: s, anzahl: 0 });
+    m.get(k)!.anzahl++;
+  }
+  return [...m.entries()].sort((a, b) => b[1].anzahl - a[1].anzahl);
+})();
+
+const titel = 'Bildarchiv der Küstenschutzschiffe';
+const beschreibung = `${bilder.length} Fotografien, Zeichnungen und Dokumente aus dem Archiv der Marinekameradschaft KSS e.V.: Schiffe der Riga-, Koni- und Parchim-Klasse, Besatzungen, Stützpunkte, Übungen und Vereinsleben, ${mitUnterschrift.length} davon mit Originalbildunterschrift.`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ImageGallery', name: titel, description: beschreibung, inLanguage: 'de', numberOfItems: bilder.length };
+---
+<Base title={titel} description={beschreibung} breadcrumbs={[{ name: 'Bildarchiv', url: '/bilder' }]} jsonLd={jsonLd} image={schau[0]?.src}>
+  <div class="hülle">
+    <Brotkrumen pfad={[{ name: 'Bildarchiv', url: '/bilder' }]} />
+    <header class="artikelkopf">
+      <h1>Bildarchiv</h1>
+      <p class="zusammenfassung">{beschreibung}</p>
+    </header>
+    <div class="lesen" style="margin-left:0">
+      <p>Alle Bilder stammen aus dem Bestand der Marinekameradschaft KSS e.V., aus den zwölf Broschüren ebenso wie aus ihrer Website. Die Fotos kommen überwiegend aus Privatbesitz ehemaliger KSS-Fahrer, aus Bildmappen der Politischen Verwaltung der Volksmarine und von Bordfotozirkeln; die Fotografen ließen sich nicht in allen Fällen ermitteln. Wo im Heft eine Bildunterschrift gedruckt war, steht sie wörtlich darunter. Steht dort ein beschreibender Satz, ist er von diesem Archiv ergänzt. Näheres unter <a href="/quellen">Quellen und Urheber</a>.</p>
+    </div>
+
+    {schau.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Aus dem Bestand</h2></div>
+        <Bildgitter bilder={schau} />
+      </section>
+    )}
+
+    {klassen.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Nach Schiffsklasse</h2></div>
+        <div class="raster">
+          {klassen.map((k) => (
+            <a class="bildkachel" href={`/bilder/${k.slug}`}>
+              {k.bild && <img src={k.bild.src} alt="" loading="lazy" />}
+              <span class="bildkachel-text"><b>{k.name}</b><span>{k.anzahl} Bilder</span></span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {arten.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Nach Art</h2></div>
+        <div class="raster">
+          {arten.map((k) => (
+            <a class="bildkachel" href={`/bilder/${k.slug}`}>
+              {k.bild && <img src={k.bild.src} alt="" loading="lazy" />}
+              <span class="bildkachel-text"><b>{k.name}</b><span>{k.anzahl} Bilder</span></span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {orte.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Nach Ort</h2></div>
+        <div class="klasse-schiffe">
+          {orte.map(([slug, v]) => <a class="schiffsknopf" href={`/bilder/ort-${slug}`}><b>{v.name}</b><span>{v.anzahl}</span></a>)}
+        </div>
+      </section>
+    )}
+
+    {schiffe.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Nach Schiff</h2></div>
+        <div class="klasse-schiffe">
+          {schiffe.map(([slug, v]) => <a class="schiffsknopf" href={`/bilder/schiff-${slug}`}><b>{v.name}</b><span>{v.anzahl}</span></a>)}
+        </div>
+      </section>
+    )}
+
+    <section class="abschnitt">
+      <div class="abschnitt-kopf"><h2>Vollständiger Bestand</h2></div>
+      <p><a class="knopf gold" href="/bilder/alle" style="color: var(--marine)">Alle {bilder.length} Bilder ansehen</a></p>
+    </section>
+  </div>
+</Base>

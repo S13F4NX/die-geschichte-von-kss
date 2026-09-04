@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import Brotkrumen from '../../components/Brotkrumen.astro';
+import Beitragskarten from '../../components/Beitragskarten.astro';
+import Bildgitter from '../../components/Bildgitter.astro';
+import { autorenIndex, sortiereBroschuere } from '../../lib/inhalt';
+import { alleBilder } from '../../lib/bildarchiv';
+import { slugify, KATEGORIEN } from '../../lib/site';
+import personenRegister from '../../../content/data/personen.json';
+
+export async function getStaticPaths() {
+  const idx = await autorenIndex();
+  const register = personenRegister as Record<string, { rolle: string; von: string; bis: string; quelle: string; bemerkung: string }[]>;
+  const pfade: any[] = [];
+  const gesehen = new Set<string>();
+  for (const [slug, v] of idx.entries()) {
+    gesehen.add(slug);
+    pfade.push({ params: { slug }, props: { name: v.name, eintraege: v.eintraege.sort(sortiereBroschuere), rollen: register[v.name] ?? [] } });
+  }
+  // Personen, die in den Listen stehen, aber keinen eigenen Beitrag verfasst haben
+  for (const [name, rollen] of Object.entries(register)) {
+    const slug = slugify(name);
+    if (gesehen.has(slug)) continue;
+    gesehen.add(slug);
+    pfade.push({ params: { slug }, props: { name, eintraege: [], rollen } });
+  }
+  return pfade;
+}
+const { name, eintraege, rollen } = Astro.props;
+const bilder = alleBilder().filter((b) => b.personen.includes(name)).slice(0, 8);
+
+const rollenText = rollen.length
+  ? rollen.map((r: any) => r.rolle + (r.von ? ` (${r.von}${r.bis && r.bis !== r.von ? `–${r.bis}` : ''})` : '')).join('; ')
+  : '';
+const desc = [
+  rollenText,
+  eintraege.length ? `${eintraege.length} ${eintraege.length === 1 ? 'Beitrag' : 'Beiträge'} im Archiv der Küstenschutzschiffe der Volksmarine.` : 'In den Listen der Marinekameradschaft KSS e.V. verzeichnet.',
+].filter(Boolean).join(' · ');
+
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'Person', name,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  ...(rollenText ? { jobTitle: rollen[0].rolle, description: rollenText } : {}),
+  ...(eintraege.length ? { mainEntityOfPage: eintraege.map((e: any) => new URL(e.url, Astro.site).href) } : {}),
+};
+const pfad = [{ name: 'Personen', url: '/personen' }, { name, url: Astro.url.pathname }];
+---
+<Base title={name} description={desc} breadcrumbs={pfad} jsonLd={jsonLd}>
+  <div class="hülle">
+    <Brotkrumen pfad={pfad} />
+    <header class="artikelkopf">
+      <div class="rubrik">{rollen.length ? 'Person' : 'Autor'}</div>
+      <h1>{name}</h1>
+      {rollenText && <p class="zusammenfassung">{rollenText}</p>}
+    </header>
+
+    {rollen.length > 0 && (
+      <section class="abschnitt" style="margin-top:1rem">
+        <div class="abschnitt-kopf"><h2>Dienststellungen nach den Listen der Broschüren</h2></div>
+        <div class="tabelle-scroll">
+          <table>
+            <thead><tr><th>Dienststellung</th><th>von</th><th>bis</th><th>Quelle</th></tr></thead>
+            <tbody>
+              {rollen.map((r: any) => (
+                <tr>
+                  <td>{r.rolle}{r.bemerkung ? ` — ${r.bemerkung}` : ''}</td>
+                  <td>{r.von || '—'}</td>
+                  <td>{r.bis || '—'}</td>
+                  <td class="klein">{r.quelle}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="klein">Die Herausgeber schrieben zu diesen Listen: „In den folgenden Aufstellungen sind Fehler nicht ausgeschlossen. Wir freuen uns über jeden Hinweis, der solche Fehler beseitigt und noch vorhandene Lücken schließt.“ Über die Person hinausgehende Angaben führt dieses Archiv nicht, weil es dafür keine Quelle im Bestand des Vereins gibt.</p>
+      </section>
+    )}
+
+    {eintraege.length > 0 ? (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Beiträge</h2><span class="klein">{eintraege.length} {eintraege.length === 1 ? 'Beitrag' : 'Beiträge'}</span></div>
+        <Beitragskarten eintraege={eintraege} morph />
+      </section>
+    ) : (
+      <p>Von {name} ist in diesem Archiv kein eigener Beitrag verzeichnet. Der Name steht in den Listen der Broschüren.</p>
+    )}
+
+    {bilder.length > 0 && (
+      <section class="abschnitt">
+        <div class="abschnitt-kopf"><h2>Abbildungen</h2></div>
+        <Bildgitter bilder={bilder} />
+      </section>
+    )}
+  </div>
+</Base>
