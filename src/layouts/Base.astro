@@ -20,7 +20,14 @@ interface Props {
 const {
   title, description, type = 'website', image, jsonLd, breadcrumbs, published, modified, noindex = false, bodyClass = '', markdownUrl,
 } = Astro.props;
-const canonical = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+// Beim Bau mit build.format 'file' endet der Pfad auf .html. Für die kanonische
+// Adresse wird daraus wieder der saubere Pfad ohne Endung.
+function sauberePfad(p: string): string {
+  let x = p.replace(/index\.html$/, '').replace(/\.html$/, '');
+  if (x.length > 1 && x.endsWith('/')) x = x.slice(0, -1);
+  return x || '/';
+}
+const canonical = Astro.props.canonical ?? new URL(sauberePfad(Astro.url.pathname), Astro.site).href;
 const fullTitle = title === SITE.name ? `${SITE.name} – ${SITE.claim}` : `${title} – ${SITE.name}`;
 const ogImage = new URL(image ?? '/og-default.jpg', Astro.site).href;
 
