@@ -218,7 +218,7 @@ figcaption { font-family: var(--font-display); font-size: 0.98rem; color: var(--
 @media (max-width: 56rem) { .held-raster { grid-template-columns: 1fr; } }
 .silhouetten { display: grid; gap: 1.2rem; }
 .silhouetten figure { margin: 0; }
-.silhouetten img { width: 100%; display: block; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35)); }
+.silhouetten img { width: 100%; display: block; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45)); background: #fff; padding: 0.5rem 0.6rem; border-radius: 2px; }
 .silhouetten figcaption { color: #b8c3cc; font-size: 1rem; display: flex; justify-content: space-between; gap: 1rem; }
 .held-aktionen { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .knopf { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; text-decoration: none; padding: 0.55rem 1.1rem; border: 1.5px solid #fff; color: #fff; border-radius: var(--radius); }
@@ -446,94 +446,6 @@ a { transition: color var(--dauer-kurz) var(--ease-anlegen), text-decoration-col
 .bildkachel-text b { display: block; font-size: 1.3rem; font-weight: 600; line-height: 1.15; }
 .bildkachel-text span { color: var(--text-leise); font-size: 0.95rem; }
 
-/* Mobil */
-@media (max-width: 52rem) {
-  :root { --mass: 1.05rem; }
-  .hülle, .lesen { width: min(100% - 1.6rem, var(--breite-weit)); }
-  .prosa { font-size: 1.08rem; }
-  .artikel-raster { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
-  .seitenleiste { border-top: 2px solid var(--marine); padding-top: 1rem; }
-  .seitenleiste section { border-top: 1px solid var(--linie-fein); }
-  .datenblatt { grid-template-columns: 1fr; padding: 1rem; }
-  .bildgitter { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.9rem; }
-  .raster { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; }
-  .karten { grid-template-columns: 1fr !important; }
-  .heftreihe { grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.8rem; }
-  .seitenraster { grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); }
-  .abschnitt { margin: 2.2rem 0; }
-  .held { padding: 2.2rem 0 2rem; }
-  .held-raster { gap: 1.6rem; }
-  .nav { font-size: 1.05rem; gap: 0.1rem 1rem; }
-  .kopf-innen { padding: 0.7rem 0; gap: 0.6rem 1.2rem; }
-  .marke-wappen { width: 42px; height: 42px; }
-  .fuss-innen { gap: 1.5rem; padding: 2rem 0 1.5rem; }
-  .zusammenfassung { font-size: 1.1rem; }
-  .klassenkarten { grid-template-columns: 1fr; }
-  /* Breite Tabellen dürfen scrollen, die Seite nicht. */
-  .prosa table, .lesen table, .datenblatt + table { display: block; overflow-x: auto; white-space: nowrap; }
-  .prosa td, .prosa th { white-space: normal; min-width: 7rem; }
-}
-@media (max-width: 30rem) {
-  .bildgitter { grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); }
-  .raster { grid-template-columns: 1fr; }
-  h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
-  .abschnitt-kopf { gap: 0.2rem; }
-}
-/* Kein horizontales Scrollen der Seite selbst */
-body { overflow-x: hidden; }
-.prosa pre, .prosa .tabelle-scroll { max-width: 100%; }
-
-/* Ganze Karte anklickbar: der Haupt-Link spannt sich über die Karte,
-   Zweit-Links bleiben darüber erreichbar. */
-.klassenkarte, .bkarte, .bildkachel, .schiffskarte, .karte { position: relative; }
-.kk-text h2 a::after, .bkarte h3 a::after, .schiffskarte h3 a::after, .karte h3 a::after {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-}
-.kk-schiffe, .kk-fuss, .kk-daten, .bkarte-marken, .klasse-schiffe { position: relative; z-index: 2; }
-.klassenkarte:focus-within, .bkarte:focus-within, .karte:focus-within { border-top-color: var(--gold); }
-.klassenkarte:hover .kk-text h2 a, .bkarte:hover h3 a { text-decoration: underline; }
-
-/* Abbildungen im Fließtext, an der Stelle, an der die Broschüre sie zeigt */
-figure.bild-im-text { margin: 1.8rem 0; }
-figure.bild-im-text a { display: block; line-height: 0; background: var(--papier-tief); }
-figure.bild-im-text img { width: 100%; height: auto; display: block; }
-figure.bild-im-text figcaption { font-family: var(--font-display); font-size: 1rem; color: var(--text-weich); margin-top: 0.45rem; line-height: 1.3; border-left: 2px solid var(--gold); padding-left: 0.6rem; }
-figure.bild-im-text figcaption .herkunft { color: var(--text-leise); font-size: 0.9rem; display: block; }
-/* Hochformatige Bilder nicht über die Textbreite aufblasen */
-figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-width: 100%; }
-@media (min-width: 62rem) {
-  figure.bild-im-text { max-width: 100%; }
-}
-
-/* Schiffsdarstellung: Nachbau der interaktiven Seite des Vereins */
-.darstellung-raster { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.6rem; align-items: start; margin-top: 1rem; }
-@media (max-width: 56rem) {
-  .darstellung-raster { grid-template-columns: 1fr; }
-  .darstellung-info, .darstellung-hinweis { position: static; left: auto; right: auto; bottom: auto; margin-top: 0.8rem; }
-}
-.darstellung-riss { position: relative; background: #fff; border: 1px solid var(--linie-fein); padding: 1rem; min-height: 12rem; }
-.darstellung-riss > img { width: 100%; display: block; }
-.darstellung-hinweis { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; font-family: var(--font-display); font-size: 1rem; color: var(--text-leise); border-top: 1px dashed var(--linie); padding-top: 0.5rem; }
-.darstellung-info {
-  position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
-  background: var(--marine); color: #eef1f7; border-left: 3px solid var(--gold);
-  padding: 0.7rem 0.9rem 0.8rem; box-shadow: 0 6px 20px rgba(16,16,49,0.35);
-  animation: hoch 220ms var(--ease-anlegen) both;
-}
-.darstellung-info b { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold-hell); display: block; margin-bottom: 0.35rem; line-height: 1.15; }
-.darstellung-info dl { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.9rem; margin: 0; font-size: 0.98rem; }
-.darstellung-info dt { font-family: var(--font-display); color: #a9b4c8; }
-.darstellung-info dd { margin: 0; }
-.darstellung-info dd.ohne { grid-column: 1 / -1; color: #a9b4c8; font-style: italic; }
-.darstellung-felder { display: grid; gap: 1rem; }
-.darstellung-feld { background: var(--marine); color: #e6ebf2; padding: 0.8rem 1rem 1rem; }
-.darstellung-feld h3 { color: var(--gold-hell); margin: 0 0 0.4rem; font-size: 1.15rem; letter-spacing: 0.02em; }
-.darstellung-feld ul { list-style: none; padding: 0; margin: 0; }
-.darstellung-feld li { margin: 0.1rem 0; }
-.anlage { display: block; width: 100%; text-align: left; background: none; border: 0; border-left: 2px solid transparent; color: #dfe5ee; font: inherit; font-size: 1rem; padding: 0.22rem 0.5rem; cursor: crosshair; transition: background-color var(--dauer-kurz) var(--ease-anlegen), border-color var(--dauer-kurz) var(--ease-anlegen), color var(--dauer-kurz) var(--ease-anlegen); }
-.anlage::before { content: '– '; color: var(--gold); }
-.anlage:hover, .anlage:focus-visible, .anlage.aktiv { background: rgba(214, 165, 24, 0.16); border-left-color: var(--gold); color: #fff; }
-
 /* Bildnachweis */
 .archivbild .nachweis, figure.bild-im-text .nachweis {
   display: block; font-family: var(--font-display); font-size: 0.85rem; color: var(--text-leise);
@@ -628,45 +540,121 @@ figure.bild-im-text img[height][width] { max-height: 34rem; width: auto; max-wid
 .artikel-raster-links { justify-content: start; }
 .galerie-paar { grid-template-columns: repeat(auto-fill, minmax(min(8rem, 45%), 1fr)); }
 
+
+
+
+/* ===========================================================================
+   Kleine Bildschirme
+   Ein einziger, zusammenhängender Block, damit sich nichts gegenseitig aufhebt.
+   =========================================================================== */
 @media (max-width: 56.25rem) {
-  .artikel-raster,
-  .artikel-raster-weit { grid-template-columns: minmax(0, 1fr); }
+  :root { --mass: 1rem; }
+
+  .hülle, .lesen { width: min(100% - 1.5rem, var(--breite-weit)); }
   .lesen-links { width: 100%; }
-  /* Die Seitenleiste rückt unter den Text und wird als Block lesbar */
-  .seitenleiste { border-top: 2px solid var(--marine); padding-top: 1.2rem; }
-  .seitenleiste dl { grid-template-columns: 1fr; gap: 0 0; }
-  .seitenleiste dt { margin-top: 0.5rem; }
-  .originalseiten img { width: 3.6rem; }
-  /* Broschüren-Titelbild in der Leiste nicht zu groß */
-  .seitenleiste img[width="300"] { max-width: 12rem; }
-  .darstellung-feld ul { columns: 1; }
-  .kk-daten { grid-template-columns: auto 1fr; }
-  .held-aktionen .knopf { flex: 1 1 auto; text-align: center; justify-content: center; }
-  .abschnitt-kopf { align-items: flex-start; flex-direction: column; gap: 0.1rem; }
-  .abschnitt-kopf h2 { margin-bottom: 0.1rem; }
-  .zahlen { grid-template-columns: 1fr 1fr; }
-  .brotkrumen { font-size: 0.95rem; margin: 1rem 0 0.6rem; }
-  .artikelkopf { margin-bottom: 1.4rem; }
-  .meta { font-size: 1rem; gap: 0.2rem 0.9rem; }
-  .prosa h2 { font-size: 1.5rem; }
-  .chronik-jahr { font-size: 1.9rem; margin: 1.8rem 0 0.4rem; }
-  .ereignis { grid-template-columns: 1fr; gap: 0.1rem; padding: 0.7rem 0; }
-  .nach-oben { right: 0.8rem; bottom: 0.8rem; }
-}
-@media (max-width: 30rem) {
-  .hülle, .lesen { width: min(100% - 1.2rem, var(--breite-weit)); }
-  .heftreihe { grid-template-columns: 1fr 1fr; }
-  .seitenraster { grid-template-columns: 1fr 1fr; }
+
+  /* Kopf: Wappen, Marke, Menüknopf in einer Zeile, ohne Überlappung */
+  .kopf-innen { flex-wrap: wrap; align-items: center; gap: 0.7rem; padding: 0.6rem 0; }
+  .marke { flex: 1 1 auto; min-width: 0; gap: 0.6rem; }
+  .marke-wappen { width: 38px; height: 38px; }
+  .marke-text { min-width: 0; }
+  .marke-kss { font-size: 1.25rem; line-height: 1.15; white-space: normal; }
+  .marke-titel { display: none; }
+  .nav-schalter { display: inline-flex; flex: 0 0 auto; padding: 0.45rem 0.7rem; font-size: 1rem; }
+
+  .nav {
+    display: grid; grid-template-columns: 1fr; flex: 0 0 100%; order: 3; gap: 0; margin: 0;
+    max-height: 0; overflow: hidden; visibility: hidden;
+    transition: max-height 320ms var(--ease-anlegen), visibility 320ms;
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .nav[data-offen] { max-height: 34rem; visibility: visible; }
+  .nav a {
+    padding: 0.85rem 0.2rem 0.85rem 0.7rem; font-size: 1.1rem; min-height: 2.9rem;
+    display: flex; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 3px solid transparent;
+  }
+  .nav a:hover, .nav a[aria-current='page'] {
+    border-bottom-color: rgba(255,255,255,0.1); border-left-color: var(--gold);
+    background: rgba(214,165,24,0.12);
+  }
+  .nav a:last-child { border-bottom: 0; }
+
+  /* Typografie: kürzere Zeilen, ruhigerer Durchschuss */
+  body { line-height: 1.55; }
+  h1 { font-size: clamp(1.75rem, 7.5vw, 2.4rem); line-height: 1.08; }
+  h2 { font-size: 1.45rem; margin-top: 1.6rem; }
+  h3 { font-size: 1.2rem; }
+  .prosa { font-size: 1rem; line-height: 1.6; }
+  .prosa h2 { font-size: 1.35rem; }
+  .zusammenfassung { font-size: 1.02rem; }
+  .held h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); white-space: normal; }
+  .held .lede { font-size: 1rem; }
+  .held { padding: 1.8rem 0 1.6rem; }
+  .held-raster { gap: 1.4rem; }
+  .zeitspanne { font-size: 1rem; }
+
+  /* Einspaltig */
+  .artikel-raster, .artikel-raster-weit, .klassenkarten, .karten, .personen,
+  .darstellung-raster, .held-raster { grid-template-columns: minmax(0, 1fr); }
+  .raster, .raster-zwei { grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr)); gap: 0.9rem; }
   .bildgitter { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-  .archivbild figcaption { font-size: 0.85rem; padding: 0.4rem 0.5rem 0.55rem; }
-  .personen { grid-template-columns: 1fr; }
-  .zahlen { grid-template-columns: 1fr 1fr; }
-  .kk-text, .bkarte-text { padding: 0.9rem 1rem 1.1rem; }
-  .kk-bild { padding: 0.8rem 0.9rem; }
-  .datenblatt { padding: 0.9rem 1rem; }
-  .prosa { font-size: 1.05rem; }
-  table { font-size: 0.9rem; }
+  .heftreihe, .seitenraster { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .galerie { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .datenblatt { grid-template-columns: 1fr; padding: 0.9rem 1rem; gap: 0; }
+
+  .seitenleiste { border-top: 2px solid var(--marine); padding-top: 1rem; margin-top: 1.5rem; }
+  .seitenleiste dl { grid-template-columns: 1fr; gap: 0; }
+  .seitenleiste dt { margin-top: 0.55rem; }
+  .seitenleiste img[width="300"] { max-width: 11rem; }
+  .originalseiten img { width: 3.4rem; }
+
+  .abschnitt { margin: 2rem 0; }
+  .abschnitt-kopf { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+  .brotkrumen { font-size: 0.95rem; margin: 0.9rem 0 0.5rem; }
+  .artikelkopf { margin-bottom: 1.2rem; }
+  .meta { font-size: 0.98rem; gap: 0.2rem 0.9rem; }
+
+  .ereignis { grid-template-columns: 1fr; gap: 0.1rem; padding: 0.65rem 0; }
+  .chronik-jahr { font-size: 1.8rem; margin: 1.6rem 0 0.3rem; }
+  .held-aktionen .knopf { flex: 1 1 10rem; justify-content: center; text-align: center; }
+  .darstellung-info, .darstellung-hinweis { position: static; margin-top: 0.8rem; }
+  .nach-oben { right: 0.7rem; bottom: 0.7rem; }
+  .fuss-innen { gap: 1.4rem; padding: 1.8rem 0 1.4rem; }
+
+  /* Breite Tabellen scrollen in sich */
+  .prosa table, .lesen table { display: block; overflow-x: auto; max-width: 100%; }
+  table { font-size: 0.92rem; }
   th, td { padding: 0.35rem 0.5rem; }
-  .knopf { font-size: 1.05rem; padding: 0.5rem 0.9rem; }
-  .schiffsknopf { font-size: 0.95rem; }
+
+  /* Tippziele: alles, was allein steht, bekommt Höhe */
+  .liste .titel a, .fuss a, .seitenleiste a,
+  .abschnitt-kopf a, .kk-fuss a, .bkarte h3 a, .person, .bildkachel {
+    display: inline-block; min-height: 2.75rem; line-height: 2.75rem;
+  }
+  /* Brotkrumen: gleiche Grundlinie für Links und aktuelle Seite */
+  .brotkrumen ol { align-items: center; row-gap: 0.1rem; }
+  .brotkrumen li { display: inline-flex; align-items: center; min-height: 2.25rem; }
+  .brotkrumen a { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0 0.1rem; }
+  .liste .titel a, .bkarte h3 a { line-height: 1.2; padding: 0.5rem 0; }
+  .person { line-height: 1.3; }
+  .bildkachel { line-height: 0; }
+  .fuss li, .seitenleiste li { margin: 0; }
+  .fuss a, .seitenleiste a { line-height: 2.5rem; min-height: 2.5rem; }
+  .schiffsknopf, .jahresnav a, .stempel { min-height: 2.5rem; display: inline-flex; align-items: center; }
+  .anlage { min-height: 2.6rem; display: flex; align-items: center; }
+}
+
+@media (max-width: 26rem) {
+  .hülle, .lesen { width: min(100% - 1.1rem, var(--breite-weit)); }
+  .marke-kss { font-size: 1.1rem; }
+  .nav-schalter-text { display: none; }
+  .nav-schalter { padding: 0.55rem; }
+  .raster, .raster-zwei { grid-template-columns: 1fr; }
+  .heftreihe, .seitenraster { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 56.25rem) {
+  .silhouetten { gap: 0.8rem; }
+  .silhouetten figcaption { font-size: 0.92rem; flex-direction: column; gap: 0; }
+  .silhouetten img { padding: 0.35rem 0.45rem; }
 }

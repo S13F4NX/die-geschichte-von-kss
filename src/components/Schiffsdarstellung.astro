@@ -141,6 +141,8 @@ const id = `sd-${projekt.replace('.', '-')}`;
     document.querySelectorAll<HTMLElement>('.darstellung').forEach((wurzel) => {
       const rohdaten = wurzel.querySelector('[data-anlagendaten]');
       if (!rohdaten) return;
+      if (wurzel.dataset.gebunden === 'ja') return;
+      wurzel.dataset.gebunden = 'ja';
       const daten = JSON.parse(rohdaten.textContent || '{}');
       const box = wurzel.querySelector<HTMLElement>('[data-info]');
       const hinweis = wurzel.querySelector<HTMLElement>('[data-hinweis]');

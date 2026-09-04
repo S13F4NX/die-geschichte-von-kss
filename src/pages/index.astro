@@ -19,7 +19,12 @@ const bilder = archivBilder as any[];
 const wunsch = ['t03-im-schlepp-von-sewastopol-nach-warnemuende', 't06-als-kesselgast-auf-kss-1-61', 't04-1159-ausbildung-in-baku', 't03-bei-windstaerke-11-bis-12-und-schwerer-see', 't07-geschichte-des-marinestuetzpunktes-hohe-duene', 't11-historie-des-projektes-50', 't08-wendezeit-in-der-volksmarine-ein-rueckblick', 't05-verbotene-fotos'];
 const empfohlen = wunsch.map((id) => geschichten.find((e) => e.id === id || e.id.startsWith(id.slice(0, 12)))).filter(Boolean).slice(0, 6) as typeof geschichten;
 const amuesant = geschichten.filter((e) => e.kategorie === 'amuesantes').filter((_, i) => i % 7 === 0).slice(0, 5);
-const silhouette = (p: string) => bilder.find((b) => b.projekt === p && b.art === 'seitenriss');
+// Seitenrisse von der Website der Marinekameradschaft KSS e.V.
+const risse: Record<string, { src: string; bord: string }> = {
+  '50': { src: '/schiffsrisse/projekt-50.gif', bord: '142' },
+  '1159': { src: '/schiffsrisse/projekt-1159.gif', bord: '141' },
+  '133.1': { src: '/schiffsrisse/projekt-133.gif', bord: '224' },
+};
 
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, description: SITE.description, inLanguage: 'de', potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/suche?q={suchbegriff}` }, 'query-input': 'required name=suchbegriff' } },
@@ -41,15 +46,14 @@ const jsonLd = [
         </div>
       </div>
       <div class="silhouetten" aria-label="Seitenrisse der drei Schiffsklassen">
-        {Object.entries(PROJEKTE).map(([p, info]) => {
-          const b = silhouette(p);
-          return b ? (
-            <figure>
-              <a href={`/schiffe/${info.slug}`}><img src={b.src} alt={`Seitenriss ${info.name}, ${info.klasse}`} width={b.w} height={b.h} loading={p === '50' ? 'eager' : 'lazy'} /></a>
-              <figcaption><span>{info.name} · {info.klasse}</span><span>{info.zeitraum}</span></figcaption>
-            </figure>
-          ) : null;
-        })}
+        {Object.entries(PROJEKTE).map(([p, info]) => (
+          <figure>
+            <a href={`/schiffe/${info.slug}`}>
+              <img src={risse[p].src} alt={`Seitenriss ${info.name}, ${info.klasse}, mit Bordnummer ${risse[p].bord}`} loading={p === '50' ? 'eager' : 'lazy'} />
+            </a>
+            <figcaption><span>{info.name} · {info.klasse}</span><span>{info.zeitraum}</span></figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>

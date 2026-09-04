@@ -146,6 +146,9 @@ const path = Astro.url.pathname;
         const schalter = document.querySelector('[data-nav-schalter]');
         const nav = document.querySelector('[data-nav]');
         if (!schalter || !nav) return;
+        // Nur einmal binden: das Skript läuft beim Laden und erneut bei astro:page-load.
+        if (schalter.dataset.gebunden === 'ja') return;
+        schalter.dataset.gebunden = 'ja';
         const schliessen = () => {
           nav.removeAttribute('data-offen');
           schalter.setAttribute('aria-expanded', 'false');
@@ -168,6 +171,8 @@ const path = Astro.url.pathname;
       function nachObenBereit() {
         const knopf = document.querySelector('[data-nach-oben]');
         if (!knopf) return;
+        if (knopf.dataset.gebunden === 'ja') return;
+        knopf.dataset.gebunden = 'ja';
         const pruefen = () => {
           if (window.scrollY > 700) knopf.setAttribute('data-sichtbar', '');
           else knopf.removeAttribute('data-sichtbar');
